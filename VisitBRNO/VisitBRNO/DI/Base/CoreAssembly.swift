@@ -19,9 +19,9 @@ final class CoreAssembly: Assembly {
             )
         }.inObjectScope(.container)
         
-        container.autoregister(ServerGis.self, initializer: ServerGis.init).inObjectScope(.container)
-        container.autoregister(ServerArcgis.self, initializer: ServerArcgis.init).inObjectScope(.container)
+        container.autoregister(ServerGis.self, initializer: ServerGis.init)
+        container.autoregister(ServerArcgis.self, initializer: ServerArcgis.init)
         
-        container.autoregister(RESTClient.self, initializer: RESTClientImpl.init).inObjectScope(.container)
+        container.autoregister(RESTClient.self, initializer: RESTClientImpl.init)
     }
 }

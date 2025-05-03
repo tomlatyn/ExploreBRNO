@@ -1,5 +1,5 @@
 //
-//  DashboardView.swift
+//  MapView.swift
 //  VisitBRNO
 //
 //  Created by Tomáš Latýn on 03.05.2025.
@@ -7,19 +7,20 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
-public struct DashboardView: View {
+public struct MapView: View {
     
     // MARK: - Properties
     
-    @ObservedObject var viewModel: DashboardViewModel
-    let coordinator: DashboardCoordinator
+    @ObservedObject var viewModel: MapViewModel
+    let coordinator: MapCoordinator
     
     // MARK: - Lifecycle
     
     public init(
-        viewModel: DashboardViewModel,
-        coordinator: DashboardCoordinator
+        viewModel: MapViewModel,
+        coordinator: MapCoordinator
     ) {
         self.viewModel = viewModel
         self.coordinator = coordinator
@@ -35,17 +36,12 @@ public struct DashboardView: View {
             layoutMain
         }
         .onAppear {
-//            viewModel.loadData()
+            viewModel.loadData()
         }
     }
     
     @ViewBuilder
     private var layoutMain: some View {
-        List {
-            Text("viewpoints")
-                .onTapGesture {
-                    coordinator.navigate(.viewpoints)
-                }
-        }
+        UIMapView(viewModel: viewModel)
     }
 }

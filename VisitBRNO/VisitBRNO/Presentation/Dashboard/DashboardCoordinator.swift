@@ -8,7 +8,7 @@
 import Foundation
 
 public enum DashboardPath {
-
+    case viewpoints
 }
 
 public protocol DashboardCoordinator: AnyObject {

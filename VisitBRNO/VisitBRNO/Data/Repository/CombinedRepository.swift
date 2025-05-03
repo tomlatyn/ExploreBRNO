@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol CombinedRepository: AnyObject {
-    func getViewpoints() async throws -> ViewpointsDTO
+    func getViewpoints() async throws -> [ViewpointModel]
 }
 
 public final class CombinedRepositoryImpl: CombinedRepository {
@@ -24,9 +24,11 @@ public final class CombinedRepositoryImpl: CombinedRepository {
         self.serverGis = serverGis
     }
     
-    public func getViewpoints() async throws -> ViewpointsDTO {
+    public func getViewpoints() async throws -> [ViewpointModel] {
         try await restClient.call { [serverGis] in
             try await serverGis.call(response: EndpointGetViewpoints())
+                .features
+                .map { $0.mapToModel() }
         }
     }
     

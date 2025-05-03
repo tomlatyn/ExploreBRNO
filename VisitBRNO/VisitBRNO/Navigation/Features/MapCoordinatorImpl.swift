@@ -1,5 +1,5 @@
 //
-//  DashboardCoordinatorImpl.swift
+//  MapCoordinatorImpl.swift
 //  VisitBRNO
 //
 //  Created by Tomáš Latýn on 03.05.2025.
@@ -8,37 +8,33 @@
 import Foundation
 import SwiftUI
 
-final class DashboardCoordinatorImpl: DashboardCoordinator {
+final class MapCoordinatorImpl: MapCoordinator {
     
     // MARK: - Properties
     
     private let appCoordinator: AppCoordinator
-    private let factory: DashboardFactory
-    private let mapFactory: MapFactory
+    private let factory: MapFactory
     
     // MARK: - Lifecycle
     
     nonisolated init(
         appCoordinator: AppCoordinator,
-        factory: DashboardFactory,
-        mapFactory: MapFactory
+        factory: MapFactory
     ) {
         self.appCoordinator = appCoordinator
         self.factory = factory
-        self.mapFactory = mapFactory
     }
     
     // MARK: - Navigation
     
     func start() {
         let vc = UIHostingController(rootView: factory.resolveView())
-        appCoordinator.navigationController.pushViewController(vc, animated: false)
+        appCoordinator.navigationController.pushViewController(vc, animated: true)
     }
     
-    func navigate(_ path: DashboardPath) {
+    func navigate(_ path: MapPath) {
         switch path {
-        case .viewpoints:
-            mapFactory.coordinator.start()
+            
         }
     }
 }

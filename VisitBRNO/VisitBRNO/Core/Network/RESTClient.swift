@@ -47,11 +47,11 @@ public final class RESTClientImpl: RESTClient {
         perform: @escaping  () async throws -> T,
         tryHandleError: @escaping (Error, StatusCode, @escaping (Error) async throws -> T) async throws -> T
     ) async throws -> T {
-        try await withExponentialBackoffRetry { retry in
+        try await withExponentialBackoffRetry { [weak self] retry in
             do {
                 return try await perform()
             } catch let error as APIErrorStandard {
-                self.logger.error("\(error)")
+                self?.logger.error("\(error)")
                 switch error {
                 case let .connection(error):
                     throw ConnectionError.timeout(String(describing: error))
