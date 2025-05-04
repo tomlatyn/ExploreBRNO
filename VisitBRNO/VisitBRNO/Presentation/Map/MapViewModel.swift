@@ -20,6 +20,7 @@ public final class MapViewModel: ObservableObject {
     
     @Published var viewState = BaseViewState.loading
     @Published var mapLocations = [MapLocation]()
+    @Published var selectedMapLocationTypes: [MapLocation.LocationType] = [.landmark, .viewpoint]
     
     @Published var region = MapConstants.defaultMapRegion
     @Published var selectedLocation: SelectedLocation? {
@@ -48,6 +49,7 @@ public final class MapViewModel: ObservableObject {
     
     @MainActor
     func loadData() {
+        guard viewState != .ok else { return }
         Task {
             viewState = await .newViewState {
                 self.mapLocations = try await getMapLocations()
@@ -96,13 +98,31 @@ public final class MapViewModel: ObservableObject {
         )
     }
     
+    var mapLocationTypes: [MapLocation.LocationType] {
+        Array(Set(mapLocations.map { $0.type })).sorted(by: { $0.name < $1.name })
+    }
+    
+    func toggleMapLocationType(type: MapLocation.LocationType) {
+        if selectedMapLocationTypes.contains(type) {
+            selectedMapLocationTypes.removeAll(where: { $0 == type })
+        } else {
+            selectedMapLocationTypes.append(type)
+        }
+    }
+    
+    var filteredMapLocations: [MapLocation] {
+        mapLocations.filter { location in
+            selectedMapLocationTypes.contains(location.type)
+        }
+    }
+    
 }
 
 // MARK: - Extension
 
 extension MapViewModel {
     struct SelectedLocation: Identifiable {
-        var id: Int
+        var id: String
         var mapLocation: MapLocation
     }
 }

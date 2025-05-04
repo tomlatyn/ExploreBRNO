@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 protocol MapLocationModel: Identifiable {
-    var id: Int { get }
+    var id: String { get }
     var name: String { get }
     var coordinates: CLLocationCoordinate2D { get }
 }

@@ -43,6 +43,9 @@ public struct MapView: View {
                     )
                     .cornerRadius(16)
             }
+            
+            filterView
+//                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
         }
         .onAppear {
             viewModel.loadData()
@@ -65,7 +68,24 @@ public struct MapView: View {
     
     @ViewBuilder
     private var layoutMain: some View {
-        UIMapView(viewModel: viewModel)
+        UIMapView(viewModel: viewModel, mapLocations: viewModel.filteredMapLocations)
             .ignoresSafeArea(edges: [.bottom])
+    }
+    
+    private var filterView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(viewModel.mapLocationTypes, id: \.self) { type in
+                    Text(type.collectionName)
+                        .padding(12)
+                        .background(viewModel.selectedMapLocationTypes.contains(type) ? Color.white : Color.gray)
+                        .clipShape(.capsule)
+                        .onTapGesture {
+                            viewModel.toggleMapLocationType(type: type)
+                        }
+                }
+            }
+            .padding(12)
+        }
     }
 }

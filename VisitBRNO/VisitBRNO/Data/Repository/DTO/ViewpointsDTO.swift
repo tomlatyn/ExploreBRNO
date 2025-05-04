@@ -45,7 +45,7 @@ public struct ViewpointsDTO: Codable {
 extension ViewpointsDTO.Feature {
     func mapToModel() -> ViewpointModel {
         ViewpointModel(
-            id: attributes.objectid,
+            id: "viewpoint_\(attributes.objectid)",
             name: attributes.nazev,
             altitude: attributes.nadmorskaVyska,
             coordinates: CLLocationCoordinate2D(

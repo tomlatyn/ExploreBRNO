@@ -21,7 +21,7 @@ enum MapLocation {
         }
     }
     
-    var id: Int {
+    var id: String {
         switch self {
         case .viewpoint(let viewpointModel):
             viewpointModel.id
@@ -36,6 +36,38 @@ enum MapLocation {
                 .red
         case .landmark:
                 .blue
+        }
+    }
+    
+    var type: LocationType {
+        switch self {
+        case .viewpoint:
+                .viewpoint
+        case .landmark:
+                .landmark
+        }
+    }
+    
+    enum LocationType {
+        case viewpoint
+        case landmark
+        
+        var name: String {
+            switch self {
+            case .viewpoint:
+                "Viewpoint"
+            case .landmark:
+                "Landmark"
+            }
+        }
+        
+        var collectionName: String {
+            switch self {
+            case .viewpoint:
+                "Viewpoints"
+            case .landmark:
+                "Landmarks"
+            }
         }
     }
 }

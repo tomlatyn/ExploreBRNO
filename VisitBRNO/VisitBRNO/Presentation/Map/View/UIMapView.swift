@@ -12,6 +12,7 @@ import MapKit
 
 struct UIMapView: UIViewRepresentable {
     @ObservedObject var viewModel: MapViewModel
+    var mapLocations: [MapLocation]
     private let locationManager = CLLocationManager()
     
     func makeUIView(context: Context) -> MKMapView {
@@ -56,15 +57,15 @@ struct UIMapView: UIViewRepresentable {
     private func shouldUpdateAnnotations(on mapView: MKMapView) -> Bool {
         let currentAnnotations = mapView.annotations.compactMap { $0 as? LocationAnnotation }
         let currentIDs = Set(currentAnnotations.map { $0.location.id })
-        let newIDs = Set(viewModel.mapLocations.map { $0.id })
+        let newIDs = Set(mapLocations.map { $0.id })
         
-        return currentIDs != newIDs || currentAnnotations.count != viewModel.mapLocations.count
+        return currentIDs != newIDs || currentAnnotations.count != mapLocations.count
     }
     
     private func updateAnnotations(on mapView: MKMapView) {
         // Create a dictionary of existing annotations by ID for efficient lookup
-        let existingAnnotations: [Int: LocationAnnotation] = Dictionary(
-            uniqueKeysWithValues: mapView.annotations.compactMap { annotation -> (Int, LocationAnnotation)? in
+        let existingAnnotations: [String: LocationAnnotation] = Dictionary(
+            uniqueKeysWithValues: mapView.annotations.compactMap { annotation -> (String, LocationAnnotation)? in
                 if let locationAnnotation = annotation as? LocationAnnotation {
                     return (locationAnnotation.location.id, locationAnnotation)
                 }
@@ -77,13 +78,13 @@ struct UIMapView: UIViewRepresentable {
             if annotation is MKUserLocation { return false }
             
             if let locationAnnotation = annotation as? LocationAnnotation {
-                return !viewModel.mapLocations.contains { $0.id == locationAnnotation.location.id }
+                return !mapLocations.contains { $0.id == locationAnnotation.location.id }
             }
             
             return true
         }
         
-        let annotationsToAdd = viewModel.mapLocations.compactMap { location -> LocationAnnotation? in
+        let annotationsToAdd = mapLocations.compactMap { location -> LocationAnnotation? in
             if existingAnnotations[location.id] == nil {
                 return LocationAnnotation(location: location)
             }

@@ -9,12 +9,12 @@ import Foundation
 import MapKit
 
 public struct LandmarkModel: MapLocationModel {
-    public let id: Int
+    public let id: String
     public let name: String
     public let coordinates: CLLocationCoordinate2D
     
     public init(
-        id: Int,
+        id: String,
         name: String,
         coordinates: CLLocationCoordinate2D
     ) {

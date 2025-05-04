@@ -43,7 +43,7 @@ struct LandmarksDTO: Codable {
 extension LandmarksDTO.Feature {
     func mapToModel() -> LandmarkModel {
         LandmarkModel(
-            id: attributes.objectid,
+            id: "landmark_\(attributes.objectid)",
             name: attributes.nazev,
             coordinates: CLLocationCoordinate2D(
                 latitude: geometry.y,
