@@ -70,12 +70,12 @@ extension EventsDTO.Feature {
     func mapToModel() -> EventModel {
         EventModel(
             id: "event_\(attributes.id)",
-            name: attributes.nameEn ?? attributes.name,
+            name: (attributes.nameEn ?? attributes.name).decodeHTMLEntities(),
             coordinates: CLLocationCoordinate2D(
                 latitude: geometry.y,
                 longitude: geometry.x
             ),
-            text: attributes.text ?? attributes.textEn,
+            text: (attributes.text ?? attributes.textEn)?.decodeHTMLEntities(),
             tickets: attributes.tickets,
             images: attributes.images?.components(separatedBy: ",") ?? [],
             url: attributes.urlEn ?? attributes.url,

@@ -144,9 +144,13 @@ struct UIMapView: UIViewRepresentable {
         scale.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(scale)
         
-        NSLayoutConstraint.activate([button.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 10),
-                                     button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
-                                     scale.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -10),
-                                     scale.centerYAnchor.constraint(equalTo: button.centerYAnchor)])
+        NSLayoutConstraint.activate(
+            [
+                button.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 10),
+                button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
+                scale.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -10),
+                scale.centerYAnchor.constraint(equalTo: button.centerYAnchor)
+            ]
+        )
     }
 }

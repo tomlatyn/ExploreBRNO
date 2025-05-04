@@ -58,6 +58,7 @@
 		E2D540FA2DC81CAE002D47EB /* EndpointGetEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */; };
 		E2D540FE2DC81E92002D47EB /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FD2DC81E92002D47EB /* EventModel.swift */; };
 		E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FF2DC821A5002D47EB /* MapView+Events.swift */; };
+		E2D541042DC82C2E002D47EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541032DC82C2E002D47EB /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointGetEvents.swift; sourceTree = "<group>"; };
 		E2D540FD2DC81E92002D47EB /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		E2D540FF2DC821A5002D47EB /* MapView+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Events.swift"; sourceTree = "<group>"; };
+		E2D541032DC82C2E002D47EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		E2D540782DC65B00002D47EB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E2D541022DC82C27002D47EB /* Utils */,
 				E2D540EB2DC7B447002D47EB /* Constants */,
 				E2D540E72DC7B3F3002D47EB /* UI */,
 				E2D540B72DC666B6002D47EB /* Network */,
@@ -382,6 +385,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		E2D541022DC82C27002D47EB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E2D541032DC82C2E002D47EB /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -489,6 +500,7 @@
 				E2D540E02DC7A797002D47EB /* LandmarkModel.swift in Sources */,
 				E2D540BD2DC6680E002D47EB /* Globals.swift in Sources */,
 				E2D540DA2DC6E1D0002D47EB /* UIMapViewCoordinator.swift in Sources */,
+				E2D541042DC82C2E002D47EB /* Extensions.swift in Sources */,
 				E2D5407B2DC65B0B002D47EB /* Coordinator.swift in Sources */,
 				E2D540AE2DC663E6002D47EB /* FeatureAssembly.swift in Sources */,
 				E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */,

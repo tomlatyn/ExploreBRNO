@@ -82,7 +82,15 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             if identicalAnnotations.count > 1 {
                 // Show a list for user to choose from
                 parent.showSelectionList(identicalAnnotations)
-                mapView.deselectAnnotation(cluster, animated: false)
+//                mapView.deselectAnnotation(cluster, animated: false)
+                let region = MKCoordinateRegion(
+                    center: cluster.coordinate,
+                    span: MKCoordinateSpan(
+                        latitudeDelta: mapView.region.span.latitudeDelta,
+                        longitudeDelta: mapView.region.span.longitudeDelta
+                    )
+                )
+                mapView.setRegion(region, animated: true)
                 return
             }
             

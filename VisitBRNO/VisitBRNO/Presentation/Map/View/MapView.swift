@@ -15,6 +15,9 @@ public struct MapView: View {
     
     @ObservedObject var viewModel: MapViewModel
     let coordinator: MapCoordinator
+    @State var locations = [LocationAnnotation]()
+    @State var isPresented = false
+    @State var height: CGFloat = 0
     
     // MARK: - Lifecycle
     
@@ -44,12 +47,22 @@ public struct MapView: View {
                     .cornerRadius(16)
             }
             
+            Color.clear
+                .frame(width: 1, height: 1)
+                .popover(isPresented: $isPresented, arrowEdge: .top) {
+                    clusterList
+                        .presentationSizing(.fitted)
+                        .presentationCompactAdaptation(.popover)
+                }
+            
+            
 //            filterView
 //                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
         }
         .onAppear {
             viewModel.loadData()
         }
+        .animation(.default, value: isPresented)
         .sheet(item: $viewModel.selectedLocation) { location in
             selectedLocationView(location: location)
         }
@@ -72,10 +85,11 @@ public struct MapView: View {
             viewModel: viewModel,
             mapLocations: viewModel.filteredMapLocations,
             showSelectionList: { annotations in
-                print(annotations.map { $0.title })
+                self.locations = annotations
+                isPresented = true
             }
         )
-            .ignoresSafeArea(edges: [.bottom])
+        .ignoresSafeArea(edges: [.bottom])
     }
     
     private var filterView: some View {
@@ -92,6 +106,31 @@ public struct MapView: View {
                 }
             }
             .padding(12)
+        }
+    }
+    
+    private var clusterList: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                ForEach(locations, id: \.location.id) { location in
+                    HStack {
+                        Text(location.location.model.name)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Image(systemName: "chevron.right")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        isPresented = false
+                        viewModel.selectLocation(location.location)
+                    }
+                    
+                    if location != locations.last {
+                        Divider()
+                    }
+                }
+            }
+            .padding(16)
         }
     }
 }
