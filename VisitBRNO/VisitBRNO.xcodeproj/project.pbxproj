@@ -53,6 +53,7 @@
 		E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */; };
 		E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EC2DC7B44F002D47EB /* MapConstants.swift */; };
 		E2D540EF2DC7BBDE002D47EB /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EE2DC7BBDE002D47EB /* MapType.swift */; };
+		E2D540F22DC7BF57002D47EB /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E2D540F12DC7BF57002D47EB /* RswiftLibrary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2D540802DC65BF9002D47EB /* Swinject in Frameworks */,
+				E2D540F22DC7BF57002D47EB /* RswiftLibrary in Frameworks */,
 				E2D540922DC65FB4002D47EB /* FTAPIKit in Frameworks */,
 				E2D540832DC65C09002D47EB /* SwinjectAutoregistration in Frameworks */,
 			);
@@ -374,12 +376,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				E2D540F42DC7BFE4002D47EB /* PBXTargetDependency */,
 			);
 			name = VisitBRNO;
 			packageProductDependencies = (
 				E2D5407F2DC65BF9002D47EB /* Swinject */,
 				E2D540822DC65C09002D47EB /* SwinjectAutoregistration */,
 				E2D540912DC65FB4002D47EB /* FTAPIKit */,
+				E2D540F12DC7BF57002D47EB /* RswiftLibrary */,
 			);
 			productName = VisitBRNO;
 			productReference = E2AAAB8F2DC659CC00F14EDA /* VisitBRNO.app */;
@@ -413,6 +417,7 @@
 				E2D5407E2DC65BF9002D47EB /* XCRemoteSwiftPackageReference "Swinject" */,
 				E2D540812DC65C09002D47EB /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 				E2D540902DC65FB4002D47EB /* XCRemoteSwiftPackageReference "FTAPIKit" */,
+				E2D540F02DC7BF57002D47EB /* XCRemoteSwiftPackageReference "R" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E2AAAB902DC659CC00F14EDA /* Products */;
@@ -486,6 +491,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2D540F42DC7BFE4002D47EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E2D540F32DC7BFE4002D47EB /* RswiftGeneratePublicResources */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E2D5406B2DC65AC0002D47EB /* LaunchScreen.storyboard */ = {
@@ -726,6 +738,14 @@
 				minimumVersion = 1.5.0;
 			};
 		};
+		E2D540F02DC7BF57002D47EB /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -743,6 +763,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2D540902DC65FB4002D47EB /* XCRemoteSwiftPackageReference "FTAPIKit" */;
 			productName = FTAPIKit;
+		};
+		E2D540F12DC7BF57002D47EB /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2D540F02DC7BF57002D47EB /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		E2D540F32DC7BFE4002D47EB /* RswiftGeneratePublicResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2D540F02DC7BF57002D47EB /* XCRemoteSwiftPackageReference "R" */;
+			productName = "plugin:RswiftGeneratePublicResources";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

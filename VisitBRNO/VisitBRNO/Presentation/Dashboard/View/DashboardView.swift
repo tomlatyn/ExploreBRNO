@@ -29,7 +29,7 @@ public struct DashboardView: View {
     
     public var body: some View {
         ZStack {
-//            Color(R.color.background.default()!)
+            Color(R.color.white()!)
 //                .ignoresSafeArea()
             
             layoutMain
