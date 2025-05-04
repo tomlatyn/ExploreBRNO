@@ -9,11 +9,6 @@ import Foundation
 
 public typealias StatusCode = Int
 
-public enum AuthError: Error {
-    case tokenInvalid(file: String = #file, line: Int = #line, _ message: String = "")
-    case tokenExpired(file: String = #file, line: Int = #line, _ message: String = "")
-}
-
 public enum ConnectionError: Error {
     case timeout(file: String = #file, line: Int = #line, _ message: String = "")
 }

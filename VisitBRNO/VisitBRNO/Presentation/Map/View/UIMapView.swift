@@ -27,6 +27,8 @@ struct UIMapView: UIViewRepresentable {
         mapView.showsCompass = true
         mapView.showsScale = true
         
+        setupUserTrackingButtonAndScaleView(mapView: mapView)
+        
         // Set initial region
         mapView.setRegion(viewModel.region, animated: false)
         
@@ -49,9 +51,9 @@ struct UIMapView: UIViewRepresentable {
     private func shouldUpdateAnnotations(on mapView: MKMapView) -> Bool {
         let currentAnnotations = mapView.annotations.compactMap { $0 as? LocationAnnotation }
         let currentIDs = Set(currentAnnotations.map { $0.location.id })
-        let newIDs = Set(viewModel.viewpoints.map { $0.id })
+        let newIDs = Set(viewModel.mapLocations.map { $0.id })
         
-        return currentIDs != newIDs || currentAnnotations.count != viewModel.viewpoints.count
+        return currentIDs != newIDs || currentAnnotations.count != viewModel.mapLocations.count
     }
     
     private func updateAnnotations(on mapView: MKMapView) {
@@ -70,13 +72,13 @@ struct UIMapView: UIViewRepresentable {
             if annotation is MKUserLocation { return false }
             
             if let locationAnnotation = annotation as? LocationAnnotation {
-                return !viewModel.viewpoints.contains { $0.id == locationAnnotation.location.id }
+                return !viewModel.mapLocations.contains { $0.id == locationAnnotation.location.id }
             }
             
             return true
         }
         
-        let annotationsToAdd = viewModel.viewpoints.compactMap { location -> LocationAnnotation? in
+        let annotationsToAdd = viewModel.mapLocations.compactMap { location -> LocationAnnotation? in
             if existingAnnotations[location.id] == nil {
                 return LocationAnnotation(location: location)
             }
@@ -121,5 +123,23 @@ struct UIMapView: UIViewRepresentable {
     
     func makeCoordinator() -> UIMapViewCoordinator {
         UIMapViewCoordinator(self)
+    }
+    
+    func setupUserTrackingButtonAndScaleView(mapView: MKMapView) {
+        let button = MKUserTrackingButton(mapView: mapView)
+        button.layer.backgroundColor = UIColor(white: 1, alpha: 0.8).cgColor
+        button.layer.cornerRadius = 6
+        button.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(button)
+        
+        let scale = MKScaleView(mapView: mapView)
+        scale.legendAlignment = .trailing
+        scale.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(scale)
+        
+        NSLayoutConstraint.activate([button.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 10),
+                                     button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
+                                     scale.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -10),
+                                     scale.centerYAnchor.constraint(equalTo: button.centerYAnchor)])
     }
 }

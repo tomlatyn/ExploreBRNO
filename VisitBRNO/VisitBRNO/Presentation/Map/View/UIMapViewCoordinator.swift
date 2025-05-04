@@ -55,7 +55,7 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
                locationAnnotation.location.id == selectedLocation.id {
                 annotationView.markerTintColor = .systemRed
             } else {
-                annotationView.markerTintColor = .systemBlue
+                annotationView.markerTintColor = locationAnnotation.color
             }
             
             // Enable clustering
@@ -96,7 +96,7 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
            let markerView = view as? MKMarkerAnnotationView {
             
             // Reset the annotation appearance
-            markerView.markerTintColor = .systemBlue
+            markerView.markerTintColor = locationAnnotation.color
             
             // Only clear if the deselected annotation is the selected one
             if let selectedLocation = parent.viewModel.selectedLocation,
@@ -112,7 +112,7 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let locationAnnotation = view.annotation as? LocationAnnotation {
             // Handle detail disclosure button tap
-            print("Show details for: \(locationAnnotation.location.name)")
+            print("Show details for: \(locationAnnotation.location.model.name)")
             // You can implement your detail view navigation here
         }
     }

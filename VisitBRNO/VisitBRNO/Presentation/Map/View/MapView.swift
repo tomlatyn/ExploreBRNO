@@ -34,9 +34,32 @@ public struct MapView: View {
 //                .ignoresSafeArea()
             
             layoutMain
+            
+            if viewModel.viewState == .loading {
+                ProgressView()
+                    .frame(width: 64, height: 64)
+                    .background(
+                        .thinMaterial
+                    )
+                    .cornerRadius(16)
+            }
         }
         .onAppear {
             viewModel.loadData()
+        }
+        .sheet(item: $viewModel.selectedLocation) { location in
+            selectedLocationView(location: location)
+        }
+        .animation(.default, value: viewModel.viewState)
+        .onChange(of: viewModel.viewState) { _, state in
+            switch state {
+            case .connectionError:
+                print("connection error")
+            case .generalError:
+                print("general error")
+            default:
+                break
+            }
         }
     }
     

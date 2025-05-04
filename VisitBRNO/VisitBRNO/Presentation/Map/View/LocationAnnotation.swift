@@ -9,12 +9,14 @@ import Foundation
 import MapKit
 
 class LocationAnnotation: MKPointAnnotation {
-    let location: ViewpointModel
+    let location: MapLocation
+    let color: UIColor
     
-    init(location: ViewpointModel) {
+    init(location: MapLocation) {
         self.location = location
+        self.color = location.pinColor
         super.init()
-        self.title = location.name
-        self.coordinate = location.coordinates
+        self.title = location.model.name
+        self.coordinate = location.model.coordinates
     }
 }

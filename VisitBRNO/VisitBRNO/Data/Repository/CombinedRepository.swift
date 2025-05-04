@@ -9,6 +9,7 @@ import Foundation
 
 public protocol CombinedRepository: AnyObject {
     func getViewpoints() async throws -> [ViewpointModel]
+    func getLandmarks() async throws -> [LandmarkModel]
 }
 
 public final class CombinedRepositoryImpl: CombinedRepository {
@@ -27,6 +28,14 @@ public final class CombinedRepositoryImpl: CombinedRepository {
     public func getViewpoints() async throws -> [ViewpointModel] {
         try await restClient.call { [serverGis] in
             try await serverGis.call(response: EndpointGetViewpoints())
+                .features
+                .map { $0.mapToModel() }
+        }
+    }
+    
+    public func getLandmarks() async throws -> [LandmarkModel] {
+        try await restClient.call { [serverGis] in
+            try await serverGis.call(response: EndpointGetLandmarks())
                 .features
                 .map { $0.mapToModel() }
         }

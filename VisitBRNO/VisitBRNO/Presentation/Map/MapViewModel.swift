@@ -19,16 +19,11 @@ public final class MapViewModel: ObservableObject {
     
     // MARK: - Published properties
     
-    @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 49.19492956343889, longitude: 16.608378039964823),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-    )
-    @Published var selectedLocation: ViewpointModel? {
-        didSet {
-            print(selectedLocation)
-        }
-    }
-    @Published var viewpoints = [ViewpointModel]()
+    @Published var viewState = BaseViewState.loading
+    @Published var region = MapConstants.defaultMapRegion
+    @Published var selectedLocation: SelectedLocation?
+    @Published var presentationDetent: PresentationDetent = .medium
+    @Published var mapLocations = [MapLocation]()
     
     // MARK: - Lifecycle
     
@@ -49,16 +44,35 @@ public final class MapViewModel: ObservableObject {
     @MainActor
     func loadData() {
         Task {
-            if let viewpoints = try? await combinedRepository.getViewpoints() {
-                self.viewpoints = viewpoints
+            viewState = await .newViewState {
+                async let viewpoints = combinedRepository.getViewpoints()
+                async let landmarks = combinedRepository.getLandmarks()
+                self.mapLocations += try await viewpoints.map { MapLocation.viewpoint($0) }
+                self.mapLocations += try await landmarks.map { MapLocation.landmark($0) }
             }
         }
     }
     
-    func selectLocation(_ location: ViewpointModel?) {
+    func selectLocation(_ location: MapLocation?) {
         DispatchQueue.main.async { [weak self] in
-            self?.selectedLocation = location
+            guard let location = location else {
+                self?.selectedLocation = nil
+                return
+            }
+            self?.selectedLocation = SelectedLocation(
+                id: location.model.id,
+                mapLocation: location
+            )
         }
     }
     
+    
+    
+}
+
+extension MapViewModel {
+    struct SelectedLocation: Identifiable {
+        var id: Int
+        var mapLocation: MapLocation
+    }
 }

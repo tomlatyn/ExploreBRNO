@@ -1,14 +1,14 @@
 //
-//  ViewpointDTO.swift
+//  LandmarksDTO.swift
 //  VisitBRNO
 //
-//  Created by Tomáš Latýn on 03.05.2025.
+//  Created by Tomáš Latýn on 04.05.2025.
 //
 
 import Foundation
 import MapKit
 
-public struct ViewpointsDTO: Codable {
+struct LandmarksDTO: Codable {
     let features: [Feature]
     
     // MARK: - Feature
@@ -22,12 +22,10 @@ public struct ViewpointsDTO: Codable {
         struct Attributes: Codable {
             let objectid: Int
             let nazev: String
-            let nadmorskaVyska: Double
             
             enum CodingKeys: String, CodingKey {
                 case objectid = "objectid"
                 case nazev = "nazev"
-                case nadmorskaVyska = "nadmorska_"
             }
         }
         
@@ -42,12 +40,11 @@ public struct ViewpointsDTO: Codable {
 
 // MARK: - Mapping
 
-extension ViewpointsDTO.Feature {
-    func mapToModel() -> ViewpointModel {
-        ViewpointModel(
+extension LandmarksDTO.Feature {
+    func mapToModel() -> LandmarkModel {
+        LandmarkModel(
             id: attributes.objectid,
             name: attributes.nazev,
-            altitude: attributes.nadmorskaVyska,
             coordinates: CLLocationCoordinate2D(
                 latitude: geometry.y,
                 longitude: geometry.x

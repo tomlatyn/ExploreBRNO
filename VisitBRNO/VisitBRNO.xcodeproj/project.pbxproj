@@ -44,6 +44,14 @@
 		E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540D32DC6D0BE002D47EB /* UIMapView.swift */; };
 		E2D540D62DC6D0EB002D47EB /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */; };
 		E2D540DA2DC6E1D0002D47EB /* UIMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */; };
+		E2D540DC2DC7A60E002D47EB /* LandmarksDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */; };
+		E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */; };
+		E2D540E02DC7A797002D47EB /* LandmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */; };
+		E2D540E22DC7A8D8002D47EB /* MapLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */; };
+		E2D540E42DC7B022002D47EB /* MapView+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E32DC7B022002D47EB /* MapView+Modal.swift */; };
+		E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E52DC7B284002D47EB /* MapLocation.swift */; };
+		E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */; };
+		E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EC2DC7B44F002D47EB /* MapConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +91,14 @@
 		E2D540D32DC6D0BE002D47EB /* UIMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMapView.swift; sourceTree = "<group>"; };
 		E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMapViewCoordinator.swift; sourceTree = "<group>"; };
+		E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarksDTO.swift; sourceTree = "<group>"; };
+		E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointGetLandmarks.swift; sourceTree = "<group>"; };
+		E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkModel.swift; sourceTree = "<group>"; };
+		E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationModel.swift; sourceTree = "<group>"; };
+		E2D540E32DC7B022002D47EB /* MapView+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Modal.swift"; sourceTree = "<group>"; };
+		E2D540E52DC7B284002D47EB /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
+		E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewState.swift; sourceTree = "<group>"; };
+		E2D540EC2DC7B44F002D47EB /* MapConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +150,8 @@
 		E2D540782DC65B00002D47EB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E2D540EB2DC7B447002D47EB /* Constants */,
+				E2D540E72DC7B3F3002D47EB /* UI */,
 				E2D540B72DC666B6002D47EB /* Network */,
 				E2D540792DC65B03002D47EB /* Coordinator */,
 			);
@@ -257,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				E2D540B52DC665AF002D47EB /* ViewpointsDTO.swift */,
+				E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -265,6 +284,9 @@
 			isa = PBXGroup;
 			children = (
 				E2D540C32DC6C3B4002D47EB /* ViewpointModel.swift */,
+				E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */,
+				E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */,
+				E2D540E52DC7B284002D47EB /* MapLocation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				E2D540BF2DC6691C002D47EB /* EndpointGetViewpoints.swift */,
+				E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -302,11 +325,36 @@
 			isa = PBXGroup;
 			children = (
 				E2D540CD2DC6C62A002D47EB /* MapView.swift */,
+				E2D540E32DC7B022002D47EB /* MapView+Modal.swift */,
 				E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */,
 				E2D540D32DC6D0BE002D47EB /* UIMapView.swift */,
 				E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E2D540E72DC7B3F3002D47EB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540E82DC7B3F8002D47EB /* State */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E2D540E82DC7B3F8002D47EB /* State */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		E2D540EB2DC7B447002D47EB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540EC2DC7B44F002D47EB /* MapConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,22 +442,27 @@
 				E2D540A42DC66262002D47EB /* DashboardView.swift in Sources */,
 				E2D540C42DC6C3B4002D47EB /* ViewpointModel.swift in Sources */,
 				E2D540C02DC6691C002D47EB /* EndpointGetViewpoints.swift in Sources */,
+				E2D540E42DC7B022002D47EB /* MapView+Modal.swift in Sources */,
 				E2D5409F2DC66253002D47EB /* DashboardCoordinator.swift in Sources */,
 				E2D540AB2DC662F8002D47EB /* DashboardCoordinatorImpl.swift in Sources */,
 				E2D540B62DC665AF002D47EB /* ViewpointsDTO.swift in Sources */,
 				E2D540CE2DC6C62A002D47EB /* MapView.swift in Sources */,
 				E2D540B22DC664C6002D47EB /* CombinedRepository.swift in Sources */,
+				E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */,
 				E2D540C92DC6C620002D47EB /* MapCoordinator.swift in Sources */,
 				E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */,
 				E2D540D22DC6C71C002D47EB /* MapFeature.swift in Sources */,
 				E2D540752DC65AC0002D47EB /* AppDelegate.swift in Sources */,
 				E2D540C72DC6C61C002D47EB /* MapFactory.swift in Sources */,
 				E2D540A92DC662F1002D47EB /* DashboardFeature.swift in Sources */,
+				E2D540E02DC7A797002D47EB /* LandmarkModel.swift in Sources */,
 				E2D540BD2DC6680E002D47EB /* Globals.swift in Sources */,
 				E2D540DA2DC6E1D0002D47EB /* UIMapViewCoordinator.swift in Sources */,
 				E2D5407B2DC65B0B002D47EB /* Coordinator.swift in Sources */,
 				E2D540AE2DC663E6002D47EB /* FeatureAssembly.swift in Sources */,
+				E2D540E22DC7A8D8002D47EB /* MapLocationModel.swift in Sources */,
 				E2D540A12DC66258002D47EB /* DashboardViewModel.swift in Sources */,
+				E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */,
 				E2D5408F2DC65D30002D47EB /* AppCoordinator.swift in Sources */,
 				E2D540CB2DC6C625002D47EB /* MapViewModel.swift in Sources */,
 				E2D5409D2DC6624D002D47EB /* DashboardFactory.swift in Sources */,
@@ -418,10 +471,13 @@
 				E2D540992DC66188002D47EB /* ServerArcgis.swift in Sources */,
 				E2D5408B2DC65C41002D47EB /* CoreAssembly.swift in Sources */,
 				E2D540D62DC6D0EB002D47EB /* LocationAnnotation.swift in Sources */,
+				E2D540DC2DC7A60E002D47EB /* LandmarksDTO.swift in Sources */,
 				E2D540B92DC666BF002D47EB /* RESTClient.swift in Sources */,
 				E2D540BB2DC667F6002D47EB /* BasicError.swift in Sources */,
 				E2D5407D2DC65B53002D47EB /* CoordinatorImpl.swift in Sources */,
 				E2D540D02DC6C6DA002D47EB /* MapCoordinatorImpl.swift in Sources */,
+				E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */,
+				E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +506,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VisitBRNO/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -479,6 +536,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VisitBRNO/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
