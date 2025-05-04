@@ -20,7 +20,7 @@ public final class MapViewModel: ObservableObject {
     
     @Published var viewState = BaseViewState.loading
     @Published var mapLocations = [MapLocation]()
-    @Published var selectedMapLocationTypes: [MapLocation.LocationType] = [.landmark, .viewpoint]
+    @Published var selectedMapLocationTypes: [MapLocation.LocationType] = MapLocation.LocationType.allCases
     
     @Published var region = MapConstants.defaultMapRegion
     @Published var selectedLocation: SelectedLocation? {
@@ -63,12 +63,16 @@ public final class MapViewModel: ObservableObject {
         case .all:
             async let viewpoints = combinedRepository.getViewpoints()
             async let landmarks = combinedRepository.getLandmarks()
+            async let events = combinedRepository.getEvents()
             mapLocations += try await viewpoints.map { MapLocation.viewpoint($0) }
             mapLocations += try await landmarks.map { MapLocation.landmark($0) }
+            mapLocations += try await events.map { MapLocation.event($0) }
         case .landmarks:
             mapLocations = try await combinedRepository.getLandmarks().map { MapLocation.landmark($0) }
         case .viewpoints:
             mapLocations = try await combinedRepository.getViewpoints().map { MapLocation.viewpoint($0) }
+        case .events:
+            mapLocations = try await combinedRepository.getEvents().map { MapLocation.event($0) }
         }
         return mapLocations
     }

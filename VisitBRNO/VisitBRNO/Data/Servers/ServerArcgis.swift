@@ -13,7 +13,7 @@ import FTAPIKit
 struct ServerArcgis: URLServer {
 
     var baseUri: URL {
-        URL(string: "https://services6.arcgis.com/fUWVlHWZNxUvTUh8/arcgis/rest/services/")!
+        URL(string: "https://services6.arcgis.com/")!
     }
 
     let decoding: Decoding = JSONDecoding { decoder in

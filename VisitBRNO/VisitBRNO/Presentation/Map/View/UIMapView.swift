@@ -13,6 +13,7 @@ import MapKit
 struct UIMapView: UIViewRepresentable {
     @ObservedObject var viewModel: MapViewModel
     var mapLocations: [MapLocation]
+    var showSelectionList: ([LocationAnnotation]) -> Void
     private let locationManager = CLLocationManager()
     
     func makeUIView(context: Context) -> MKMapView {

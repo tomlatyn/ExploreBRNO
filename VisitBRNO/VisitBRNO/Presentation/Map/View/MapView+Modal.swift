@@ -25,6 +25,8 @@ extension MapView {
                     Text("Altitude: \(NSString(format: "%.01f", viewpoint.altitude)) meters")
                 case .landmark(let landmark):
                     Text("landmark")
+                case .event(let event):
+                    eventDetailView(event)
                 }
             }
             .presentationDetents([.height(100), .medium, .large], selection: $viewModel.presentationDetent)
@@ -47,17 +49,16 @@ extension MapView {
     }
     
     private func openInMaps(location: MapViewModel.SelectedLocation) {
-        let latitude: CLLocationDegrees = location.mapLocation.model.coordinates.latitude
-        let longitude: CLLocationDegrees = location.mapLocation.model.coordinates.longitude
-        let regionDistance:CLLocationDistance = 10000
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        let coordinates = CLLocationCoordinate2D(
+            latitude: location.mapLocation.model.coordinates.latitude,
+            longitude: location.mapLocation.model.coordinates.longitude
+        )
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        let options: [String: Any] = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: region.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
         ]
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
         mapItem.name = location.mapLocation.model.name
         mapItem.openInMaps(launchOptions: options)
     }

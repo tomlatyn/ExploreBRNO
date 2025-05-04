@@ -54,6 +54,10 @@
 		E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EC2DC7B44F002D47EB /* MapConstants.swift */; };
 		E2D540EF2DC7BBDE002D47EB /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EE2DC7BBDE002D47EB /* MapType.swift */; };
 		E2D540F22DC7BF57002D47EB /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E2D540F12DC7BF57002D47EB /* RswiftLibrary */; };
+		E2D540F72DC81C76002D47EB /* EventsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540F62DC81C76002D47EB /* EventsDTO.swift */; };
+		E2D540FA2DC81CAE002D47EB /* EndpointGetEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */; };
+		E2D540FE2DC81E92002D47EB /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FD2DC81E92002D47EB /* EventModel.swift */; };
+		E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FF2DC821A5002D47EB /* MapView+Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +106,10 @@
 		E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewState.swift; sourceTree = "<group>"; };
 		E2D540EC2DC7B44F002D47EB /* MapConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConstants.swift; sourceTree = "<group>"; };
 		E2D540EE2DC7BBDE002D47EB /* MapType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapType.swift; sourceTree = "<group>"; };
+		E2D540F62DC81C76002D47EB /* EventsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDTO.swift; sourceTree = "<group>"; };
+		E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointGetEvents.swift; sourceTree = "<group>"; };
+		E2D540FD2DC81E92002D47EB /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		E2D540FF2DC821A5002D47EB /* MapView+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Events.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +288,7 @@
 			children = (
 				E2D540B52DC665AF002D47EB /* ViewpointsDTO.swift */,
 				E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */,
+				E2D540F62DC81C76002D47EB /* EventsDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -287,11 +296,10 @@
 		E2D540B42DC665A7002D47EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2D540FB2DC81E83002D47EB /* Map */,
 				E2D540C32DC6C3B4002D47EB /* ViewpointModel.swift */,
 				E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */,
-				E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */,
-				E2D540E52DC7B284002D47EB /* MapLocation.swift */,
-				E2D540EE2DC7BBDE002D47EB /* MapType.swift */,
+				E2D540FD2DC81E92002D47EB /* EventModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 			children = (
 				E2D540BF2DC6691C002D47EB /* EndpointGetViewpoints.swift */,
 				E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */,
+				E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 			children = (
 				E2D540CD2DC6C62A002D47EB /* MapView.swift */,
 				E2D540E32DC7B022002D47EB /* MapView+Modal.swift */,
+				E2D540FF2DC821A5002D47EB /* MapView+Events.swift */,
 				E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */,
 				E2D540D32DC6D0BE002D47EB /* UIMapView.swift */,
 				E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */,
@@ -360,6 +370,16 @@
 				E2D540EC2DC7B44F002D47EB /* MapConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		E2D540FB2DC81E83002D47EB /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */,
+				E2D540E52DC7B284002D47EB /* MapLocation.swift */,
+				E2D540EE2DC7BBDE002D47EB /* MapType.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +469,7 @@
 				E2D540862DC65C16002D47EB /* AppDI.swift in Sources */,
 				E2D540A42DC66262002D47EB /* DashboardView.swift in Sources */,
 				E2D540C42DC6C3B4002D47EB /* ViewpointModel.swift in Sources */,
+				E2D540FA2DC81CAE002D47EB /* EndpointGetEvents.swift in Sources */,
 				E2D540C02DC6691C002D47EB /* EndpointGetViewpoints.swift in Sources */,
 				E2D540E42DC7B022002D47EB /* MapView+Modal.swift in Sources */,
 				E2D5409F2DC66253002D47EB /* DashboardCoordinator.swift in Sources */,
@@ -460,14 +481,17 @@
 				E2D540C92DC6C620002D47EB /* MapCoordinator.swift in Sources */,
 				E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */,
 				E2D540D22DC6C71C002D47EB /* MapFeature.swift in Sources */,
+				E2D540F72DC81C76002D47EB /* EventsDTO.swift in Sources */,
 				E2D540752DC65AC0002D47EB /* AppDelegate.swift in Sources */,
 				E2D540C72DC6C61C002D47EB /* MapFactory.swift in Sources */,
+				E2D540FE2DC81E92002D47EB /* EventModel.swift in Sources */,
 				E2D540A92DC662F1002D47EB /* DashboardFeature.swift in Sources */,
 				E2D540E02DC7A797002D47EB /* LandmarkModel.swift in Sources */,
 				E2D540BD2DC6680E002D47EB /* Globals.swift in Sources */,
 				E2D540DA2DC6E1D0002D47EB /* UIMapViewCoordinator.swift in Sources */,
 				E2D5407B2DC65B0B002D47EB /* Coordinator.swift in Sources */,
 				E2D540AE2DC663E6002D47EB /* FeatureAssembly.swift in Sources */,
+				E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */,
 				E2D540E22DC7A8D8002D47EB /* MapLocationModel.swift in Sources */,
 				E2D540A12DC66258002D47EB /* DashboardViewModel.swift in Sources */,
 				E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */,

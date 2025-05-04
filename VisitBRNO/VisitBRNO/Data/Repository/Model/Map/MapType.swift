@@ -11,4 +11,5 @@ public enum MapType {
     case all
     case landmarks
     case viewpoints
+    case events
 }

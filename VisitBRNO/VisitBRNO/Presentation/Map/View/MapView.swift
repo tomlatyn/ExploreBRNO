@@ -44,7 +44,7 @@ public struct MapView: View {
                     .cornerRadius(16)
             }
             
-            filterView
+//            filterView
 //                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
         }
         .onAppear {
@@ -68,7 +68,13 @@ public struct MapView: View {
     
     @ViewBuilder
     private var layoutMain: some View {
-        UIMapView(viewModel: viewModel, mapLocations: viewModel.filteredMapLocations)
+        UIMapView(
+            viewModel: viewModel,
+            mapLocations: viewModel.filteredMapLocations,
+            showSelectionList: { annotations in
+                print(annotations.map { $0.title })
+            }
+        )
             .ignoresSafeArea(edges: [.bottom])
     }
     

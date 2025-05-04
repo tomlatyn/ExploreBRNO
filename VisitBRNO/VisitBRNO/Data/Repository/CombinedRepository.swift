@@ -10,19 +10,23 @@ import Foundation
 public protocol CombinedRepository: AnyObject {
     func getViewpoints() async throws -> [ViewpointModel]
     func getLandmarks() async throws -> [LandmarkModel]
+    func getEvents() async throws -> [EventModel]
 }
 
 public final class CombinedRepositoryImpl: CombinedRepository {
     
     private let restClient: RESTClient
     private let serverGis: ServerGis
+    private let serverArcgis: ServerArcgis
     
     init(
         restClient: RESTClient,
-        serverGis: ServerGis
+        serverGis: ServerGis,
+        serverArcgis: ServerArcgis
     ) {
         self.restClient = restClient
         self.serverGis = serverGis
+        self.serverArcgis = serverArcgis
     }
     
     public func getViewpoints() async throws -> [ViewpointModel] {
@@ -36,6 +40,14 @@ public final class CombinedRepositoryImpl: CombinedRepository {
     public func getLandmarks() async throws -> [LandmarkModel] {
         try await restClient.call { [serverGis] in
             try await serverGis.call(response: EndpointGetLandmarks())
+                .features
+                .map { $0.mapToModel() }
+        }
+    }
+    
+    public func getEvents() async throws -> [EventModel] {
+        try await restClient.call { [serverArcgis] in
+            try await serverArcgis.call(response: EndpointGetEvents())
                 .features
                 .map { $0.mapToModel() }
         }

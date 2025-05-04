@@ -70,11 +70,29 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
     // Handle annotation selection
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let cluster = view.annotation as? MKClusterAnnotation {
+            let identicalAnnotations = cluster.memberAnnotations.compactMap { $0 as? LocationAnnotation }
+                .filter {
+                    let lat1 = Double(round(100000 * $0.coordinate.latitude) / 100000)
+                    let lon1 = Double(round(100000 * $0.coordinate.longitude) / 100000)
+                    let lat2 = Double(round(100000 * cluster.coordinate.latitude) / 100000)
+                    let lon2 = Double(round(100000 * cluster.coordinate.longitude) / 100000)
+                    return lat1 == lat2 && lon1 == lon2
+                }
+            
+            if identicalAnnotations.count > 1 {
+                // Show a list for user to choose from
+                parent.showSelectionList(identicalAnnotations)
+                mapView.deselectAnnotation(cluster, animated: false)
+                return
+            }
+            
             // Zoom in when tapping a cluster
             let region = MKCoordinateRegion(
                 center: cluster.coordinate,
-                span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta * 0.5,
-                                      longitudeDelta: mapView.region.span.longitudeDelta * 0.5)
+                span: MKCoordinateSpan(
+                    latitudeDelta: mapView.region.span.latitudeDelta * 0.5,
+                    longitudeDelta: mapView.region.span.longitudeDelta * 0.5
+                )
             )
             mapView.setRegion(region, animated: true)
         } else if let locationAnnotation = view.annotation as? LocationAnnotation {

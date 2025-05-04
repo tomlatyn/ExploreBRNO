@@ -11,6 +11,7 @@ import SwiftUI
 enum MapLocation {
     case viewpoint(ViewpointModel)
     case landmark(LandmarkModel)
+    case event(EventModel)
     
     var model: any MapLocationModel {
         switch self {
@@ -18,6 +19,8 @@ enum MapLocation {
             viewpointModel
         case .landmark(let landmarkModel):
             landmarkModel
+        case .event(let eventModel):
+            eventModel
         }
     }
     
@@ -27,6 +30,8 @@ enum MapLocation {
             viewpointModel.id
         case .landmark(let landmarkModel):
             landmarkModel.id
+        case .event(let eventModel):
+            eventModel.id
         }
     }
     
@@ -36,6 +41,8 @@ enum MapLocation {
                 .red
         case .landmark:
                 .blue
+        case .event:
+                .orange
         }
     }
     
@@ -45,12 +52,15 @@ enum MapLocation {
                 .viewpoint
         case .landmark:
                 .landmark
+        case .event:
+                .event
         }
     }
     
-    enum LocationType {
+    enum LocationType: CaseIterable {
         case viewpoint
         case landmark
+        case event
         
         var name: String {
             switch self {
@@ -58,6 +68,8 @@ enum MapLocation {
                 "Viewpoint"
             case .landmark:
                 "Landmark"
+            case .event:
+                "Event"
             }
         }
         
@@ -67,6 +79,8 @@ enum MapLocation {
                 "Viewpoints"
             case .landmark:
                 "Landmarks"
+            case .event:
+                "Events"
             }
         }
     }
