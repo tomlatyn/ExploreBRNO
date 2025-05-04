@@ -34,17 +34,27 @@ public struct DashboardView: View {
             
             layoutMain
         }
-        .onAppear {
-//            viewModel.loadData()
-        }
     }
     
     @ViewBuilder
     private var layoutMain: some View {
         List {
-            Text("viewpoints")
+            Text("All")
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .onTapGesture {
-                    coordinator.navigate(.viewpoints)
+                    coordinator.navigate(.map(.all))
+                }
+            
+            Text("Viewpoints")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .onTapGesture {
+                    coordinator.navigate(.map(.viewpoints))
+                }
+            
+            Text("Landmarks")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .onTapGesture {
+                    coordinator.navigate(.map(.landmarks))
                 }
         }
     }

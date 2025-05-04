@@ -14,43 +14,61 @@ public final class MapViewModel: ObservableObject {
     // MARK: - Properties
     
     private let combinedRepository: CombinedRepository
-    
-    var locationManager = CLLocationManager()
+    private let mapType: MapType
     
     // MARK: - Published properties
     
     @Published var viewState = BaseViewState.loading
-    @Published var region = MapConstants.defaultMapRegion
-    @Published var selectedLocation: SelectedLocation?
-    @Published var presentationDetent: PresentationDetent = .medium
     @Published var mapLocations = [MapLocation]()
+    
+    @Published var region = MapConstants.defaultMapRegion
+    @Published var selectedLocation: SelectedLocation? {
+        didSet {
+            if selectedLocation == nil {
+                presentationDetent = .medium
+            }
+        }
+    }
+    @Published var presentationDetent: PresentationDetent = .medium
+    
     
     // MARK: - Lifecycle
     
     public nonisolated init(
+        mapType: MapType,
         combinedRepository: CombinedRepository
     ) {
+        self.mapType = mapType
         self.combinedRepository = combinedRepository
         
-        setupLocationManager()
+        CLLocationManager().requestWhenInUseAuthorization()
     }
     
     // MARK: -
-    
-    private func setupLocationManager() {
-        locationManager.requestWhenInUseAuthorization()
-    }
     
     @MainActor
     func loadData() {
         Task {
             viewState = await .newViewState {
-                async let viewpoints = combinedRepository.getViewpoints()
-                async let landmarks = combinedRepository.getLandmarks()
-                self.mapLocations += try await viewpoints.map { MapLocation.viewpoint($0) }
-                self.mapLocations += try await landmarks.map { MapLocation.landmark($0) }
+                self.mapLocations = try await getMapLocations()
             }
         }
+    }
+    
+    private func getMapLocations() async throws -> [MapLocation] {
+        var mapLocations = [MapLocation]()
+        switch mapType {
+        case .all:
+            async let viewpoints = combinedRepository.getViewpoints()
+            async let landmarks = combinedRepository.getLandmarks()
+            mapLocations += try await viewpoints.map { MapLocation.viewpoint($0) }
+            mapLocations += try await landmarks.map { MapLocation.landmark($0) }
+        case .landmarks:
+            mapLocations = try await combinedRepository.getLandmarks().map { MapLocation.landmark($0) }
+        case .viewpoints:
+            mapLocations = try await combinedRepository.getViewpoints().map { MapLocation.viewpoint($0) }
+        }
+        return mapLocations
     }
     
     func selectLocation(_ location: MapLocation?) {
@@ -63,12 +81,24 @@ public final class MapViewModel: ObservableObject {
                 id: location.model.id,
                 mapLocation: location
             )
+            self?.focusLocation(coordinates: location.model.coordinates)
         }
     }
     
-    
+    private func focusLocation(coordinates: CLLocationCoordinate2D) {
+        let adjustedCoordinates = CLLocationCoordinate2D(
+            latitude: coordinates.latitude - 0.004,
+            longitude: coordinates.longitude
+        )
+        self.region = MKCoordinateRegion(
+            center: adjustedCoordinates,
+            span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        )
+    }
     
 }
+
+// MARK: - Extension
 
 extension MapViewModel {
     struct SelectedLocation: Identifiable {

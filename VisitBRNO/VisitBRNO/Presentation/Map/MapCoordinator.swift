@@ -12,6 +12,6 @@ public enum MapPath {
 }
 
 public protocol MapCoordinator: AnyObject {
-    @MainActor func start()
+    @MainActor func start(_ mapType: MapType)
     @MainActor func navigate(_ path: MapPath)
 }

@@ -10,5 +10,5 @@ import SwiftUI
 
 public protocol MapFactory: AnyObject {
     @MainActor var coordinator: MapCoordinator { get }
-    @MainActor func resolveView() -> AnyView
+    @MainActor func resolveView(_ mapType: MapType) -> AnyView
 }

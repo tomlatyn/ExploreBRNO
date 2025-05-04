@@ -13,7 +13,7 @@ import SwinjectAutoregistration
 final class MapFeature: Assembly {
     func assemble(container: Container) {
         container.autoregister(MapCoordinator.self, initializer: MapCoordinatorImpl.init)
-        container.autoregister(MapViewModel.self, initializer: MapViewModel.init)
+        container.autoregister(MapViewModel.self, argument: MapType.self, initializer: MapViewModel.init)
         container.register(MapFactory.self, factory: MapFactoryImpl.init)
     }
 }
@@ -35,10 +35,10 @@ final class MapFactoryImpl: MapFactory {
         resolver.resolve(MapCoordinator.self)!
     }
     
-    func resolveView() -> AnyView {
+    func resolveView(_ mapType: MapType) -> AnyView {
         AnyView(
             MapView(
-                viewModel: resolver.resolve(MapViewModel.self)!,
+                viewModel: resolver.resolve(MapViewModel.self, argument: mapType)!,
                 coordinator: coordinator
             )
         )

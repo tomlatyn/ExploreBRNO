@@ -27,8 +27,8 @@ final class MapCoordinatorImpl: MapCoordinator {
     
     // MARK: - Navigation
     
-    func start() {
-        let vc = UIHostingController(rootView: factory.resolveView())
+    func start(_ mapType: MapType) {
+        let vc = UIHostingController(rootView: factory.resolveView(mapType))
         appCoordinator.navigationController.pushViewController(vc, animated: true)
     }
     

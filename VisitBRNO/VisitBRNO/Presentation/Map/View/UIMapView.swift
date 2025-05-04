@@ -46,6 +46,11 @@ struct UIMapView: UIViewRepresentable {
         
         // Handle selected location
         updateSelectedLocation(on: mapView, context: context)
+        
+        if mapView.region.center.latitude != viewModel.region.center.latitude ||
+            mapView.region.center.longitude != viewModel.region.center.longitude {
+            mapView.setRegion(viewModel.region, animated: true)
+        }
     }
     
     private func shouldUpdateAnnotations(on mapView: MKMapView) -> Bool {

@@ -37,8 +37,8 @@ final class DashboardCoordinatorImpl: DashboardCoordinator {
     
     func navigate(_ path: DashboardPath) {
         switch path {
-        case .viewpoints:
-            mapFactory.coordinator.start()
+        case .map(let type):
+            mapFactory.coordinator.start(type)
         }
     }
 }

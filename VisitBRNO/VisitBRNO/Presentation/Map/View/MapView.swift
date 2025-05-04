@@ -66,5 +66,6 @@ public struct MapView: View {
     @ViewBuilder
     private var layoutMain: some View {
         UIMapView(viewModel: viewModel)
+            .ignoresSafeArea(edges: [.bottom])
     }
 }

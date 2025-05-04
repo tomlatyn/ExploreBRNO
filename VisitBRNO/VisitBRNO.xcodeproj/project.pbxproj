@@ -52,6 +52,7 @@
 		E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E52DC7B284002D47EB /* MapLocation.swift */; };
 		E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */; };
 		E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EC2DC7B44F002D47EB /* MapConstants.swift */; };
+		E2D540EF2DC7BBDE002D47EB /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540EE2DC7BBDE002D47EB /* MapType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		E2D540E52DC7B284002D47EB /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
 		E2D540E92DC7B3FF002D47EB /* BaseViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewState.swift; sourceTree = "<group>"; };
 		E2D540EC2DC7B44F002D47EB /* MapConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConstants.swift; sourceTree = "<group>"; };
+		E2D540EE2DC7BBDE002D47EB /* MapType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +289,7 @@
 				E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */,
 				E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */,
 				E2D540E52DC7B284002D47EB /* MapLocation.swift */,
+				E2D540EE2DC7BBDE002D47EB /* MapType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				E2D540B92DC666BF002D47EB /* RESTClient.swift in Sources */,
 				E2D540BB2DC667F6002D47EB /* BasicError.swift in Sources */,
 				E2D5407D2DC65B53002D47EB /* CoordinatorImpl.swift in Sources */,
+				E2D540EF2DC7BBDE002D47EB /* MapType.swift in Sources */,
 				E2D540D02DC6C6DA002D47EB /* MapCoordinatorImpl.swift in Sources */,
 				E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */,
 				E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */,
