@@ -36,14 +36,7 @@ enum MapLocation {
     }
     
     var pinColor: UIColor {
-        switch self {
-        case .viewpoint:
-                .red
-        case .landmark:
-                .blue
-        case .event:
-                .orange
-        }
+        type.color
     }
     
     var type: LocationType {
@@ -81,6 +74,17 @@ enum MapLocation {
                 "Landmarks"
             case .event:
                 "Events"
+            }
+        }
+        
+        var color: UIColor {
+            switch self {
+            case .viewpoint:
+                    .red
+            case .landmark:
+                    .blue
+            case .event:
+                    .orange
             }
         }
     }

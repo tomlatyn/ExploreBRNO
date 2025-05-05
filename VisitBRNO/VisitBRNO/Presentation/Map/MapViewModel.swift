@@ -9,12 +9,13 @@ import Foundation
 import SwiftUI
 import MapKit
 
-public final class MapViewModel: ObservableObject {
+public final class MapViewModel: NSObject, ObservableObject {
     
     // MARK: - Properties
     
     private let combinedRepository: CombinedRepository
     private let mapType: MapType
+    private let locationManager = CLLocationManager()
     
     // MARK: - Published properties
     
@@ -22,6 +23,7 @@ public final class MapViewModel: ObservableObject {
     @Published var mapLocations = [MapLocation]()
     @Published var selectedMapLocationTypes: [MapLocation.LocationType] = MapLocation.LocationType.allCases
     
+    @Published var userLocation: CLLocationCoordinate2D?
     @Published var region = MapConstants.defaultMapRegion
     @Published var selectedLocation: SelectedLocation? {
         didSet {
@@ -42,14 +44,19 @@ public final class MapViewModel: ObservableObject {
         self.mapType = mapType
         self.combinedRepository = combinedRepository
         
-        CLLocationManager().requestWhenInUseAuthorization()
+        super.init()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     // MARK: -
+
     
     @MainActor
     func loadData() {
         guard viewState != .ok else { return }
+        viewState = .loading
         Task {
             viewState = await .newViewState {
                 self.mapLocations = try await getMapLocations()
@@ -100,6 +107,16 @@ public final class MapViewModel: ObservableObject {
             center: adjustedCoordinates,
             span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         )
+    }
+
+    func selectClosestLocation() {
+        guard let userLocation = userLocation else { return }
+        let userLocationCl = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        selectLocation(filteredMapLocations.min(by: {
+            let loc1 = CLLocation(latitude: $0.model.coordinates.latitude, longitude: $0.model.coordinates.longitude)
+            let loc2 = CLLocation(latitude: $1.model.coordinates.latitude, longitude: $1.model.coordinates.longitude)
+            return loc1.distance(from: userLocationCl) < loc2.distance(from: userLocationCl)
+        }))
     }
     
     var mapLocationTypes: [MapLocation.LocationType] {

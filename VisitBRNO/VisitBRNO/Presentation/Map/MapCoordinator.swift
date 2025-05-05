@@ -8,7 +8,7 @@
 import Foundation
 
 public enum MapPath {
-
+    case pop
 }
 
 public protocol MapCoordinator: AnyObject {

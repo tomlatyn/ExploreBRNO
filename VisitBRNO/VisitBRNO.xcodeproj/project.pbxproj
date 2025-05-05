@@ -59,6 +59,7 @@
 		E2D540FE2DC81E92002D47EB /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FD2DC81E92002D47EB /* EventModel.swift */; };
 		E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FF2DC821A5002D47EB /* MapView+Events.swift */; };
 		E2D541042DC82C2E002D47EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541032DC82C2E002D47EB /* Extensions.swift */; };
+		E2D541072DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		E2D540FD2DC81E92002D47EB /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		E2D540FF2DC821A5002D47EB /* MapView+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Events.swift"; sourceTree = "<group>"; };
 		E2D541032DC82C2E002D47EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewModel+LocationDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				E2D540C62DC6C61C002D47EB /* MapFactory.swift */,
 				E2D540C82DC6C620002D47EB /* MapCoordinator.swift */,
 				E2D540CA2DC6C625002D47EB /* MapViewModel.swift */,
+				E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */,
 				E2D540CC2DC6C626002D47EB /* View */,
 			);
 			path = Map;
@@ -486,6 +489,7 @@
 				E2D5409F2DC66253002D47EB /* DashboardCoordinator.swift in Sources */,
 				E2D540AB2DC662F8002D47EB /* DashboardCoordinatorImpl.swift in Sources */,
 				E2D540B62DC665AF002D47EB /* ViewpointsDTO.swift in Sources */,
+				E2D541072DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift in Sources */,
 				E2D540CE2DC6C62A002D47EB /* MapView.swift in Sources */,
 				E2D540B22DC664C6002D47EB /* CombinedRepository.swift in Sources */,
 				E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */,

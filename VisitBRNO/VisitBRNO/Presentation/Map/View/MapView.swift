@@ -56,8 +56,13 @@ public struct MapView: View {
                 }
             
             
-//            filterView
-//                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
+            if viewModel.mapLocationTypes.count > 1 {
+                filterView
+            }
+            
+            if viewModel.userLocation != nil {
+                closestLocationButton
+            }
         }
         .onAppear {
             viewModel.loadData()
@@ -67,15 +72,17 @@ public struct MapView: View {
             selectedLocationView(location: location)
         }
         .animation(.default, value: viewModel.viewState)
-        .onChange(of: viewModel.viewState) { _, state in
-            switch state {
-            case .connectionError:
-                print("connection error")
-            case .generalError:
-                print("general error")
-            default:
-                break
-            }
+        .alert(isPresented: .constant(viewModel.viewState == .connectionError || viewModel.viewState == .generalError)) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.viewState == .connectionError ? "Unable to connect to the server." : "An unexpected error occurred."),
+                primaryButton: .default(Text("Try again")) {
+                    viewModel.loadData()
+                },
+                secondaryButton: .cancel(Text("Cancel")) {
+                    coordinator.navigate(.pop)
+                }
+            )
         }
     }
     
@@ -97,8 +104,10 @@ public struct MapView: View {
             HStack(spacing: 12) {
                 ForEach(viewModel.mapLocationTypes, id: \.self) { type in
                     Text(type.collectionName)
+                        .foregroundStyle(.white)
                         .padding(12)
-                        .background(viewModel.selectedMapLocationTypes.contains(type) ? Color.white : Color.gray)
+                        .background(Color(type.color))
+                        .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
                         .clipShape(.capsule)
                         .onTapGesture {
                             viewModel.toggleMapLocationType(type: type)
@@ -107,6 +116,15 @@ public struct MapView: View {
             }
             .padding(12)
         }
+        .frame(maxHeight: .infinity, alignment: .topLeading)
+    }
+    
+    private var closestLocationButton: some View {
+        Button("Find closest location") {
+            viewModel.selectClosestLocation()
+        }
+        .buttonStyle(.bordered)
+        .frame(maxHeight: .infinity, alignment: .bottom)
     }
     
     private var clusterList: some View {

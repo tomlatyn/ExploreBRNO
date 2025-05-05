@@ -34,7 +34,8 @@ final class MapCoordinatorImpl: MapCoordinator {
     
     func navigate(_ path: MapPath) {
         switch path {
-            
+        case .pop:
+            appCoordinator.pop()
         }
     }
 }
