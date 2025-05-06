@@ -15,7 +15,9 @@ final class CoreAssembly: Assembly {
         container.register(AppCoordinator.self) { r in
             AppCoordinatorImpl(
                 navigationController: navigationController,
-                dashboardFactory: r.resolve(DashboardFactory.self)!
+                dashboardFactory: r.resolve(DashboardFactory.self)!,
+                onboardingFactory: r.resolve(OnboardingFactory.self)!,
+                onboardingRepository: r.resolve(OnboardingRepository.self)!
             )
         }.inObjectScope(.container)
         

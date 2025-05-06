@@ -11,14 +11,14 @@ public final class DashboardViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    private let combinedRepository: CombinedRepository
+    private let combinedRepository: MapRepository
     
     // MARK: - Published properties
     
     // MARK: - Lifecycle
     
     public nonisolated init(
-        combinedRepository: CombinedRepository
+        combinedRepository: MapRepository
     ) {
         self.combinedRepository = combinedRepository
     }

@@ -34,6 +34,7 @@ public struct DashboardView: View {
             
             layoutMain
         }
+        .navigationTitle("VisitBRNO")
     }
     
     @ViewBuilder

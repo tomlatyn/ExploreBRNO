@@ -14,20 +14,25 @@ extension MapView {
     func selectedLocationView(location: MapViewModel.SelectedLocation) -> some View {
         NavigationStack {
             ScrollView {
-                Button("Open in maps") {
-                    openInMaps(location: location)
+                VStack(alignment: .leading, spacing: 16) {
+                    locationNameView(location.mapLocation.model.name)
+                    
+                    Button("Open in maps") {
+                        openInMaps(location: location)
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    switch location.mapLocation {
+                    case .viewpoint(let viewpoint):
+                        viewpointDetailView(viewpoint)
+                    case .landmark(let landmark):
+                        landmarkDetailView(landmark)
+                    case .event(let event):
+                        eventDetailView(event)
+                    }
                 }
-                .buttonStyle(.bordered)
-                
-                switch location.mapLocation {
-                case .viewpoint(let viewpoint):
-                    Text("viewpoint")
-                    Text("Altitude: \(NSString(format: "%.01f", viewpoint.altitude)) meters")
-                case .landmark(let landmark):
-                    Text("landmark")
-                case .event(let event):
-                    eventDetailView(event)
-                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 24)
             }
             .presentationDetents([.height(100), .medium, .large], selection: $viewModel.presentationDetent)
             .presentationDragIndicator(.visible)
@@ -43,9 +48,35 @@ extension MapView {
                     })
                 }
             }
-            .navigationTitle(location.mapLocation.model.name)
-            .navigationBarTitleDisplayMode(.large)
         }
+    }
+    
+    private func locationNameView(_ name: String) -> some View {
+        Text(name)
+            .font(.largeTitle.weight(.semibold))
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    func infoRowView(_ title: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            
+            if let url = URL(string: value), value.hasPrefix("http") {
+                Link(destination: url) {
+                    Text(url.absoluteString)
+                        .multilineTextAlignment(.leading)
+                }
+            } else if value.contains("@"), let emailUrl = URL(string: "mailto:\(value)") {
+                Link(value, destination: emailUrl)
+            } else if value.allSatisfy({ $0.isNumber || $0 == "+" }), let phoneUrl = URL(string: "tel:\(value)") {
+                Link(value, destination: phoneUrl)
+            } else {
+                Text(value)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     private func openInMaps(location: MapViewModel.SelectedLocation) {

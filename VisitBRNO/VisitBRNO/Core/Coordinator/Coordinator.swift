@@ -26,8 +26,8 @@ public protocol Coordinator: AnyObject {
     @MainActor func present(_ coordinator: Coordinator, style: UIModalPresentationStyle, onDismiss: Completion?, animated: Bool)
     @MainActor func dismiss(animated: Bool, completion: @escaping () -> Void)
 
-    @MainActor func addOverlay(_ viewController: UIViewController, for duration: TimeInterval)
-    @MainActor func removeOverlay(at: Int?, for duration: TimeInterval)
+    @MainActor func addOverlay(_ viewController: UIViewController, transitionDuration: TimeInterval?)
+    @MainActor func removeOverlay(at: Int?, transitionDuration: TimeInterval?)
 }
 
 public extension Coordinator {
@@ -64,11 +64,11 @@ public extension Coordinator {
         dismiss(animated: animated, completion: completion)
     }
 
-    @MainActor func addOverlay(_ viewController: UIViewController, for duration: TimeInterval = 0.15) {
-        addOverlay(viewController, for: duration)
+    @MainActor func addOverlay(_ viewController: UIViewController) {
+        addOverlay(viewController, transitionDuration: 0.15)
     }
 
-    @MainActor func removeOverlay(at: Int? = nil, for duration: TimeInterval = 0.15) {
-        removeOverlay(at: at, for: duration)
+    @MainActor func removeOverlay(at: Int? = nil) {
+        removeOverlay(at: at, transitionDuration: 0.15)
     }
 }

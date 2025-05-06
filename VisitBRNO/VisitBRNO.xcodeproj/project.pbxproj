@@ -27,7 +27,7 @@
 		E2D540A92DC662F1002D47EB /* DashboardFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540A82DC662F1002D47EB /* DashboardFeature.swift */; };
 		E2D540AB2DC662F8002D47EB /* DashboardCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540AA2DC662F8002D47EB /* DashboardCoordinatorImpl.swift */; };
 		E2D540AE2DC663E6002D47EB /* FeatureAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540AD2DC663E6002D47EB /* FeatureAssembly.swift */; };
-		E2D540B22DC664C6002D47EB /* CombinedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540B12DC664C6002D47EB /* CombinedRepository.swift */; };
+		E2D540B22DC664C6002D47EB /* MapRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540B12DC664C6002D47EB /* MapRepository.swift */; };
 		E2D540B62DC665AF002D47EB /* ViewpointsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540B52DC665AF002D47EB /* ViewpointsDTO.swift */; };
 		E2D540B92DC666BF002D47EB /* RESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540B82DC666BF002D47EB /* RESTClient.swift */; };
 		E2D540BB2DC667F6002D47EB /* BasicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540BA2DC667F6002D47EB /* BasicError.swift */; };
@@ -60,6 +60,20 @@
 		E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FF2DC821A5002D47EB /* MapView+Events.swift */; };
 		E2D541042DC82C2E002D47EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541032DC82C2E002D47EB /* Extensions.swift */; };
 		E2D541072DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */; };
+		E2D5410D2DCA8C53002D47EB /* MapView+Landmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */; };
+		E2D5410F2DCA8C59002D47EB /* MapView+Viewpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */; };
+		E2D541122DCA935C002D47EB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E2D541112DCA935C002D47EB /* Kingfisher */; };
+		E2D541152DCA936E002D47EB /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541142DCA936E002D47EB /* URLImageView.swift */; };
+		E2D5411C2DCACAEC002D47EB /* OnboardingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5411B2DCACAEC002D47EB /* OnboardingRepository.swift */; };
+		E2D5411F2DCACB5C002D47EB /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5411E2DCACB5C002D47EB /* UserDefaultsKeys.swift */; };
+		E2D541242DCACC02002D47EB /* OnboardingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541232DCACC02002D47EB /* OnboardingFactory.swift */; };
+		E2D541262DCACC06002D47EB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541252DCACC06002D47EB /* OnboardingViewModel.swift */; };
+		E2D541292DCACC0E002D47EB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541282DCACC0E002D47EB /* OnboardingView.swift */; };
+		E2D5412B2DCACC20002D47EB /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5412A2DCACC20002D47EB /* OnboardingCoordinator.swift */; };
+		E2D5412D2DCACC61002D47EB /* OnboardingCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5412C2DCACC61002D47EB /* OnboardingCoordinatorImpl.swift */; };
+		E2D5412F2DCACD53002D47EB /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5412E2DCACD53002D47EB /* OnboardingFeature.swift */; };
+		E2D541312DCAD73B002D47EB /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541302DCAD73B002D47EB /* Alerts.swift */; };
+		E2D541342DCAD7A0002D47EB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541332DCAD7A0002D47EB /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +96,7 @@
 		E2D540A82DC662F1002D47EB /* DashboardFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardFeature.swift; sourceTree = "<group>"; };
 		E2D540AA2DC662F8002D47EB /* DashboardCoordinatorImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinatorImpl.swift; sourceTree = "<group>"; };
 		E2D540AD2DC663E6002D47EB /* FeatureAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureAssembly.swift; sourceTree = "<group>"; };
-		E2D540B12DC664C6002D47EB /* CombinedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedRepository.swift; sourceTree = "<group>"; };
+		E2D540B12DC664C6002D47EB /* MapRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRepository.swift; sourceTree = "<group>"; };
 		E2D540B52DC665AF002D47EB /* ViewpointsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewpointsDTO.swift; sourceTree = "<group>"; };
 		E2D540B82DC666BF002D47EB /* RESTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTClient.swift; sourceTree = "<group>"; };
 		E2D540BA2DC667F6002D47EB /* BasicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicError.swift; sourceTree = "<group>"; };
@@ -114,6 +128,19 @@
 		E2D540FF2DC821A5002D47EB /* MapView+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Events.swift"; sourceTree = "<group>"; };
 		E2D541032DC82C2E002D47EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewModel+LocationDelegate.swift"; sourceTree = "<group>"; };
+		E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Landmarks.swift"; sourceTree = "<group>"; };
+		E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Viewpoints.swift"; sourceTree = "<group>"; };
+		E2D541142DCA936E002D47EB /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
+		E2D5411B2DCACAEC002D47EB /* OnboardingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRepository.swift; sourceTree = "<group>"; };
+		E2D5411E2DCACB5C002D47EB /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		E2D541232DCACC02002D47EB /* OnboardingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFactory.swift; sourceTree = "<group>"; };
+		E2D541252DCACC06002D47EB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		E2D541282DCACC0E002D47EB /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		E2D5412A2DCACC20002D47EB /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		E2D5412C2DCACC61002D47EB /* OnboardingCoordinatorImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorImpl.swift; sourceTree = "<group>"; };
+		E2D5412E2DCACD53002D47EB /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
+		E2D541302DCAD73B002D47EB /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		E2D541332DCAD7A0002D47EB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +152,7 @@
 				E2D540F22DC7BF57002D47EB /* RswiftLibrary in Frameworks */,
 				E2D540922DC65FB4002D47EB /* FTAPIKit in Frameworks */,
 				E2D540832DC65C09002D47EB /* SwinjectAutoregistration in Frameworks */,
+				E2D541122DCA935C002D47EB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,10 +244,8 @@
 		E2D540942DC660E4002D47EB /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				E2D540BE2DC66912002D47EB /* Endpoint */,
-				E2D540B42DC665A7002D47EB /* Model */,
-				E2D540B32DC665A4002D47EB /* DTO */,
-				E2D540B12DC664C6002D47EB /* CombinedRepository.swift */,
+				E2D541192DCACA8D002D47EB /* Onboarding */,
+				E2D541162DCACA6A002D47EB /* Map */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -236,6 +262,7 @@
 		E2D5409A2DC66240002D47EB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				E2D541202DCACBF0002D47EB /* Onboarding */,
 				E2D540C52DC6C612002D47EB /* Map */,
 				E2D5409B2DC66243002D47EB /* Dashboard */,
 			);
@@ -266,6 +293,7 @@
 			children = (
 				E2D540A82DC662F1002D47EB /* DashboardFeature.swift */,
 				E2D540D12DC6C71C002D47EB /* MapFeature.swift */,
+				E2D5412E2DCACD53002D47EB /* OnboardingFeature.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -275,6 +303,7 @@
 			children = (
 				E2D540AA2DC662F8002D47EB /* DashboardCoordinatorImpl.swift */,
 				E2D540CF2DC6C6DA002D47EB /* MapCoordinatorImpl.swift */,
+				E2D5412C2DCACC61002D47EB /* OnboardingCoordinatorImpl.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -282,6 +311,7 @@
 		E2D540B02DC664B6002D47EB /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E2D5411D2DCACB52002D47EB /* UserDefaults */,
 				E2D540942DC660E4002D47EB /* Repository */,
 				E2D540952DC660EA002D47EB /* Servers */,
 			);
@@ -334,8 +364,7 @@
 			children = (
 				E2D540C62DC6C61C002D47EB /* MapFactory.swift */,
 				E2D540C82DC6C620002D47EB /* MapCoordinator.swift */,
-				E2D540CA2DC6C625002D47EB /* MapViewModel.swift */,
-				E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */,
+				E2D541092DCA8BC7002D47EB /* ViewModel */,
 				E2D540CC2DC6C626002D47EB /* View */,
 			);
 			path = Map;
@@ -344,12 +373,12 @@
 		E2D540CC2DC6C626002D47EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2D5410B2DCA8BD0002D47EB /* UIMapView */,
 				E2D540CD2DC6C62A002D47EB /* MapView.swift */,
 				E2D540E32DC7B022002D47EB /* MapView+Modal.swift */,
 				E2D540FF2DC821A5002D47EB /* MapView+Events.swift */,
-				E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */,
-				E2D540D32DC6D0BE002D47EB /* UIMapView.swift */,
-				E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */,
+				E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */,
+				E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -358,6 +387,9 @@
 			isa = PBXGroup;
 			children = (
 				E2D540E82DC7B3F8002D47EB /* State */,
+				E2D541142DCA936E002D47EB /* URLImageView.swift */,
+				E2D541302DCAD73B002D47EB /* Alerts.swift */,
+				E2D541332DCAD7A0002D47EB /* LoadingView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -396,6 +428,71 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		E2D541092DCA8BC7002D47EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540CA2DC6C625002D47EB /* MapViewModel.swift */,
+				E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E2D5410B2DCA8BD0002D47EB /* UIMapView */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */,
+				E2D540D32DC6D0BE002D47EB /* UIMapView.swift */,
+				E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */,
+			);
+			path = UIMapView;
+			sourceTree = "<group>";
+		};
+		E2D541162DCACA6A002D47EB /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540BE2DC66912002D47EB /* Endpoint */,
+				E2D540B42DC665A7002D47EB /* Model */,
+				E2D540B32DC665A4002D47EB /* DTO */,
+				E2D540B12DC664C6002D47EB /* MapRepository.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		E2D541192DCACA8D002D47EB /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E2D5411B2DCACAEC002D47EB /* OnboardingRepository.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E2D5411D2DCACB52002D47EB /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				E2D5411E2DCACB5C002D47EB /* UserDefaultsKeys.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		E2D541202DCACBF0002D47EB /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E2D541232DCACC02002D47EB /* OnboardingFactory.swift */,
+				E2D5412A2DCACC20002D47EB /* OnboardingCoordinator.swift */,
+				E2D541252DCACC06002D47EB /* OnboardingViewModel.swift */,
+				E2D541272DCACC09002D47EB /* View */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E2D541272DCACC09002D47EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2D541282DCACC0E002D47EB /* OnboardingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -418,6 +515,7 @@
 				E2D540822DC65C09002D47EB /* SwinjectAutoregistration */,
 				E2D540912DC65FB4002D47EB /* FTAPIKit */,
 				E2D540F12DC7BF57002D47EB /* RswiftLibrary */,
+				E2D541112DCA935C002D47EB /* Kingfisher */,
 			);
 			productName = VisitBRNO;
 			productReference = E2AAAB8F2DC659CC00F14EDA /* VisitBRNO.app */;
@@ -452,6 +550,7 @@
 				E2D540812DC65C09002D47EB /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 				E2D540902DC65FB4002D47EB /* XCRemoteSwiftPackageReference "FTAPIKit" */,
 				E2D540F02DC7BF57002D47EB /* XCRemoteSwiftPackageReference "R" */,
+				E2D541102DCA935C002D47EB /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E2AAAB902DC659CC00F14EDA /* Products */;
@@ -491,13 +590,14 @@
 				E2D540B62DC665AF002D47EB /* ViewpointsDTO.swift in Sources */,
 				E2D541072DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift in Sources */,
 				E2D540CE2DC6C62A002D47EB /* MapView.swift in Sources */,
-				E2D540B22DC664C6002D47EB /* CombinedRepository.swift in Sources */,
+				E2D540B22DC664C6002D47EB /* MapRepository.swift in Sources */,
 				E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */,
 				E2D540C92DC6C620002D47EB /* MapCoordinator.swift in Sources */,
 				E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */,
 				E2D540D22DC6C71C002D47EB /* MapFeature.swift in Sources */,
 				E2D540F72DC81C76002D47EB /* EventsDTO.swift in Sources */,
 				E2D540752DC65AC0002D47EB /* AppDelegate.swift in Sources */,
+				E2D541242DCACC02002D47EB /* OnboardingFactory.swift in Sources */,
 				E2D540C72DC6C61C002D47EB /* MapFactory.swift in Sources */,
 				E2D540FE2DC81E92002D47EB /* EventModel.swift in Sources */,
 				E2D540A92DC662F1002D47EB /* DashboardFeature.swift in Sources */,
@@ -508,24 +608,36 @@
 				E2D5407B2DC65B0B002D47EB /* Coordinator.swift in Sources */,
 				E2D540AE2DC663E6002D47EB /* FeatureAssembly.swift in Sources */,
 				E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */,
+				E2D5411F2DCACB5C002D47EB /* UserDefaultsKeys.swift in Sources */,
+				E2D541152DCA936E002D47EB /* URLImageView.swift in Sources */,
+				E2D541262DCACC06002D47EB /* OnboardingViewModel.swift in Sources */,
+				E2D541312DCAD73B002D47EB /* Alerts.swift in Sources */,
 				E2D540E22DC7A8D8002D47EB /* MapLocationModel.swift in Sources */,
+				E2D5412F2DCACD53002D47EB /* OnboardingFeature.swift in Sources */,
 				E2D540A12DC66258002D47EB /* DashboardViewModel.swift in Sources */,
 				E2D540ED2DC7B44F002D47EB /* MapConstants.swift in Sources */,
 				E2D5408F2DC65D30002D47EB /* AppCoordinator.swift in Sources */,
 				E2D540CB2DC6C625002D47EB /* MapViewModel.swift in Sources */,
 				E2D5409D2DC6624D002D47EB /* DashboardFactory.swift in Sources */,
+				E2D5411C2DCACAEC002D47EB /* OnboardingRepository.swift in Sources */,
 				E2D540C22DC66A76002D47EB /* RepositoryAssembly.swift in Sources */,
+				E2D5410D2DCA8C53002D47EB /* MapView+Landmarks.swift in Sources */,
 				E2D540972DC6614A002D47EB /* ServerGis.swift in Sources */,
 				E2D540992DC66188002D47EB /* ServerArcgis.swift in Sources */,
+				E2D541292DCACC0E002D47EB /* OnboardingView.swift in Sources */,
 				E2D5408B2DC65C41002D47EB /* CoreAssembly.swift in Sources */,
+				E2D5412B2DCACC20002D47EB /* OnboardingCoordinator.swift in Sources */,
 				E2D540D62DC6D0EB002D47EB /* LocationAnnotation.swift in Sources */,
 				E2D540DC2DC7A60E002D47EB /* LandmarksDTO.swift in Sources */,
 				E2D540B92DC666BF002D47EB /* RESTClient.swift in Sources */,
 				E2D540BB2DC667F6002D47EB /* BasicError.swift in Sources */,
 				E2D5407D2DC65B53002D47EB /* CoordinatorImpl.swift in Sources */,
+				E2D541342DCAD7A0002D47EB /* LoadingView.swift in Sources */,
 				E2D540EF2DC7BBDE002D47EB /* MapType.swift in Sources */,
 				E2D540D02DC6C6DA002D47EB /* MapCoordinatorImpl.swift in Sources */,
+				E2D5412D2DCACC61002D47EB /* OnboardingCoordinatorImpl.swift in Sources */,
 				E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */,
+				E2D5410F2DCA8C59002D47EB /* MapView+Viewpoints.swift in Sources */,
 				E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,6 +898,14 @@
 				minimumVersion = 7.8.0;
 			};
 		};
+		E2D541102DCA935C002D47EB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -813,6 +933,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2D540F02DC7BF57002D47EB /* XCRemoteSwiftPackageReference "R" */;
 			productName = "plugin:RswiftGeneratePublicResources";
+		};
+		E2D541112DCA935C002D47EB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2D541102DCA935C002D47EB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

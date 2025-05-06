@@ -1,5 +1,5 @@
 {
-  "originHash" : "751752d66845aecbdabd0d114ce334a72bc03a03cbc8aa2012a853beac77e499",
+  "originHash" : "85f999ba7f11ba030b9dc2722a323985c279046be4f30af81caa7065166c9117",
   "pins" : [
     {
       "identity" : "ftapikit",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "cd03622cce9aabc9ad9542e6ff75bb73379db443",
         "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "7deda23bbdca612076c5c315003d8638a08ed0f1",
+        "version" : "8.3.2"
       }
     },
     {

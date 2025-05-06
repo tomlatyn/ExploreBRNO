@@ -67,21 +67,21 @@ open class CoordinatorImpl: NSObject, Coordinator {
 
     // MARK: - Overlays
 
-    public func addOverlay(_ viewController: UIViewController, for duration: TimeInterval) {
+    public func addOverlay(_ viewController: UIViewController, transitionDuration: TimeInterval?) {
         viewController.view.frame = navigationController.view.bounds
         viewController.view.alpha = 0.0
         navigationController.view.addSubview(viewController.view)
-        UIView.animate(withDuration: duration) {
+        UIView.animate(withDuration: transitionDuration ?? 0.0) {
             viewController.view.alpha = 1.0
         }
         overlays.append(viewController)
     }
 
-    public func removeOverlay(at: Int?, for duration: TimeInterval) {
+    public func removeOverlay(at: Int?, transitionDuration: TimeInterval?) {
         let index = at ?? overlays.endIndex - 1
         guard index >= 0, index < overlays.count else { return }
         let overlay = overlays[index]
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: transitionDuration ?? 0.0, animations: {
             overlay.view.alpha = 0.0
         }, completion: { _ in
             overlay.willMove(toParent: nil)

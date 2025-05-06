@@ -7,17 +7,21 @@
 
 import Foundation
 
-public protocol CombinedRepository: AnyObject {
+public protocol MapRepository: AnyObject {
     func getViewpoints() async throws -> [ViewpointModel]
     func getLandmarks() async throws -> [LandmarkModel]
     func getEvents() async throws -> [EventModel]
 }
 
-public final class CombinedRepositoryImpl: CombinedRepository {
+public final class MapRepositoryImpl: MapRepository {
+    
+    // MARK: - Instance properties
     
     private let restClient: RESTClient
     private let serverGis: ServerGis
     private let serverArcgis: ServerArcgis
+    
+    // MARK: - Lifecycle
     
     init(
         restClient: RESTClient,
@@ -28,6 +32,8 @@ public final class CombinedRepositoryImpl: CombinedRepository {
         self.serverGis = serverGis
         self.serverArcgis = serverArcgis
     }
+    
+    // MARK: - Implementation
     
     public func getViewpoints() async throws -> [ViewpointModel] {
         try await restClient.call { [serverGis] in

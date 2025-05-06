@@ -10,6 +10,7 @@ import SwinjectAutoregistration
 
 final class RepositoryAssembly: Assembly {
     func assemble(container: Container) {
-        container.autoregister(CombinedRepository.self, initializer: CombinedRepositoryImpl.init)
+        container.autoregister(MapRepository.self, initializer: MapRepositoryImpl.init)
+        container.autoregister(OnboardingRepository.self, initializer: OnboardingRepositoryImpl.init)
     }
 }

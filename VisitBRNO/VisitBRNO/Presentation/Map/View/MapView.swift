@@ -17,7 +17,7 @@ public struct MapView: View {
     let coordinator: MapCoordinator
     @State var locations = [LocationAnnotation]()
     @State var isPresented = false
-    @State var height: CGFloat = 0
+    @State var filter = false
     
     // MARK: - Lifecycle
     
@@ -33,18 +33,13 @@ public struct MapView: View {
     
     public var body: some View {
         ZStack {
-//            Color(R.color.background.default()!)
-//                .ignoresSafeArea()
+            //            Color(R.color.background.default()!)
+            //                .ignoresSafeArea()
             
-            layoutMain
+            mapView
             
             if viewModel.viewState == .loading {
-                ProgressView()
-                    .frame(width: 64, height: 64)
-                    .background(
-                        .thinMaterial
-                    )
-                    .cornerRadius(16)
+                LoadingView()
             }
             
             Color.clear
@@ -55,14 +50,9 @@ public struct MapView: View {
                         .presentationCompactAdaptation(.popover)
                 }
             
+            closestLocationButton
             
-            if viewModel.mapLocationTypes.count > 1 {
-                filterView
-            }
-            
-            if viewModel.userLocation != nil {
-                closestLocationButton
-            }
+            mapOverlay
         }
         .onAppear {
             viewModel.loadData()
@@ -71,23 +61,28 @@ public struct MapView: View {
         .sheet(item: $viewModel.selectedLocation) { location in
             selectedLocationView(location: location)
         }
+        .disabled(viewModel.viewState == .loading)
         .animation(.default, value: viewModel.viewState)
-        .alert(isPresented: .constant(viewModel.viewState == .connectionError || viewModel.viewState == .generalError)) {
-            Alert(
-                title: Text("Error"),
-                message: Text(viewModel.viewState == .connectionError ? "Unable to connect to the server." : "An unexpected error occurred."),
-                primaryButton: .default(Text("Try again")) {
-                    viewModel.loadData()
-                },
-                secondaryButton: .cancel(Text("Cancel")) {
-                    coordinator.navigate(.pop)
-                }
-            )
+        .alert(item: $viewModel.presentedAlert) { alert in
+            switch alert.id {
+            case .connectionError:
+                Alerts.connectionErrorAlert(
+                    onRetry: viewModel.loadData,
+                    onCancel: { coordinator.navigate(.pop) }
+                )
+            case .generalError:
+                Alerts.generalErrorAlert(
+                    onRetry: viewModel.loadData,
+                    onCancel: { coordinator.navigate(.pop) }
+                )
+            case .locationError:
+                locationErrorAlert
+            }
         }
     }
     
     @ViewBuilder
-    private var layoutMain: some View {
+    private var mapView: some View {
         UIMapView(
             viewModel: viewModel,
             mapLocations: viewModel.filteredMapLocations,
@@ -100,23 +95,20 @@ public struct MapView: View {
     }
     
     private var filterView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(viewModel.mapLocationTypes, id: \.self) { type in
-                    Text(type.collectionName)
-                        .foregroundStyle(.white)
-                        .padding(12)
-                        .background(Color(type.color))
-                        .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
-                        .clipShape(.capsule)
-                        .onTapGesture {
-                            viewModel.toggleMapLocationType(type: type)
-                        }
-                }
+        VStack(spacing: 12) {
+            ForEach(viewModel.mapLocationTypes, id: \.self) { type in
+                Text(type.collectionName)
+                    .foregroundStyle(.white)
+                    .padding(12)
+                    .background(Color(type.color))
+                    .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
+                    .clipShape(.capsule)
+                    .onTapGesture {
+                        viewModel.toggleMapLocationType(type: type)
+                    }
             }
-            .padding(12)
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
+        .padding(12)
     }
     
     private var closestLocationButton: some View {
@@ -124,7 +116,8 @@ public struct MapView: View {
             viewModel.selectClosestLocation()
         }
         .buttonStyle(.bordered)
-        .frame(maxHeight: .infinity, alignment: .bottom)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .padding(.top, 12)
     }
     
     private var clusterList: some View {
@@ -150,5 +143,51 @@ public struct MapView: View {
             }
             .padding(16)
         }
+    }
+    
+    private var mapOverlay: some View {
+        VStack(spacing: 8) {
+            Button(action: {
+                viewModel.focusOnUserLocation()
+            }, label: {
+                Image(systemName: "location")
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                    .padding(12)
+                    .background(.white.opacity(0.8))
+                    .cornerRadius(6)
+            })
+            
+            Button(action: {
+                filter = true
+            }, label: {
+                Image(systemName: "slider.horizontal.3")
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                    .padding(12)
+                    .background(.white.opacity(0.8))
+                    .cornerRadius(6)
+            })
+            .popover(isPresented: $filter) {
+                filterView
+                    .presentationSizing(.fitted)
+                    .presentationCompactAdaptation(.popover)
+            }
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+    }
+    
+    private var locationErrorAlert: Alert {
+        Alert(
+            title: Text("Your Location Not Available"),
+            message: Text("We couldn't access your current location. Please make sure location services are enabled in Settings."),
+            primaryButton: .default(Text("Open Settings")) {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSettings)
+                }
+            },
+            secondaryButton: .cancel(Text("Cancel"))
+        )
     }
 }

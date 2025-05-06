@@ -13,7 +13,8 @@ final class FeatureAssembly: Assembly {
     func assemble(container: Container) {
         let assemblies: [Assembly] = [
             DashboardFeature(),
-            MapFeature()
+            MapFeature(),
+            OnboardingFeature()
         ]
         assemblies.forEach { $0.assemble(container: container) }
     }

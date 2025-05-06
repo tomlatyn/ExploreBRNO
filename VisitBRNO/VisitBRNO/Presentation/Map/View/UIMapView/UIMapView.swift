@@ -27,9 +27,6 @@ struct UIMapView: UIViewRepresentable {
         // Set up map features
         mapView.showsUserLocation = true
         mapView.showsCompass = true
-        mapView.showsScale = true
-        
-        setupUserTrackingButtonAndScaleView(mapView: mapView)
         
         // Set initial region
         mapView.setRegion(viewModel.region, animated: false)
@@ -132,25 +129,4 @@ struct UIMapView: UIViewRepresentable {
         UIMapViewCoordinator(self)
     }
     
-    func setupUserTrackingButtonAndScaleView(mapView: MKMapView) {
-        let button = MKUserTrackingButton(mapView: mapView)
-        button.layer.backgroundColor = UIColor(white: 1, alpha: 0.8).cgColor
-        button.layer.cornerRadius = 6
-        button.translatesAutoresizingMaskIntoConstraints = false
-        mapView.addSubview(button)
-        
-        let scale = MKScaleView(mapView: mapView)
-        scale.legendAlignment = .trailing
-        scale.translatesAutoresizingMaskIntoConstraints = false
-        mapView.addSubview(scale)
-        
-        NSLayoutConstraint.activate(
-            [
-                button.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 10),
-                button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
-                scale.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -10),
-                scale.centerYAnchor.constraint(equalTo: button.centerYAnchor)
-            ]
-        )
-    }
 }

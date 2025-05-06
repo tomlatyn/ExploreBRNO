@@ -13,13 +13,17 @@ public final class MapViewModel: NSObject, ObservableObject {
     
     // MARK: - Properties
     
-    private let combinedRepository: CombinedRepository
+    private let combinedRepository: MapRepository
     private let mapType: MapType
     private let locationManager = CLLocationManager()
     
     // MARK: - Published properties
     
-    @Published var viewState = BaseViewState.loading
+    @Published var viewState = BaseViewState.loading {
+        didSet {
+            onViewStateChange(viewState)
+        }
+    }
     @Published var mapLocations = [MapLocation]()
     @Published var selectedMapLocationTypes: [MapLocation.LocationType] = MapLocation.LocationType.allCases
     
@@ -28,18 +32,19 @@ public final class MapViewModel: NSObject, ObservableObject {
     @Published var selectedLocation: SelectedLocation? {
         didSet {
             if selectedLocation == nil {
-                presentationDetent = .medium
+                presentationDetent = .large
             }
         }
     }
-    @Published var presentationDetent: PresentationDetent = .medium
+    @Published var presentationDetent: PresentationDetent = .large
+    @Published var presentedAlert: PresentedAlert?
     
     
     // MARK: - Lifecycle
     
     public nonisolated init(
         mapType: MapType,
-        combinedRepository: CombinedRepository
+        combinedRepository: MapRepository
     ) {
         self.mapType = mapType
         self.combinedRepository = combinedRepository
@@ -110,7 +115,10 @@ public final class MapViewModel: NSObject, ObservableObject {
     }
 
     func selectClosestLocation() {
-        guard let userLocation = userLocation else { return }
+        guard let userLocation = userLocation else {
+            presentedAlert = PresentedAlert(.locationError)
+            return
+        }
         let userLocationCl = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         selectLocation(filteredMapLocations.min(by: {
             let loc1 = CLLocation(latitude: $0.model.coordinates.latitude, longitude: $0.model.coordinates.longitude)
@@ -137,6 +145,28 @@ public final class MapViewModel: NSObject, ObservableObject {
         }
     }
     
+    func focusOnUserLocation() {
+        guard let userLocation = userLocation else {
+            presentedAlert = PresentedAlert(.locationError)
+            return
+        }
+        region = MKCoordinateRegion(
+            center: userLocation,
+            span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        )
+    }
+    
+    private func onViewStateChange(_ viewState: BaseViewState) {
+        switch viewState {
+        case .generalError:
+            presentedAlert = PresentedAlert(.generalError)
+        case .connectionError:
+            presentedAlert = PresentedAlert(.connectionError)
+        default:
+            break
+        }
+    }
+    
 }
 
 // MARK: - Extension
@@ -146,4 +176,19 @@ extension MapViewModel {
         var id: String
         var mapLocation: MapLocation
     }
+    
+    struct PresentedAlert: Identifiable {
+        enum Alert {
+            case connectionError
+            case generalError
+            case locationError
+        }
+        
+        var id: Alert
+        
+        init(_ id: Alert) {
+            self.id = id
+        }
+    }
+    
 }
