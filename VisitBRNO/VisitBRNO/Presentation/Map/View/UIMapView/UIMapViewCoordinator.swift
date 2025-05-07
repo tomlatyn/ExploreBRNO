@@ -43,17 +43,14 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             
             // Configure the view
             annotationView.annotation = annotation
-            annotationView.canShowCallout = true
+            annotationView.canShowCallout = false
             
-            // Add a button to the callout if it doesn't exist
-            if annotationView.rightCalloutAccessoryView == nil {
-                annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            }
+            annotationView.glyphImage = locationAnnotation.icon
             
             // Check if this is the selected annotation
             if let selectedLocation = parent.viewModel.selectedLocation,
                locationAnnotation.location.id == selectedLocation.id {
-                annotationView.markerTintColor = .systemRed
+                annotationView.markerTintColor = locationAnnotation.color.withAlphaComponent(0.8)
             } else {
                 annotationView.markerTintColor = locationAnnotation.color
             }
@@ -111,7 +108,7 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             
             // Update the annotation appearance
             if let markerView = view as? MKMarkerAnnotationView {
-                markerView.markerTintColor = .systemRed
+                markerView.markerTintColor = locationAnnotation.color.withAlphaComponent(0.8)
             }
         }
     }

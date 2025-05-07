@@ -180,7 +180,7 @@ public struct MapView: View {
     
     private var locationErrorAlert: Alert {
         Alert(
-            title: Text("Your Location Not Available"),
+            title: Text("Location Not Available"),
             message: Text("We couldn't access your current location. Please make sure location services are enabled in Settings."),
             primaryButton: .default(Text("Open Settings")) {
                 if let appSettings = URL(string: UIApplication.openSettingsURLString) {

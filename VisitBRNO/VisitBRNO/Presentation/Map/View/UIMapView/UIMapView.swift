@@ -116,7 +116,7 @@ struct UIMapView: UIViewRepresentable {
                 
                 // Update the annotation color if view exists
                 if let annotationView = mapView.view(for: annotation) as? MKMarkerAnnotationView {
-                    annotationView.markerTintColor = .systemRed
+                    annotationView.markerTintColor = annotation.color
                 }
             }
         } else {

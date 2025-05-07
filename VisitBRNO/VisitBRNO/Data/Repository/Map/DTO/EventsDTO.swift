@@ -35,7 +35,6 @@ public struct EventsDTO: Codable {
             let ticketsURLEn: String?
             let latitude, longitude: Double
             let dateFrom, dateTo: Int?
-            let firstImage: String?
 
             enum CodingKeys: String, CodingKey {
                 case id = "ID"
@@ -52,7 +51,6 @@ public struct EventsDTO: Codable {
                 case latitude, longitude
                 case dateFrom = "date_from"
                 case dateTo = "date_to"
-                case firstImage = "first_image"
             }
         }
 
@@ -83,8 +81,7 @@ extension EventsDTO.Feature {
             organizerEmail: attributes.organizerEmail,
             ticketsUrl: attributes.ticketsURLEn ?? attributes.ticketsURL,
             dateFrom: attributes.dateFrom,
-            dateTo: attributes.dateTo,
-            firstImageUrl: attributes.firstImage
+            dateTo: attributes.dateTo
         )
     }
 }

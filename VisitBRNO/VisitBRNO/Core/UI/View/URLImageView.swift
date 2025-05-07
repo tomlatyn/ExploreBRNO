@@ -28,8 +28,9 @@ public struct URLImageView: View {
             KFImage(url)
                 .placeholder {
                     Rectangle()
-                        .fill(.thinMaterial)
+                        .fill(.primary.opacity(0.25))
                         .frame(maxWidth: .infinity, maxHeight: 300)
+                        .cornerRadius(8)
                 }
                 .retry(maxCount: 3, interval: .seconds(1))
                 .onFailure { e in
@@ -46,10 +47,11 @@ public struct URLImageView: View {
                 .fade(duration: 0.25)
                 .resizable()
                 .aspectRatio(contentMode: imageScaling)
+                .cornerRadius(8)
 
             if isLoading {
                 ProgressView()
-                    .scaleEffect(2.0)
+                    .scaleEffect(1.5)
             }
         }
 //        .animation(nil, value: true)

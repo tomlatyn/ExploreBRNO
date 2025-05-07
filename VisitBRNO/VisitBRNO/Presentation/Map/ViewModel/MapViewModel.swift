@@ -28,15 +28,15 @@ public final class MapViewModel: NSObject, ObservableObject {
     @Published var selectedMapLocationTypes: [MapLocation.LocationType] = MapLocation.LocationType.allCases
     
     @Published var userLocation: CLLocationCoordinate2D?
-    @Published var region = MapConstants.defaultMapRegion
+    @Published var region = Constants.defaultMapRegion
     @Published var selectedLocation: SelectedLocation? {
         didSet {
             if selectedLocation == nil {
-                presentationDetent = .large
+                presentationDetent = .medium
             }
         }
     }
-    @Published var presentationDetent: PresentationDetent = .large
+    @Published var presentationDetent: PresentationDetent = .medium
     @Published var presentedAlert: PresentedAlert?
     
     

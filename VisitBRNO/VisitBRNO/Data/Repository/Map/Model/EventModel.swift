@@ -21,5 +21,4 @@ public struct EventModel: MapLocationModel {
     public let ticketsUrl: String?
     public let dateFrom: Int?
     public let dateTo: Int?
-    public let firstImageUrl: String?
 }

@@ -40,7 +40,7 @@ extension MapView {
             .presentationBackgroundInteraction(.enabled(upThrough: .medium))
             .interactiveDismissDisabled()
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+                ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
                         viewModel.selectedLocation = nil
                     }, label: {
@@ -68,7 +68,7 @@ extension MapView {
                     Text(url.absoluteString)
                         .multilineTextAlignment(.leading)
                 }
-            } else if value.contains("@"), let emailUrl = URL(string: "mailto:\(value)") {
+            } else if value.isEmail, let emailUrl = URL(string: "mailto:\(value)") {
                 Link(value, destination: emailUrl)
             } else if value.allSatisfy({ $0.isNumber || $0 == "+" }), let phoneUrl = URL(string: "tel:\(value)") {
                 Link(value, destination: phoneUrl)

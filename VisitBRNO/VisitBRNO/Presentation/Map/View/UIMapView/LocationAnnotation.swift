@@ -11,10 +11,12 @@ import MapKit
 class LocationAnnotation: MKPointAnnotation {
     let location: MapLocation
     let color: UIColor
+    let icon: UIImage?
     
     init(location: MapLocation) {
         self.location = location
-        self.color = location.pinColor
+        self.color = location.type.color
+        self.icon = location.type.icon
         super.init()
         self.title = location.model.name
         self.coordinate = location.model.coordinates

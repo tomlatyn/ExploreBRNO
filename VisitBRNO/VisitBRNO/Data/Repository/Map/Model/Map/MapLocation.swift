@@ -35,10 +35,6 @@ enum MapLocation {
         }
     }
     
-    var pinColor: UIColor {
-        type.color
-    }
-    
     var type: LocationType {
         switch self {
         case .viewpoint:
@@ -85,6 +81,17 @@ enum MapLocation {
                     .blue
             case .event:
                     .orange
+            }
+        }
+        
+        var icon: UIImage? {
+            switch self {
+            case .viewpoint:
+                UIImage(systemName: "binoculars")
+            case .landmark:
+                UIImage(systemName: "building.columns")
+            case .event:
+                UIImage(systemName: "calendar.badge.checkmark")
             }
         }
     }

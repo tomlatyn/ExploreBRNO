@@ -17,6 +17,6 @@ struct ServerArcgis: URLServer {
     }
 
     let decoding: Decoding = JSONDecoding { decoder in
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.keyDecodingStrategy = .useDefaultKeys
     }
 }

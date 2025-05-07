@@ -17,4 +17,9 @@ extension String {
         let decoded = try? NSAttributedString(data: data, options: options, documentAttributes: nil)
         return decoded?.string ?? self
     }
+    
+    var isEmail: Bool {
+        guard let regex = Constants.emailRegex else { return false }
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
 }

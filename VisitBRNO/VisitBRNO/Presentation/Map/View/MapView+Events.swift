@@ -13,13 +13,16 @@ extension MapView {
     
     func eventDetailView(_ event: EventModel) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            if let stringURL = event.firstImageUrl, let url = URL(string: stringURL) {
-                titleImage(url)
-            }
-            
             let urls = event.images.compactMap { URL(string: $0) }
             if !urls.isEmpty {
                 imagesView(urls)
+            }
+            
+            if let dateFrom = event.dateFrom,
+                let dateTo = event.dateTo,
+                let dateValue = getFormattedDateValue(dateFrom: dateFrom, dateTo: dateTo)
+            {
+                infoRowView("Date", dateValue)
             }
             
             if let description = event.text {
@@ -28,10 +31,6 @@ extension MapView {
             
             if let category = event.category {
                 infoRowView("Category", category)
-            }
-            
-            if let email = event.organizerEmail {
-                infoRowView("Organizer email", email)
             }
             
             if let url = event.url {
@@ -45,31 +44,48 @@ extension MapView {
             if let tickersUrl = event.ticketsUrl {
                 infoRowView("Tickets website", tickersUrl)
             }
+            
+            if let email = event.organizerEmail {
+                infoRowView("Organizer email", email)
+            }
         }
-    }
-    
-    private func titleImage(_ url: URL) -> some View {
-        URLImageView(url: url)
-            .cornerRadius(8)
+        .onAppear {
+            print(event)
+        }
     }
     
     @ViewBuilder
     private func imagesView(_ urls: [URL]) -> some View {
         if urls.count == 1, let url = urls.first {
             URLImageView(url: url)
-                .cornerRadius(8)
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(urls, id: \.self) { url in
                         URLImageView(url: url)
                             .frame(width: UIScreen.main.bounds.size.width * 0.83)
-                            .cornerRadius(8)
                     }
                 }
                 .padding(.horizontal, 16)
             }
             .padding(.horizontal, -16)
+        }
+    }
+    
+    private func getFormattedDateValue(dateFrom: Int, dateTo: Int) -> String? {
+        let fromDate = Date(timeIntervalSince1970: TimeInterval(dateFrom) / 1000)
+        let toDate = Date(timeIntervalSince1970: TimeInterval(dateTo) / 1000)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        
+        let fromString = dateFormatter.string(from: fromDate)
+        let toString = dateFormatter.string(from: toDate)
+        
+        if fromString == toString {
+            return fromString
+        } else {
+            return "\(fromString) – \(toString)"
         }
     }
     
