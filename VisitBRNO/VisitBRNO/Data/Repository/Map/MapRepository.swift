@@ -11,12 +11,15 @@ public protocol MapRepository: AnyObject {
     func getViewpoints() async throws -> [ViewpointModel]
     func getLandmarks() async throws -> [LandmarkModel]
     func getEvents() async throws -> [EventModel]
+    func updateLocationBookmark(id: String, bookmarked: Bool)
+    func getBookmarkedLocations() -> [String]
 }
 
 public final class MapRepositoryImpl: MapRepository {
     
     // MARK: - Instance properties
     
+    private let userDefaults = UserDefaults.standard
     private let restClient: RESTClient
     private let serverGis: ServerGis
     private let serverArcgis: ServerArcgis
@@ -57,6 +60,20 @@ public final class MapRepositoryImpl: MapRepository {
                 .features
                 .map { $0.mapToModel() }
         }
+    }
+    
+    public func updateLocationBookmark(id: String, bookmarked: Bool) {
+        var bookmarks = getBookmarkedLocations()
+        if bookmarked {
+            bookmarks.append(id)
+        } else {
+            bookmarks.removeAll(where: { $0 == id })
+        }
+        userDefaults.set(bookmarks, forKey: UserDefaultsKeys.bookmarkedLocations.rawValue)
+    }
+    
+    public func getBookmarkedLocations() -> [String] {
+        userDefaults.array(forKey: UserDefaultsKeys.bookmarkedLocations.rawValue) as? [String] ?? []
     }
     
 }

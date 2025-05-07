@@ -9,4 +9,5 @@ import Foundation
 
 enum UserDefaultsKeys: String {
     case isOnboardingSeen
+    case bookmarkedLocations
 }

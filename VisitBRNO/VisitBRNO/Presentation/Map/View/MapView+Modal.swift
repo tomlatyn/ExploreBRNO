@@ -47,6 +47,13 @@ extension MapView {
                         Image(systemName: "xmark.circle.fill")
                     })
                 }
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {
+                        viewModel.toggleBookmark()
+                    }, label: {
+                        Image(systemName: viewModel.isLocationBookmarked() ? "bookmark.fill" : "bookmark")
+                    })
+                }
             }
         }
     }

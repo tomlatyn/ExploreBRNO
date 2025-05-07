@@ -78,14 +78,11 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             
             if identicalAnnotations.count > 1 {
                 // Show a list for user to choose from
+                mapView.deselectAnnotation(cluster, animated: false)
                 parent.showSelectionList(identicalAnnotations)
-//                mapView.deselectAnnotation(cluster, animated: false)
                 let region = MKCoordinateRegion(
                     center: cluster.coordinate,
-                    span: MKCoordinateSpan(
-                        latitudeDelta: mapView.region.span.latitudeDelta,
-                        longitudeDelta: mapView.region.span.longitudeDelta
-                    )
+                    span: mapView.region.span
                 )
                 mapView.setRegion(region, animated: true)
                 return
@@ -110,6 +107,16 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             if let markerView = view as? MKMarkerAnnotationView {
                 markerView.markerTintColor = locationAnnotation.color.withAlphaComponent(0.8)
             }
+            
+            let latitudeOffset = mapView.region.span.latitudeDelta * 0.11
+            let region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(
+                    latitude: locationAnnotation.coordinate.latitude - latitudeOffset,
+                    longitude: locationAnnotation.coordinate.longitude
+                ),
+                span: mapView.region.span
+            )
+            mapView.setRegion(region, animated: true)
         }
     }
     

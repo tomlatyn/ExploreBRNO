@@ -13,7 +13,7 @@ public final class MapViewModel: NSObject, ObservableObject {
     
     // MARK: - Properties
     
-    private let combinedRepository: MapRepository
+    private let mapRepository: MapRepository
     private let mapType: MapType
     private let locationManager = CLLocationManager()
     
@@ -38,6 +38,7 @@ public final class MapViewModel: NSObject, ObservableObject {
     }
     @Published var presentationDetent: PresentationDetent = .medium
     @Published var presentedAlert: PresentedAlert?
+    @Published var bookmarkedLocationIds = [String]()
     
     
     // MARK: - Lifecycle
@@ -47,7 +48,7 @@ public final class MapViewModel: NSObject, ObservableObject {
         combinedRepository: MapRepository
     ) {
         self.mapType = mapType
-        self.combinedRepository = combinedRepository
+        self.mapRepository = combinedRepository
         
         super.init()
         locationManager.delegate = self
@@ -63,6 +64,7 @@ public final class MapViewModel: NSObject, ObservableObject {
         guard viewState != .ok else { return }
         viewState = .loading
         Task {
+            self.bookmarkedLocationIds = mapRepository.getBookmarkedLocations()
             viewState = await .newViewState {
                 self.mapLocations = try await getMapLocations()
             }
@@ -73,18 +75,18 @@ public final class MapViewModel: NSObject, ObservableObject {
         var mapLocations = [MapLocation]()
         switch mapType {
         case .all:
-            async let viewpoints = combinedRepository.getViewpoints()
-            async let landmarks = combinedRepository.getLandmarks()
-            async let events = combinedRepository.getEvents()
+            async let viewpoints = mapRepository.getViewpoints()
+            async let landmarks = mapRepository.getLandmarks()
+            async let events = mapRepository.getEvents()
             mapLocations += try await viewpoints.map { MapLocation.viewpoint($0) }
             mapLocations += try await landmarks.map { MapLocation.landmark($0) }
             mapLocations += try await events.map { MapLocation.event($0) }
         case .landmarks:
-            mapLocations = try await combinedRepository.getLandmarks().map { MapLocation.landmark($0) }
+            mapLocations = try await mapRepository.getLandmarks().map { MapLocation.landmark($0) }
         case .viewpoints:
-            mapLocations = try await combinedRepository.getViewpoints().map { MapLocation.viewpoint($0) }
+            mapLocations = try await mapRepository.getViewpoints().map { MapLocation.viewpoint($0) }
         case .events:
-            mapLocations = try await combinedRepository.getEvents().map { MapLocation.event($0) }
+            mapLocations = try await mapRepository.getEvents().map { MapLocation.event($0) }
         }
         return mapLocations
     }
@@ -99,19 +101,7 @@ public final class MapViewModel: NSObject, ObservableObject {
                 id: location.model.id,
                 mapLocation: location
             )
-            self?.focusLocation(coordinates: location.model.coordinates)
         }
-    }
-    
-    private func focusLocation(coordinates: CLLocationCoordinate2D) {
-        let adjustedCoordinates = CLLocationCoordinate2D(
-            latitude: coordinates.latitude - 0.004,
-            longitude: coordinates.longitude
-        )
-        self.region = MKCoordinateRegion(
-            center: adjustedCoordinates,
-            span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        )
     }
 
     func selectClosestLocation() {
@@ -165,6 +155,17 @@ public final class MapViewModel: NSObject, ObservableObject {
         default:
             break
         }
+    }
+    
+    func isLocationBookmarked() -> Bool {
+        guard let location = selectedLocation else { return false }
+        return bookmarkedLocationIds.contains(location.id)
+    }
+    
+    func toggleBookmark() {
+        guard let location = selectedLocation else { return }
+        mapRepository.updateLocationBookmark(id: location.id, bookmarked: !isLocationBookmarked())
+        self.bookmarkedLocationIds = mapRepository.getBookmarkedLocations()
     }
     
 }
