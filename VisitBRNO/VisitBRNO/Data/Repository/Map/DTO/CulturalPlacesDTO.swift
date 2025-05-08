@@ -75,7 +75,9 @@ extension CulturalPlacesDTO.Feature {
             web: attributes.web,
             category: attributes.druh,
             email: attributes.email,
-            phone: attributes.telefon,
+            phones: attributes.telefon?
+                .components(separatedBy: ",")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? [],
             openFrom: attributes.otevreneOd,
             openTo: attributes.otevreneDo
         )

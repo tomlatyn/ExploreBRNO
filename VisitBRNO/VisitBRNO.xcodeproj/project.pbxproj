@@ -159,6 +159,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E25D5B7A2DCD71BA00EC0BEB /* LocationType */ = {
+			isa = PBXGroup;
+			children = (
+				E2D540FF2DC821A5002D47EB /* MapView+Events.swift */,
+				E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */,
+				E25D5B762DCD662B00EC0BEB /* MapView+CulturalPlace.swift */,
+			);
+			path = LocationType;
+			sourceTree = "<group>";
+		};
 		E2AAAB862DC659CC00F14EDA = {
 			isa = PBXGroup;
 			children = (
@@ -373,12 +383,10 @@
 		E2D540CC2DC6C626002D47EB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E2D5410B2DCA8BD0002D47EB /* UIMapView */,
 				E2D540CD2DC6C62A002D47EB /* MapView.swift */,
 				E2D540E32DC7B022002D47EB /* MapView+Modal.swift */,
-				E2D540FF2DC821A5002D47EB /* MapView+Events.swift */,
-				E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */,
-				E25D5B762DCD662B00EC0BEB /* MapView+CulturalPlace.swift */,
+				E25D5B7A2DCD71BA00EC0BEB /* LocationType */,
+				E2D5410B2DCA8BD0002D47EB /* UIMapView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -438,9 +446,9 @@
 		E2D5410B2DCA8BD0002D47EB /* UIMapView */ = {
 			isa = PBXGroup;
 			children = (
-				E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */,
 				E2D540D32DC6D0BE002D47EB /* UIMapView.swift */,
 				E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */,
+				E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */,
 			);
 			path = UIMapView;
 			sourceTree = "<group>";

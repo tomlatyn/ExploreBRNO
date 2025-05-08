@@ -17,7 +17,7 @@ public struct CulturalPlaceModel: MapLocationModel {
     public let web: String?
     public let category: String?
     public let email: String?
-    public let phone: String?
+    public let phones: [String]
     public let openFrom: Int?
     public let openTo: Int?
 }

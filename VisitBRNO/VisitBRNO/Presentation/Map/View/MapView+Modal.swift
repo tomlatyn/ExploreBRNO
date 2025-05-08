@@ -64,45 +64,45 @@ extension MapView {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     
-    func infoRowView(_ title: String, _ value: String) -> some View {
+    func infoRowView(_ title: String, _ value: String, type: InfoRowType) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            
-            let displayValue = value.trimmingCharacters(in: .whitespaces)
-            let linkValue = displayValue.hasPrefix("www.") ? "https://\(displayValue)" : displayValue
-
-            if let url = URL(string: linkValue), linkValue.hasPrefix("http") {
-                Link(destination: url) {
-                    Text(displayValue)
-                        .multilineTextAlignment(.leading)
-                }
-            } else if value.isEmail, let emailUrl = URL(string: "mailto:\(value)") {
-                Link(value, destination: emailUrl)
-            } else if value.allSatisfy({ $0.isNumber || $0 == "+" }), let phoneUrl = URL(string: "tel:\(value)") {
-                let formattedPhone = value.replacingOccurrences(of: "\\B(?=(\\d{3})+(?!\\d))", with: " ", options: .regularExpression)
-                Link(formattedPhone, destination: phoneUrl)
-            } else {
+        
+            let value = value.trimmingCharacters(in: .whitespacesAndNewlines)
+            switch type {
+            case .text:
                 Text(value)
+            case .link:
+                let linkValue = value.hasPrefix("www.") ? "https://\(value)" : value
+                if let url = URL(string: linkValue), linkValue.hasPrefix("http") {
+                    Link(destination: url) {
+                        Text(linkValue)
+                            .multilineTextAlignment(.leading)
+                    }
+                } else {
+                    Text(value)
+                }
+            case .email:
+                if let emailUrl = URL(string: "mailto:\(value)") {
+                    Link(destination: emailUrl) {
+                        Text(value)
+                            .multilineTextAlignment(.leading)
+                    }
+                } else {
+                    Text(value)
+                }
+            case .phone:
+                if let phoneUrl = URL(string: "tel:\(value)") {
+                    let formattedPhone = value.replacingOccurrences(of: "\\B(?=(\\d{3})+(?!\\d))", with: " ", options: .regularExpression)
+                    Link(formattedPhone, destination: phoneUrl)
+                } else {
+                    Text(value)
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-    }
-    
-    private func openInMaps(location: MapViewModel.SelectedLocation) {
-        let coordinates = CLLocationCoordinate2D(
-            latitude: location.mapLocation.model.coordinates.latitude,
-            longitude: location.mapLocation.model.coordinates.longitude
-        )
-        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 10000, longitudinalMeters: 10000)
-        let options: [String: Any] = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: region.center),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
-        ]
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
-        mapItem.name = location.mapLocation.model.name
-        mapItem.openInMaps(launchOptions: options)
     }
     
     @ViewBuilder
@@ -122,4 +122,27 @@ extension MapView {
             .padding(.horizontal, -16)
         }
     }
+    
+    private func openInMaps(location: MapViewModel.SelectedLocation) {
+        let coordinates = CLLocationCoordinate2D(
+            latitude: location.mapLocation.model.coordinates.latitude,
+            longitude: location.mapLocation.model.coordinates.longitude
+        )
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        let options: [String: Any] = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: region.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
+        ]
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
+        mapItem.name = location.mapLocation.model.name
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    enum InfoRowType {
+        case text
+        case link
+        case email
+        case phone
+    }
+    
 }

@@ -22,27 +22,29 @@ extension MapView {
                let openTo = place.openTo,
                let dateValue = getFormattedTimeValue(timeFrom: openFrom, timeTo: openTo)
             {
-                infoRowView("Open Hours", dateValue)
+                infoRowView("Open Hours", dateValue, type: .text)
             }
             
             if let note = place.note {
-                infoRowView("Note", note)
+                infoRowView("Note", note, type: .text)
             }
             
             if let category = place.category {
-                infoRowView("Category", category)
+                infoRowView("Category", category, type: .text)
             }
             
             if let url = place.web {
-                infoRowView("Website", url)
+                infoRowView("Website", url, type: .link)
             }
             
             if let email = place.email {
-                infoRowView("Email", email)
+                infoRowView("Email", email, type: .email)
             }
             
-            if let phone = place.phone {
-                infoRowView("Phone", phone)
+            if !place.phones.isEmpty {
+                ForEach(Array(place.phones.enumerated()), id: \.element) { index, phone in
+                    infoRowView(place.phones.count > 1 ? "Phone \(index + 1)" : "Phone", phone, type: .phone)
+                }
             }
         }
     }
