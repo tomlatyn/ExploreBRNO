@@ -77,15 +77,11 @@ public final class MapViewModel: NSObject, ObservableObject {
         switch mapType {
         case .all:
             async let viewpoints = mapRepository.getViewpoints()
-            async let landmarks = mapRepository.getLandmarks()
             async let events = mapRepository.getEvents()
             async let culturalPlaces = mapRepository.getCulturalPlaces()
             mapLocations += try await viewpoints.map { MapLocation.viewpoint($0) }
-            mapLocations += try await landmarks.map { MapLocation.landmark($0) }
             mapLocations += try await events.map { MapLocation.event($0) }
             mapLocations += try await culturalPlaces.map { MapLocation.culturalPlace($0) }
-        case .landmarks:
-            mapLocations = try await mapRepository.getLandmarks().map { MapLocation.landmark($0) }
         case .viewpoints:
             mapLocations = try await mapRepository.getViewpoints().map { MapLocation.viewpoint($0) }
         case .events:

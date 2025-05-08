@@ -25,8 +25,6 @@ extension MapView {
                     switch location.mapLocation {
                     case .viewpoint(let viewpoint):
                         viewpointDetailView(viewpoint)
-                    case .landmark(let landmark):
-                        landmarkDetailView(landmark)
                     case .event(let event):
                         eventDetailView(event)
                     case .culturalPlace(let place):

@@ -9,7 +9,6 @@ import Foundation
 
 public protocol MapRepository: AnyObject {
     func getViewpoints() async throws -> [ViewpointModel]
-    func getLandmarks() async throws -> [LandmarkModel]
     func getEvents() async throws -> [EventModel]
     func getCulturalPlaces() async throws -> [CulturalPlaceModel]
     
@@ -43,14 +42,6 @@ public final class MapRepositoryImpl: MapRepository {
     public func getViewpoints() async throws -> [ViewpointModel] {
         try await restClient.call { [serverGis] in
             try await serverGis.call(response: EndpointGetViewpoints())
-                .features
-                .map { $0.mapToModel() }
-        }
-    }
-    
-    public func getLandmarks() async throws -> [LandmarkModel] {
-        try await restClient.call { [serverGis] in
-            try await serverGis.call(response: EndpointGetLandmarks())
                 .features
                 .map { $0.mapToModel() }
         }

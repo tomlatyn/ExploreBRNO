@@ -48,9 +48,6 @@
 		E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540D32DC6D0BE002D47EB /* UIMapView.swift */; };
 		E2D540D62DC6D0EB002D47EB /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */; };
 		E2D540DA2DC6E1D0002D47EB /* UIMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */; };
-		E2D540DC2DC7A60E002D47EB /* LandmarksDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */; };
-		E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */; };
-		E2D540E02DC7A797002D47EB /* LandmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */; };
 		E2D540E22DC7A8D8002D47EB /* MapLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */; };
 		E2D540E42DC7B022002D47EB /* MapView+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E32DC7B022002D47EB /* MapView+Modal.swift */; };
 		E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540E52DC7B284002D47EB /* MapLocation.swift */; };
@@ -64,7 +61,6 @@
 		E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540FF2DC821A5002D47EB /* MapView+Events.swift */; };
 		E2D541042DC82C2E002D47EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541032DC82C2E002D47EB /* Extensions.swift */; };
 		E2D541072DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */; };
-		E2D5410D2DCA8C53002D47EB /* MapView+Landmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */; };
 		E2D5410F2DCA8C59002D47EB /* MapView+Viewpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */; };
 		E2D541122DCA935C002D47EB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E2D541112DCA935C002D47EB /* Kingfisher */; };
 		E2D541152DCA936E002D47EB /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D541142DCA936E002D47EB /* URLImageView.swift */; };
@@ -121,9 +117,6 @@
 		E2D540D32DC6D0BE002D47EB /* UIMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMapView.swift; sourceTree = "<group>"; };
 		E2D540D52DC6D0EB002D47EB /* LocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		E2D540D92DC6E1D0002D47EB /* UIMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMapViewCoordinator.swift; sourceTree = "<group>"; };
-		E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarksDTO.swift; sourceTree = "<group>"; };
-		E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointGetLandmarks.swift; sourceTree = "<group>"; };
-		E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkModel.swift; sourceTree = "<group>"; };
 		E2D540E12DC7A8D8002D47EB /* MapLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationModel.swift; sourceTree = "<group>"; };
 		E2D540E32DC7B022002D47EB /* MapView+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Modal.swift"; sourceTree = "<group>"; };
 		E2D540E52DC7B284002D47EB /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
@@ -136,7 +129,6 @@
 		E2D540FF2DC821A5002D47EB /* MapView+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Events.swift"; sourceTree = "<group>"; };
 		E2D541032DC82C2E002D47EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E2D541062DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewModel+LocationDelegate.swift"; sourceTree = "<group>"; };
-		E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Landmarks.swift"; sourceTree = "<group>"; };
 		E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Viewpoints.swift"; sourceTree = "<group>"; };
 		E2D541142DCA936E002D47EB /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		E2D5411B2DCACAEC002D47EB /* OnboardingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRepository.swift; sourceTree = "<group>"; };
@@ -330,7 +322,6 @@
 			isa = PBXGroup;
 			children = (
 				E2D540B52DC665AF002D47EB /* ViewpointsDTO.swift */,
-				E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */,
 				E2D540F62DC81C76002D47EB /* EventsDTO.swift */,
 				E25D5B6F2DCD624F00EC0BEB /* CulturalPlacesDTO.swift */,
 			);
@@ -342,7 +333,6 @@
 			children = (
 				E2D540FB2DC81E83002D47EB /* Map */,
 				E2D540C32DC6C3B4002D47EB /* ViewpointModel.swift */,
-				E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */,
 				E2D540FD2DC81E92002D47EB /* EventModel.swift */,
 				E25D5B722DCD637A00EC0BEB /* CulturalPlaceModel.swift */,
 			);
@@ -363,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				E2D540BF2DC6691C002D47EB /* EndpointGetViewpoints.swift */,
-				E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */,
 				E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */,
 				E25D5B742DCD650100EC0BEB /* EndpointGetCulturalPlaces.swift */,
 			);
@@ -388,7 +377,6 @@
 				E2D540CD2DC6C62A002D47EB /* MapView.swift */,
 				E2D540E32DC7B022002D47EB /* MapView+Modal.swift */,
 				E2D540FF2DC821A5002D47EB /* MapView+Events.swift */,
-				E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */,
 				E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */,
 				E25D5B762DCD662B00EC0BEB /* MapView+CulturalPlace.swift */,
 			);
@@ -612,7 +600,6 @@
 				E2D540CE2DC6C62A002D47EB /* MapView.swift in Sources */,
 				E25D5B772DCD662B00EC0BEB /* MapView+CulturalPlace.swift in Sources */,
 				E2D540B22DC664C6002D47EB /* MapRepository.swift in Sources */,
-				E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */,
 				E2D540C92DC6C620002D47EB /* MapCoordinator.swift in Sources */,
 				E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */,
 				E2D540D22DC6C71C002D47EB /* MapFeature.swift in Sources */,
@@ -623,7 +610,6 @@
 				E2D540C72DC6C61C002D47EB /* MapFactory.swift in Sources */,
 				E2D540FE2DC81E92002D47EB /* EventModel.swift in Sources */,
 				E2D540A92DC662F1002D47EB /* DashboardFeature.swift in Sources */,
-				E2D540E02DC7A797002D47EB /* LandmarkModel.swift in Sources */,
 				E2D540BD2DC6680E002D47EB /* Globals.swift in Sources */,
 				E2D540DA2DC6E1D0002D47EB /* UIMapViewCoordinator.swift in Sources */,
 				E2D541042DC82C2E002D47EB /* Extensions.swift in Sources */,
@@ -644,14 +630,12 @@
 				E2D5409D2DC6624D002D47EB /* DashboardFactory.swift in Sources */,
 				E2D5411C2DCACAEC002D47EB /* OnboardingRepository.swift in Sources */,
 				E2D540C22DC66A76002D47EB /* RepositoryAssembly.swift in Sources */,
-				E2D5410D2DCA8C53002D47EB /* MapView+Landmarks.swift in Sources */,
 				E2D540972DC6614A002D47EB /* ServerGis.swift in Sources */,
 				E2D540992DC66188002D47EB /* ServerArcgis.swift in Sources */,
 				E2D541292DCACC0E002D47EB /* OnboardingView.swift in Sources */,
 				E2D5408B2DC65C41002D47EB /* CoreAssembly.swift in Sources */,
 				E2D5412B2DCACC20002D47EB /* OnboardingCoordinator.swift in Sources */,
 				E2D540D62DC6D0EB002D47EB /* LocationAnnotation.swift in Sources */,
-				E2D540DC2DC7A60E002D47EB /* LandmarksDTO.swift in Sources */,
 				E2D540B92DC666BF002D47EB /* RESTClient.swift in Sources */,
 				E2D540BB2DC667F6002D47EB /* BasicError.swift in Sources */,
 				E2D5407D2DC65B53002D47EB /* CoordinatorImpl.swift in Sources */,

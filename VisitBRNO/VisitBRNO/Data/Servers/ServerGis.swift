@@ -9,7 +9,7 @@ import Foundation
 import FTAPIKit
 
 /// Used for:
-/// - Building landmarks
+/// - Cultural Places
 /// - Viewpoints
 struct ServerGis: URLServer {
 

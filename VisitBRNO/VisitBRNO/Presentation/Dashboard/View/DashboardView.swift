@@ -52,12 +52,6 @@ public struct DashboardView: View {
                     coordinator.navigate(.map(.viewpoints))
                 }
             
-            Text("Landmarks")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .onTapGesture {
-                    coordinator.navigate(.map(.landmarks))
-                }
-            
             Text("Events")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .onTapGesture {
