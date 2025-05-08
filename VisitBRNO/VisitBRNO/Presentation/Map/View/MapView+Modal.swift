@@ -29,6 +29,8 @@ extension MapView {
                         landmarkDetailView(landmark)
                     case .event(let event):
                         eventDetailView(event)
+                    case .culturalPlace(let place):
+                        culturalPlaceDetailView(place)
                     }
                 }
                 .padding(.horizontal, 16)
@@ -70,15 +72,19 @@ extension MapView {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
-            if let url = URL(string: value), value.hasPrefix("http") {
+            let displayValue = value.trimmingCharacters(in: .whitespaces)
+            let linkValue = displayValue.hasPrefix("www.") ? "https://\(displayValue)" : displayValue
+
+            if let url = URL(string: linkValue), linkValue.hasPrefix("http") {
                 Link(destination: url) {
-                    Text(url.absoluteString)
+                    Text(displayValue)
                         .multilineTextAlignment(.leading)
                 }
             } else if value.isEmail, let emailUrl = URL(string: "mailto:\(value)") {
                 Link(value, destination: emailUrl)
             } else if value.allSatisfy({ $0.isNumber || $0 == "+" }), let phoneUrl = URL(string: "tel:\(value)") {
-                Link(value, destination: phoneUrl)
+                let formattedPhone = value.replacingOccurrences(of: "\\B(?=(\\d{3})+(?!\\d))", with: " ", options: .regularExpression)
+                Link(formattedPhone, destination: phoneUrl)
             } else {
                 Text(value)
             }
@@ -99,5 +105,23 @@ extension MapView {
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
         mapItem.name = location.mapLocation.model.name
         mapItem.openInMaps(launchOptions: options)
+    }
+    
+    @ViewBuilder
+    func detailImagesView(_ urls: [URL]) -> some View {
+        if urls.count == 1, let url = urls.first {
+            URLImageView(url: url)
+        } else {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(urls, id: \.self) { url in
+                        URLImageView(url: url)
+                            .frame(width: UIScreen.main.bounds.size.width * 0.83)
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+            .padding(.horizontal, -16)
+        }
     }
 }

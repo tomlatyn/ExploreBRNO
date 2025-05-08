@@ -12,4 +12,5 @@ public enum MapType {
     case landmarks
     case viewpoints
     case events
+    case culturalPlaces
 }

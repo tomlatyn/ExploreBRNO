@@ -47,7 +47,7 @@ extension ViewpointsDTO.Feature {
         ViewpointModel(
             id: "viewpoint_\(attributes.objectid)",
             name: attributes.nazev,
-            altitude: attributes.nadmorskaVyska,
+            altitude: Float(attributes.nadmorskaVyska),
             coordinates: CLLocationCoordinate2D(
                 latitude: geometry.y,
                 longitude: geometry.x

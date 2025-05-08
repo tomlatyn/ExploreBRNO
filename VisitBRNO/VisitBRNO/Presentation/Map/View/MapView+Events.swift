@@ -15,7 +15,7 @@ extension MapView {
         VStack(alignment: .leading, spacing: 12) {
             let urls = event.images.compactMap { URL(string: $0) }
             if !urls.isEmpty {
-                imagesView(urls)
+                detailImagesView(urls)
             }
             
             if let dateFrom = event.dateFrom,
@@ -51,24 +51,6 @@ extension MapView {
         }
         .onAppear {
             print(event)
-        }
-    }
-    
-    @ViewBuilder
-    private func imagesView(_ urls: [URL]) -> some View {
-        if urls.count == 1, let url = urls.first {
-            URLImageView(url: url)
-        } else {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(urls, id: \.self) { url in
-                        URLImageView(url: url)
-                            .frame(width: UIScreen.main.bounds.size.width * 0.83)
-                    }
-                }
-                .padding(.horizontal, 16)
-            }
-            .padding(.horizontal, -16)
         }
     }
     

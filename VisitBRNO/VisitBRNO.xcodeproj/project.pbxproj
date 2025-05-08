@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E25D5B702DCD624F00EC0BEB /* CulturalPlacesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25D5B6F2DCD624F00EC0BEB /* CulturalPlacesDTO.swift */; };
+		E25D5B732DCD637A00EC0BEB /* CulturalPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25D5B722DCD637A00EC0BEB /* CulturalPlaceModel.swift */; };
+		E25D5B752DCD650100EC0BEB /* EndpointGetCulturalPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25D5B742DCD650100EC0BEB /* EndpointGetCulturalPlaces.swift */; };
+		E25D5B772DCD662B00EC0BEB /* MapView+CulturalPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25D5B762DCD662B00EC0BEB /* MapView+CulturalPlace.swift */; };
 		E2D540712DC65AC0002D47EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2D540682DC65AC0002D47EB /* Assets.xcassets */; };
 		E2D540732DC65AC0002D47EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2D5406B2DC65AC0002D47EB /* LaunchScreen.storyboard */; };
 		E2D540752DC65AC0002D47EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D540672DC65AC0002D47EB /* AppDelegate.swift */; };
@@ -77,6 +81,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E25D5B6F2DCD624F00EC0BEB /* CulturalPlacesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturalPlacesDTO.swift; sourceTree = "<group>"; };
+		E25D5B722DCD637A00EC0BEB /* CulturalPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturalPlaceModel.swift; sourceTree = "<group>"; };
+		E25D5B742DCD650100EC0BEB /* EndpointGetCulturalPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointGetCulturalPlaces.swift; sourceTree = "<group>"; };
+		E25D5B762DCD662B00EC0BEB /* MapView+CulturalPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+CulturalPlace.swift"; sourceTree = "<group>"; };
 		E2AAAB8F2DC659CC00F14EDA /* VisitBRNO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisitBRNO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2D540672DC65AC0002D47EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2D540682DC65AC0002D47EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -324,6 +332,7 @@
 				E2D540B52DC665AF002D47EB /* ViewpointsDTO.swift */,
 				E2D540DB2DC7A60E002D47EB /* LandmarksDTO.swift */,
 				E2D540F62DC81C76002D47EB /* EventsDTO.swift */,
+				E25D5B6F2DCD624F00EC0BEB /* CulturalPlacesDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -335,6 +344,7 @@
 				E2D540C32DC6C3B4002D47EB /* ViewpointModel.swift */,
 				E2D540DF2DC7A797002D47EB /* LandmarkModel.swift */,
 				E2D540FD2DC81E92002D47EB /* EventModel.swift */,
+				E25D5B722DCD637A00EC0BEB /* CulturalPlaceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -355,6 +365,7 @@
 				E2D540BF2DC6691C002D47EB /* EndpointGetViewpoints.swift */,
 				E2D540DD2DC7A682002D47EB /* EndpointGetLandmarks.swift */,
 				E2D540F92DC81CAE002D47EB /* EndpointGetEvents.swift */,
+				E25D5B742DCD650100EC0BEB /* EndpointGetCulturalPlaces.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -379,6 +390,7 @@
 				E2D540FF2DC821A5002D47EB /* MapView+Events.swift */,
 				E2D5410C2DCA8C53002D47EB /* MapView+Landmarks.swift */,
 				E2D5410E2DCA8C59002D47EB /* MapView+Viewpoints.swift */,
+				E25D5B762DCD662B00EC0BEB /* MapView+CulturalPlace.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -598,12 +610,14 @@
 				E2D540B62DC665AF002D47EB /* ViewpointsDTO.swift in Sources */,
 				E2D541072DC91BCA002D47EB /* MapViewModel+LocationDelegate.swift in Sources */,
 				E2D540CE2DC6C62A002D47EB /* MapView.swift in Sources */,
+				E25D5B772DCD662B00EC0BEB /* MapView+CulturalPlace.swift in Sources */,
 				E2D540B22DC664C6002D47EB /* MapRepository.swift in Sources */,
 				E2D540DE2DC7A682002D47EB /* EndpointGetLandmarks.swift in Sources */,
 				E2D540C92DC6C620002D47EB /* MapCoordinator.swift in Sources */,
 				E2D540D42DC6D0BE002D47EB /* UIMapView.swift in Sources */,
 				E2D540D22DC6C71C002D47EB /* MapFeature.swift in Sources */,
 				E2D540F72DC81C76002D47EB /* EventsDTO.swift in Sources */,
+				E25D5B752DCD650100EC0BEB /* EndpointGetCulturalPlaces.swift in Sources */,
 				E2D540752DC65AC0002D47EB /* AppDelegate.swift in Sources */,
 				E2D541242DCACC02002D47EB /* OnboardingFactory.swift in Sources */,
 				E2D540C72DC6C61C002D47EB /* MapFactory.swift in Sources */,
@@ -618,6 +632,7 @@
 				E2D541002DC821A5002D47EB /* MapView+Events.swift in Sources */,
 				E2D5411F2DCACB5C002D47EB /* UserDefaultsKeys.swift in Sources */,
 				E2D541152DCA936E002D47EB /* URLImageView.swift in Sources */,
+				E25D5B732DCD637A00EC0BEB /* CulturalPlaceModel.swift in Sources */,
 				E2D541262DCACC06002D47EB /* OnboardingViewModel.swift in Sources */,
 				E2D541312DCAD73B002D47EB /* Alerts.swift in Sources */,
 				E2D540E22DC7A8D8002D47EB /* MapLocationModel.swift in Sources */,
@@ -645,6 +660,7 @@
 				E2D540D02DC6C6DA002D47EB /* MapCoordinatorImpl.swift in Sources */,
 				E2D5412D2DCACC61002D47EB /* OnboardingCoordinatorImpl.swift in Sources */,
 				E2D540E62DC7B284002D47EB /* MapLocation.swift in Sources */,
+				E25D5B702DCD624F00EC0BEB /* CulturalPlacesDTO.swift in Sources */,
 				E2D5410F2DCA8C59002D47EB /* MapView+Viewpoints.swift in Sources */,
 				E2D540EA2DC7B3FF002D47EB /* BaseViewState.swift in Sources */,
 			);

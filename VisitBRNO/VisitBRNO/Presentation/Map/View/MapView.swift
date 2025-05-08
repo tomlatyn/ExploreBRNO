@@ -135,8 +135,13 @@ public struct MapView: View {
             VStack(alignment: .leading, spacing: 12) {
                 ForEach(locations, id: \.location.id) { location in
                     HStack {
-                        Text(location.location.model.name)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(location.location.model.name)
+                            
+                            Text(location.location.type.name)
+                                .foregroundStyle(Color(location.location.type.color))
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         
                         Image(systemName: "chevron.right")
                     }

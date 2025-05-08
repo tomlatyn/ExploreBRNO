@@ -63,6 +63,12 @@ public struct DashboardView: View {
                 .onTapGesture {
                     coordinator.navigate(.map(.events))
                 }
+            
+            Text("Cultural Places")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .onTapGesture {
+                    coordinator.navigate(.map(.culturalPlaces))
+                }
         }
     }
 }

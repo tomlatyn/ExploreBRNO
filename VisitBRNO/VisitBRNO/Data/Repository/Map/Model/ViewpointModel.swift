@@ -13,16 +13,4 @@ public struct ViewpointModel: MapLocationModel {
     public let name: String
     public let altitude: Float
     public let coordinates: CLLocationCoordinate2D
-    
-    public init(
-        id: String,
-        name: String,
-        altitude: Double,
-        coordinates: CLLocationCoordinate2D
-    ) {
-        self.id = id
-        self.name = name
-        self.altitude = Float(altitude)
-        self.coordinates = coordinates
-    }
 }

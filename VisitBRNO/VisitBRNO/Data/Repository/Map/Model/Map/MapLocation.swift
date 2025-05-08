@@ -12,6 +12,7 @@ enum MapLocation {
     case viewpoint(ViewpointModel)
     case landmark(LandmarkModel)
     case event(EventModel)
+    case culturalPlace(CulturalPlaceModel)
     
     var model: any MapLocationModel {
         switch self {
@@ -21,6 +22,8 @@ enum MapLocation {
             landmarkModel
         case .event(let eventModel):
             eventModel
+        case .culturalPlace(let culturalPlaceModel):
+            culturalPlaceModel
         }
     }
     
@@ -32,6 +35,8 @@ enum MapLocation {
             landmarkModel.id
         case .event(let eventModel):
             eventModel.id
+        case .culturalPlace(let culturalPlaceModel):
+            culturalPlaceModel.id
         }
     }
     
@@ -43,6 +48,8 @@ enum MapLocation {
                 .landmark
         case .event:
                 .event
+        case .culturalPlace:
+                .culturalPlace
         }
     }
     
@@ -50,6 +57,7 @@ enum MapLocation {
         case viewpoint
         case landmark
         case event
+        case culturalPlace
         
         var name: String {
             switch self {
@@ -59,6 +67,8 @@ enum MapLocation {
                 "Landmark"
             case .event:
                 "Event"
+            case .culturalPlace:
+                "Cultural Place"
             }
         }
         
@@ -70,6 +80,8 @@ enum MapLocation {
                 "Landmarks"
             case .event:
                 "Events"
+            case .culturalPlace:
+                "Cultural Places"
             }
         }
         
@@ -81,6 +93,8 @@ enum MapLocation {
                     .blue
             case .event:
                     .orange
+            case .culturalPlace:
+                    .yellow
             }
         }
         
@@ -92,6 +106,8 @@ enum MapLocation {
                 UIImage(systemName: "building.columns")
             case .event:
                 UIImage(systemName: "calendar.badge.checkmark")
+            case .culturalPlace:
+                UIImage(systemName: "theatermasks")
             }
         }
     }

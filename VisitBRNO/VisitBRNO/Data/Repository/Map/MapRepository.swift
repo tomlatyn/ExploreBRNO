@@ -11,6 +11,8 @@ public protocol MapRepository: AnyObject {
     func getViewpoints() async throws -> [ViewpointModel]
     func getLandmarks() async throws -> [LandmarkModel]
     func getEvents() async throws -> [EventModel]
+    func getCulturalPlaces() async throws -> [CulturalPlaceModel]
+    
     func updateLocationBookmark(id: String, bookmarked: Bool)
     func getBookmarkedLocations() -> [String]
 }
@@ -59,6 +61,14 @@ public final class MapRepositoryImpl: MapRepository {
             try await serverArcgis.call(response: EndpointGetEvents())
                 .features
                 .map { $0.mapToModel() }
+        }
+    }
+    
+    public func getCulturalPlaces() async throws -> [CulturalPlaceModel] {
+        try await restClient.call { [serverGis] in
+            try await serverGis.call(response: EndpointGetCulturalPlaces())
+                .features
+                .compactMap { $0.mapToModel() }
         }
     }
     

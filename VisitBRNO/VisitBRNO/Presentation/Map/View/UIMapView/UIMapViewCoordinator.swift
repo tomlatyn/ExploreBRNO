@@ -77,8 +77,6 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
                 }
             
             if identicalAnnotations.count > 1 {
-                // Show a list for user to choose from
-                mapView.deselectAnnotation(cluster, animated: false)
                 parent.showSelectionList(identicalAnnotations)
                 let region = MKCoordinateRegion(
                     center: cluster.coordinate,
@@ -87,6 +85,8 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
                 mapView.setRegion(region, animated: true)
                 return
             }
+            
+            mapView.deselectAnnotation(cluster, animated: false)
             
             // Zoom in when tapping a cluster
             let region = MKCoordinateRegion(
