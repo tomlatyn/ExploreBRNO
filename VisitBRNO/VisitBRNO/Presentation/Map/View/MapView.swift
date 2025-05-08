@@ -96,18 +96,26 @@ public struct MapView: View {
     
     private var filterView: some View {
         VStack(spacing: 12) {
-            ForEach(viewModel.mapLocationTypes, id: \.self) { type in
-                Text(type.collectionName)
-                    .foregroundStyle(.white)
-                    .padding(12)
-                    .background(Color(type.color))
-                    .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
-                    .clipShape(.capsule)
-                    .onTapGesture {
-                        viewModel.toggleMapLocationType(type: type)
-                    }
+            Toggle("Only bookmarked", isOn: $viewModel.bookmarkFilterToggle)
+            
+            Divider()
+            
+            VStack(spacing: 12) {
+                ForEach(viewModel.mapLocationTypes, id: \.self) { type in
+                    Text(type.collectionName)
+                        .foregroundStyle(.white)
+                        .padding(12)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(type.color))
+                        .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
+                        .clipShape(.capsule)
+                        .onTapGesture {
+                            viewModel.toggleMapLocationType(type: type)
+                        }
+                }
             }
         }
+        .fixedSize(horizontal: true, vertical: false)
         .padding(12)
     }
     

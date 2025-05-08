@@ -39,6 +39,7 @@ public final class MapViewModel: NSObject, ObservableObject {
     @Published var presentationDetent: PresentationDetent = .medium
     @Published var presentedAlert: PresentedAlert?
     @Published var bookmarkedLocationIds = [String]()
+    @Published var bookmarkFilterToggle = false
     
     
     // MARK: - Lifecycle
@@ -131,7 +132,8 @@ public final class MapViewModel: NSObject, ObservableObject {
     
     var filteredMapLocations: [MapLocation] {
         mapLocations.filter { location in
-            selectedMapLocationTypes.contains(location.type)
+            selectedMapLocationTypes.contains(location.type) &&
+            (bookmarkFilterToggle ? isLocationBookmarked(location) : true)
         }
     }
     
@@ -157,14 +159,14 @@ public final class MapViewModel: NSObject, ObservableObject {
         }
     }
     
-    func isLocationBookmarked() -> Bool {
-        guard let location = selectedLocation else { return false }
+    func isLocationBookmarked(_ location: MapLocation) -> Bool {
+//        guard let location = selectedLocation else { return false }
         return bookmarkedLocationIds.contains(location.id)
     }
     
-    func toggleBookmark() {
-        guard let location = selectedLocation else { return }
-        mapRepository.updateLocationBookmark(id: location.id, bookmarked: !isLocationBookmarked())
+    func toggleBookmark(_ location: MapLocation) {
+//        guard let location = selectedLocation else { return }
+        mapRepository.updateLocationBookmark(id: location.id, bookmarked: !isLocationBookmarked(location))
         self.bookmarkedLocationIds = mapRepository.getBookmarkedLocations()
     }
     

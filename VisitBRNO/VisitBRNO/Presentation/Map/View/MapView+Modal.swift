@@ -49,9 +49,9 @@ extension MapView {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        viewModel.toggleBookmark()
+                        viewModel.toggleBookmark(location.mapLocation)
                     }, label: {
-                        Image(systemName: viewModel.isLocationBookmarked() ? "bookmark.fill" : "bookmark")
+                        Image(systemName: viewModel.isLocationBookmarked(location.mapLocation) ? "bookmark.fill" : "bookmark")
                     })
                 }
             }
