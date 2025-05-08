@@ -58,8 +58,10 @@ public struct MapView: View {
             viewModel.loadData()
         }
         .animation(.default, value: isPresented)
-        .sheet(item: $viewModel.selectedLocation) { location in
-            selectedLocationView(location: location)
+        .sheet(isPresented: .constant(viewModel.selectedLocation != nil)) {
+            if let location = viewModel.selectedLocation {
+                selectedLocationView(location: location)
+            }
         }
         .disabled(viewModel.viewState == .loading)
         .animation(.default, value: viewModel.viewState)

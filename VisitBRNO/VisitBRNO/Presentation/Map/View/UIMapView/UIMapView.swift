@@ -116,7 +116,7 @@ struct UIMapView: UIViewRepresentable {
             }
         } else {
             // Deselect all annotations if there's no selected location
-            mapView.selectedAnnotations.forEach { mapView.deselectAnnotation($0, animated: false) }
+            mapView.selectedAnnotations.forEach { mapView.deselectAnnotation($0, animated: true) }
         }
     }
     

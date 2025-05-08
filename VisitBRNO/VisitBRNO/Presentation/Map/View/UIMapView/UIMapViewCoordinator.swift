@@ -127,23 +127,14 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             
             // Reset the annotation appearance
             markerView.markerTintColor = locationAnnotation.color
-            
             // Only clear if the deselected annotation is the selected one
             if let selectedLocation = parent.viewModel.selectedLocation,
-               locationAnnotation.location.id == selectedLocation.id {
+               locationAnnotation.location.id == selectedLocation.id,
+               mapView.selectedAnnotations.isEmpty {
                 DispatchQueue.main.async { [weak self] in
                     self?.parent.viewModel.selectedLocation = nil
                 }
             }
-        }
-    }
-    
-    // Handle button tap in callout
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if let locationAnnotation = view.annotation as? LocationAnnotation {
-            // Handle detail disclosure button tap
-            print("Show details for: \(locationAnnotation.location.model.name)")
-            // You can implement your detail view navigation here
         }
     }
     

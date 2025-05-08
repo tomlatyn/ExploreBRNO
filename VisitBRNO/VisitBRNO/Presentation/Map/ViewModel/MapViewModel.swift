@@ -160,12 +160,10 @@ public final class MapViewModel: NSObject, ObservableObject {
     }
     
     func isLocationBookmarked(_ location: MapLocation) -> Bool {
-//        guard let location = selectedLocation else { return false }
         return bookmarkedLocationIds.contains(location.id)
     }
     
     func toggleBookmark(_ location: MapLocation) {
-//        guard let location = selectedLocation else { return }
         mapRepository.updateLocationBookmark(id: location.id, bookmarked: !isLocationBookmarked(location))
         self.bookmarkedLocationIds = mapRepository.getBookmarkedLocations()
     }
