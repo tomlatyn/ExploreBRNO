@@ -87,7 +87,7 @@
 		E25D5B7D2DCD747D00EC0BEB /* MapView+Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Overlay.swift"; sourceTree = "<group>"; };
 		E25D5B812DCD761D00EC0BEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E25D5B832DCD7B5700EC0BEB /* MapLocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationType.swift; sourceTree = "<group>"; };
-		E2AAAB8F2DC659CC00F14EDA /* VisitBRNO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisitBRNO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2AAAB8F2DC659CC00F14EDA /* ExploreBRNO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExploreBRNO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2D540672DC65AC0002D47EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2D540682DC65AC0002D47EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2D540692DC65AC0002D47EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		E2AAAB862DC659CC00F14EDA = {
 			isa = PBXGroup;
 			children = (
-				E2D540702DC65AC0002D47EB /* VisitBRNO */,
+				E2D540702DC65AC0002D47EB /* ExploreBRNO */,
 				E2AAAB902DC659CC00F14EDA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -194,12 +194,12 @@
 		E2AAAB902DC659CC00F14EDA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2AAAB8F2DC659CC00F14EDA /* VisitBRNO.app */,
+				E2AAAB8F2DC659CC00F14EDA /* ExploreBRNO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E2D540702DC65AC0002D47EB /* VisitBRNO */ = {
+		E2D540702DC65AC0002D47EB /* ExploreBRNO */ = {
 			isa = PBXGroup;
 			children = (
 				E25D5B7F2DCD760C00EC0BEB /* Resources */,
@@ -213,7 +213,7 @@
 				E2D540692DC65AC0002D47EB /* Info.plist */,
 				E2D5406B2DC65AC0002D47EB /* LaunchScreen.storyboard */,
 			);
-			path = VisitBRNO;
+			path = ExploreBRNO;
 			sourceTree = "<group>";
 		};
 		E2D540782DC65B00002D47EB /* Core */ = {
@@ -529,9 +529,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2AAAB8E2DC659CC00F14EDA /* VisitBRNO */ = {
+		E2AAAB8E2DC659CC00F14EDA /* ExploreBRNO */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2AAABA22DC659CE00F14EDA /* Build configuration list for PBXNativeTarget "VisitBRNO" */;
+			buildConfigurationList = E2AAABA22DC659CE00F14EDA /* Build configuration list for PBXNativeTarget "ExploreBRNO" */;
 			buildPhases = (
 				E2AAAB8B2DC659CC00F14EDA /* Sources */,
 				E2AAAB8C2DC659CC00F14EDA /* Frameworks */,
@@ -542,7 +542,7 @@
 			dependencies = (
 				E2D540F42DC7BFE4002D47EB /* PBXTargetDependency */,
 			);
-			name = VisitBRNO;
+			name = ExploreBRNO;
 			packageProductDependencies = (
 				E2D5407F2DC65BF9002D47EB /* Swinject */,
 				E2D540822DC65C09002D47EB /* SwinjectAutoregistration */,
@@ -551,7 +551,7 @@
 				E2D541112DCA935C002D47EB /* Kingfisher */,
 			);
 			productName = VisitBRNO;
-			productReference = E2AAAB8F2DC659CC00F14EDA /* VisitBRNO.app */;
+			productReference = E2AAAB8F2DC659CC00F14EDA /* ExploreBRNO.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -569,7 +569,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2AAAB8A2DC659CC00F14EDA /* Build configuration list for PBXProject "VisitBRNO" */;
+			buildConfigurationList = E2AAAB8A2DC659CC00F14EDA /* Build configuration list for PBXProject "ExploreBRNO" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -590,7 +590,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2AAAB8E2DC659CC00F14EDA /* VisitBRNO */,
+				E2AAAB8E2DC659CC00F14EDA /* ExploreBRNO */,
 			);
 		};
 /* End PBXProject section */
@@ -716,7 +716,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9564C58XRS;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = VisitBRNO/Info.plist;
+				INFOPLIST_FILE = ExploreBRNO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ExploreBRNO;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -729,7 +730,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xlatyn.VisitBRNO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xlatyn.ExploreBRNO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -746,7 +747,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9564C58XRS;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = VisitBRNO/Info.plist;
+				INFOPLIST_FILE = ExploreBRNO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ExploreBRNO;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -759,7 +761,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xlatyn.VisitBRNO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xlatyn.ExploreBRNO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -889,7 +891,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2AAAB8A2DC659CC00F14EDA /* Build configuration list for PBXProject "VisitBRNO" */ = {
+		E2AAAB8A2DC659CC00F14EDA /* Build configuration list for PBXProject "ExploreBRNO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2AAABA52DC659CE00F14EDA /* Debug */,
@@ -898,7 +900,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2AAABA22DC659CE00F14EDA /* Build configuration list for PBXNativeTarget "VisitBRNO" */ = {
+		E2AAABA22DC659CE00F14EDA /* Build configuration list for PBXNativeTarget "ExploreBRNO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2AAABA32DC659CE00F14EDA /* Debug */,
