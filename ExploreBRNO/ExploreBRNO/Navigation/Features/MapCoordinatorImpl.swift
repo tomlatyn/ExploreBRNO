@@ -30,6 +30,7 @@ final class MapCoordinatorImpl: MapCoordinator {
     func start(_ mapType: MapType) {
         let vc = UIHostingController(rootView: factory.resolveView(mapType))
         vc.title = mapType.navigationTitle
+        vc.navigationItem.largeTitleDisplayMode = .never
         appCoordinator.navigationController.pushViewController(vc, animated: true)
     }
     

@@ -15,6 +15,8 @@ public final class DashboardViewModel: ObservableObject {
     
     // MARK: - Published properties
     
+    @Published var isInfoPresented = false
+    
     // MARK: - Lifecycle
     
     public nonisolated init(

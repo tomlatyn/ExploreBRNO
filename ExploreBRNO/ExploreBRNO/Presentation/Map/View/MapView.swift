@@ -15,6 +15,7 @@ public struct MapView: View {
     
     @ObservedObject var viewModel: MapViewModel
     let coordinator: MapCoordinator
+    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Lifecycle
     
@@ -30,8 +31,8 @@ public struct MapView: View {
     
     public var body: some View {
         ZStack {
-            //            Color(R.color.background.default()!)
-            //                .ignoresSafeArea()
+            Color(R.color.background()!)
+                .ignoresSafeArea()
             
             mapView
             
@@ -89,7 +90,7 @@ public struct MapView: View {
                     .presentationSizing(.fitted)
                     .presentationCompactAdaptation(.popover)
             }
-            .disabled(viewModel.viewState == .loading)
+            .disabled(viewModel.viewState != .ok)
         }
     }
     

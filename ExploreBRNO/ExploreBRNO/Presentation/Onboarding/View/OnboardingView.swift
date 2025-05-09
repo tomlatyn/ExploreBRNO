@@ -29,8 +29,8 @@ public struct OnboardingView: View {
     
     public var body: some View {
         ZStack {
-//            Color(R.color.background.default()!)
-//                .ignoresSafeArea()
+            Color(R.color.background()!)
+                .ignoresSafeArea()
             
             layoutMain
         }
@@ -38,12 +38,30 @@ public struct OnboardingView: View {
     
     @ViewBuilder
     private var layoutMain: some View {
-        VStack {
-            Text("Onboarding")
+        VStack(spacing: 32) {
+            Text(R.string.localizable.onboarding_title())
+                .font(.largeTitle.weight(.semibold))
             
-            Button("Dismiss") {
+            screenshotView
+            
+            Text(R.string.localizable.onboarding_text())
+                .font(.body)
+            
+            ButtonLarge(text: R.string.localizable.onboarding_button()) {
                 coordinator.navigate(.dismiss)
             }
         }
+        .multilineTextAlignment(.center)
+        .padding(16)
+        .frame(maxWidth: 332)
+    }
+    
+    private var screenshotView: some View {
+        Image(uiImage: R.image.map_screenshot()!)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 300, height: 300)
+            .clipped()
+            .cornerRadius(16)
     }
 }

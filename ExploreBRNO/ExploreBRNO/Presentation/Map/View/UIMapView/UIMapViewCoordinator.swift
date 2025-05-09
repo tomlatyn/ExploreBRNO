@@ -30,7 +30,7 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "cluster") as? MKMarkerAnnotationView
                 ?? MKMarkerAnnotationView(annotation: cluster, reuseIdentifier: "cluster")
                 
-            annotationView.markerTintColor = .systemBlue
+            annotationView.markerTintColor = R.color.blue()!
             annotationView.glyphText = String(cluster.memberAnnotations.count)
             return annotationView
         }

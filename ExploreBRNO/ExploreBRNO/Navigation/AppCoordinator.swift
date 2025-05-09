@@ -34,7 +34,7 @@ final class AppCoordinatorImpl: CoordinatorImpl, AppCoordinator {
     override func start() {
         startWithDashboard()
         if !onboardingRepository.isOnboardingSeen {
-//            showOnboarding()
+            showOnboarding()
         }
     }
     

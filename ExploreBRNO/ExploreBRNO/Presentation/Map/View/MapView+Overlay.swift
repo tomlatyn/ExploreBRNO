@@ -19,7 +19,7 @@ extension MapView {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
-        .background(.white.opacity(0.9))
+        .background(colorScheme == .dark ? .black.opacity(0.8) : .white.opacity(0.8))
         .cornerRadius(6)
         .frame(maxHeight: .infinity, alignment: .top)
         .padding(.top, 12)
@@ -31,6 +31,7 @@ extension MapView {
                 R.string.localizable.map_filter_bookmark(),
                 isOn: $viewModel.bookmarkFilterToggle
             )
+            .tint(Color(R.color.primary()!))
             
             Divider()
             

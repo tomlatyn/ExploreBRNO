@@ -28,6 +28,7 @@ struct UIMapView: UIViewRepresentable {
         
         // Set initial region
         mapView.setRegion(viewModel.region, animated: false)
+        mapView.pointOfInterestFilter = .excludingAll
         
         // Request location permissions
         locationManager.requestWhenInUseAuthorization()
@@ -125,7 +126,9 @@ struct UIMapView: UIViewRepresentable {
     private func setupUserTrackingButtonAndCompass(mapView: MKMapView) {
         // User tracking button
         let trackingButton = MKUserTrackingButton(mapView: mapView)
-        trackingButton.layer.backgroundColor = UIColor(white: 1, alpha: 0.8).cgColor
+        trackingButton.layer.backgroundColor = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? UIColor(white: 0.1, alpha: 0.8) : UIColor(white: 1, alpha: 0.8)
+        }.cgColor
         trackingButton.layer.cornerRadius = 6
         trackingButton.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(trackingButton)

@@ -29,39 +29,64 @@ public struct DashboardView: View {
     
     public var body: some View {
         ZStack {
-//            Color(R.color.white()!)
-//                .ignoresSafeArea()
+            Color(R.color.background()!)
+                .ignoresSafeArea()
             
             layoutMain
+        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    viewModel.isInfoPresented = true
+                }, label: {
+                    Image(systemName: "info.circle")
+                })
+            }
+        }
+        .sheet(isPresented: $viewModel.isInfoPresented) {
+            infoModalView
         }
     }
     
     @ViewBuilder
     private var layoutMain: some View {
-        List {
-            Text("All")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .onTapGesture {
-                    coordinator.navigate(.map(.all))
+        ScrollView {
+            VStack(spacing: 12) {
+                ForEach(MapType.allCases, id: \.self) { type in
+                    itemRow(type: type)
+                    
+                    if type != MapType.allCases.last {
+                        Divider()
+                    }
                 }
+            }
+            .padding(16)
+        }
+    }
+    
+    private func itemRow(type: MapType) -> some View {
+        HStack(spacing: 12) {
+            type.icon
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 16)
+                .foregroundStyle(Color(.primary))
             
-            Text("Viewpoints")
+            Text(type.navigationTitle)
+                .font(.body.weight(.semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .onTapGesture {
-                    coordinator.navigate(.map(.viewpoints))
-                }
             
-            Text("Events")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .onTapGesture {
-                    coordinator.navigate(.map(.events))
-                }
-            
-            Text("Cultural Places")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .onTapGesture {
-                    coordinator.navigate(.map(.culturalPlaces))
-                }
+            Image(systemName: "chevron.forward")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 16)
+                .foregroundStyle(Color(.primary))
+        }
+        .padding(16)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            coordinator.navigate(.map(type))
         }
     }
 }

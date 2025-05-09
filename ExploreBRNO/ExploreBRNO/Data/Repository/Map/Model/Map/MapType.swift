@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
-public enum MapType {
+public enum MapType: CaseIterable {
     case all
-    case viewpoints
     case events
     case culturalPlaces
+    case viewpoints
     
     var navigationTitle: String {
         switch self {
@@ -36,6 +37,32 @@ public enum MapType {
             R.string.localizable.map_loading_events()
         case .culturalPlaces:
             R.string.localizable.map_loading_cultural_places()
+        }
+    }
+    
+    var navigationColor: Color {
+        switch self {
+        case .all:
+            Color(R.color.primary()!)
+        case .viewpoints:
+            Color(MapLocationType.viewpoint.color)
+        case .events:
+            Color(MapLocationType.event.color)
+        case .culturalPlaces:
+            Color(MapLocationType.culturalPlace.color)
+        }
+    }
+    
+    var icon: Image {
+        switch self {
+        case .all:
+            Image(systemName: "map")
+        case .viewpoints:
+            Image(uiImage: MapLocationType.viewpoint.icon)
+        case .events:
+            Image(uiImage: MapLocationType.event.icon)
+        case .culturalPlaces:
+            Image(uiImage: MapLocationType.culturalPlace.icon)
         }
     }
 }

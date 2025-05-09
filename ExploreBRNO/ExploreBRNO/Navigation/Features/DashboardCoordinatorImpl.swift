@@ -32,6 +32,9 @@ final class DashboardCoordinatorImpl: DashboardCoordinator {
     
     func start() {
         let vc = UIHostingController(rootView: factory.resolveView())
+        vc.title = R.string.localizable.app_name()
+        vc.navigationItem.largeTitleDisplayMode = .always
+        appCoordinator.navigationController.navigationBar.prefersLargeTitles = true
         appCoordinator.navigationController.pushViewController(vc, animated: false)
     }
     

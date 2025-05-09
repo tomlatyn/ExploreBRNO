@@ -38,22 +38,22 @@ enum MapLocationType: CaseIterable {
     var color: UIColor {
         switch self {
         case .viewpoint:
-                .red
+            R.color.blue()!
         case .event:
-                .orange
+            R.color.orange()!
         case .culturalPlace:
-                .blue
+            R.color.yellow()!
         }
     }
     
-    var icon: UIImage? {
+    var icon: UIImage {
         switch self {
         case .viewpoint:
-            UIImage(systemName: "binoculars")
+            UIImage(systemName: "binoculars")!
         case .event:
-            UIImage(systemName: "calendar.badge.checkmark")
+            UIImage(systemName: "calendar.badge.checkmark")!
         case .culturalPlace:
-            UIImage(systemName: "theatermasks")
+            UIImage(systemName: "theatermasks")!
         }
     }
 }

@@ -65,10 +65,10 @@ public extension Coordinator {
     }
 
     @MainActor func addOverlay(_ viewController: UIViewController) {
-        addOverlay(viewController, transitionDuration: 0.15)
+        addOverlay(viewController, transitionDuration: 0.5)
     }
 
     @MainActor func removeOverlay(at: Int? = nil) {
-        removeOverlay(at: at, transitionDuration: 0.15)
+        removeOverlay(at: at, transitionDuration: 0.5)
     }
 }

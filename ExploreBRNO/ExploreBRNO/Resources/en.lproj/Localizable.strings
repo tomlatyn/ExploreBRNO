@@ -8,6 +8,7 @@
 
 // MARK: - General
 
+"app_name" = "ExploreBRNO";
 "try_again" = "Try Again";
 "cancel" = "Cancel";
 
@@ -34,6 +35,16 @@
 "location_type_cultural_place_plural" = "Cultural Places";
 "location_type_viewpoint" = "Viewpoint";
 "location_type_viewpoint_plural" = "Viewpoints";
+
+// MARK: - Onboarding
+
+"onboarding_title" = "Welcome to BRNO";
+"onboarding_text" = "With this app you can explore various interesting locations in BRNO.";
+"onboarding_button" = "Explore BRNO!";
+
+// MARK: - Dashboard
+
+"about_title" = "About App";
 
 // MARK: - Map
 
