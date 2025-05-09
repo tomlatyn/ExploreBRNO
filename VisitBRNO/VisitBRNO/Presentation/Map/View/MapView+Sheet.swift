@@ -1,5 +1,5 @@
 //
-//  MapView+Modal.swift
+//  MapView+Sheet.swift
 //  VisitBRNO
 //
 //  Created by Tomáš Latýn on 04.05.2025.
@@ -17,10 +17,7 @@ extension MapView {
                 VStack(alignment: .leading, spacing: 16) {
                     locationNameView(location.mapLocation.model.name)
                     
-                    Button("Open in maps") {
-                        openInMaps(location: location)
-                    }
-                    .buttonStyle(.bordered)
+                    navigateToLocationButton(location.mapLocation)
                     
                     switch location.mapLocation {
                     case .viewpoint(let viewpoint):
@@ -64,6 +61,24 @@ extension MapView {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    private func navigateToLocationButton(_ location: MapLocation) -> some View {
+        Button(action: {
+            openLocationInMaps(location: location)
+        }, label: {
+            HStack(spacing: 8) {
+                Image(systemName: "location.north.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 12)
+                
+                Text(R.string.localizable.map_navigate_to_location())
+            }
+        })
+        .buttonStyle(.bordered)
+    }
+    
+    // MARK: - Reusable views
+    
     func infoRowView(_ title: String, _ value: String, type: InfoRowType) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
@@ -105,6 +120,13 @@ extension MapView {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    enum InfoRowType {
+        case text
+        case link
+        case email
+        case phone
+    }
+    
     @ViewBuilder
     func detailImagesView(_ urls: [URL]) -> some View {
         if urls.count == 1, let url = urls.first {
@@ -123,10 +145,12 @@ extension MapView {
         }
     }
     
-    private func openInMaps(location: MapViewModel.SelectedLocation) {
+    // MARK: - Helper functions
+    
+    private func openLocationInMaps(location: MapLocation) {
         let coordinates = CLLocationCoordinate2D(
-            latitude: location.mapLocation.model.coordinates.latitude,
-            longitude: location.mapLocation.model.coordinates.longitude
+            latitude: location.model.coordinates.latitude,
+            longitude: location.model.coordinates.longitude
         )
         let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 10000, longitudinalMeters: 10000)
         let options: [String: Any] = [
@@ -134,15 +158,8 @@ extension MapView {
             MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
         ]
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
-        mapItem.name = location.mapLocation.model.name
+        mapItem.name = location.model.name
         mapItem.openInMaps(launchOptions: options)
-    }
-    
-    enum InfoRowType {
-        case text
-        case link
-        case email
-        case phone
     }
     
 }

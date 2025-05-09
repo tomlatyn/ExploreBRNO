@@ -9,13 +9,24 @@ import Foundation
 import SwiftUI
 
 struct LoadingView: View {
+    var text: String?
+    
     var body: some View {
-        ProgressView()
-            .scaleEffect(1.5)
-            .frame(width: 64, height: 64)
-            .background(
-                .thinMaterial
-            )
-            .cornerRadius(16)
+        VStack(spacing: 24) {
+            ProgressView()
+                .scaleEffect(1.5)
+            
+            if let text = text {
+                Text(text)
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(32)
+        .background(
+            .ultraThinMaterial
+        )
+        .cornerRadius(16)
+            
     }
 }

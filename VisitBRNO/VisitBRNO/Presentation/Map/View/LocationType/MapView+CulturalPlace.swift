@@ -22,28 +22,52 @@ extension MapView {
                let openTo = place.openTo,
                let dateValue = getFormattedTimeValue(timeFrom: openFrom, timeTo: openTo)
             {
-                infoRowView("Open Hours", dateValue, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_open_hours(),
+                    dateValue,
+                    type: .text
+                )
             }
             
             if let note = place.note {
-                infoRowView("Note", note, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_note(),
+                    note,
+                    type: .text
+                )
             }
             
             if let category = place.category {
-                infoRowView("Category", category, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_category(),
+                    category,
+                    type: .text
+                )
             }
             
             if let url = place.web {
-                infoRowView("Website", url, type: .link)
+                infoRowView(
+                    R.string.localizable.map_detail_website(),
+                    url,
+                    type: .link
+                )
             }
             
             if let email = place.email {
-                infoRowView("Email", email, type: .email)
+                infoRowView(
+                    R.string.localizable.map_detail_email(),
+                    email,
+                    type: .email
+                )
             }
             
             if !place.phones.isEmpty {
                 ForEach(Array(place.phones.enumerated()), id: \.element) { index, phone in
-                    infoRowView(place.phones.count > 1 ? "Phone \(index + 1)" : "Phone", phone, type: .phone)
+                    infoRowView(
+                        place.phones.count > 1 ? "\(R.string.localizable.map_detail_phone()) \(index + 1)" : R.string.localizable.map_detail_phone(),
+                        phone,
+                        type: .phone
+                    )
                 }
             }
         }

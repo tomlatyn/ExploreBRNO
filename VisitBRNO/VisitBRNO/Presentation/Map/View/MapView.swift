@@ -15,9 +15,6 @@ public struct MapView: View {
     
     @ObservedObject var viewModel: MapViewModel
     let coordinator: MapCoordinator
-    @State var locations = [LocationAnnotation]()
-    @State var isPresented = false
-    @State var filter = false
     
     // MARK: - Lifecycle
     
@@ -39,47 +36,28 @@ public struct MapView: View {
             mapView
             
             if viewModel.viewState == .loading {
-                LoadingView()
+                LoadingView(text: viewModel.mapType.loadingText)
             }
             
-            Color.clear
-                .frame(width: 1, height: 1)
-                .popover(isPresented: $isPresented, arrowEdge: .top) {
-                    clusterList
-                        .presentationSizing(.fitted)
-                        .presentationCompactAdaptation(.popover)
-                }
+            clusterListPopover
             
             closestLocationButton
-            
-            mapOverlay
         }
         .onAppear {
             viewModel.loadData()
         }
-        .animation(.default, value: isPresented)
+        .animation(.default, value: viewModel.viewState)
+        .disabled(viewModel.viewState == .loading)
         .sheet(isPresented: .constant(viewModel.selectedLocation != nil)) {
             if let location = viewModel.selectedLocation {
                 selectedLocationView(location: location)
             }
         }
-        .disabled(viewModel.viewState == .loading)
-        .animation(.default, value: viewModel.viewState)
         .alert(item: $viewModel.presentedAlert) { alert in
-            switch alert.id {
-            case .connectionError:
-                Alerts.connectionErrorAlert(
-                    onRetry: viewModel.loadData,
-                    onCancel: { coordinator.navigate(.pop) }
-                )
-            case .generalError:
-                Alerts.generalErrorAlert(
-                    onRetry: viewModel.loadData,
-                    onCancel: { coordinator.navigate(.pop) }
-                )
-            case .locationError:
-                locationErrorAlert
-            }
+            getAlert(alert: alert)
+        }
+        .toolbar {
+            toolbarContent
         }
     }
     
@@ -88,121 +66,62 @@ public struct MapView: View {
         UIMapView(
             viewModel: viewModel,
             mapLocations: viewModel.filteredMapLocations,
-            showSelectionList: { annotations in
-                self.locations = annotations
-                isPresented = true
+            showSelectionList: { locations in
+                viewModel.clusterLocations = locations
+                viewModel.isClusterListPresented = true
             }
         )
         .ignoresSafeArea(edges: [.bottom])
     }
     
-    private var filterView: some View {
-        VStack(spacing: 12) {
-            Toggle("Only bookmarked", isOn: $viewModel.bookmarkFilterToggle)
-            
-            Divider()
-            
-            VStack(spacing: 12) {
-                ForEach(viewModel.mapLocationTypes, id: \.self) { type in
-                    Text(type.collectionName)
-                        .foregroundStyle(.white)
-                        .padding(12)
-                        .frame(maxWidth: .infinity)
-                        .background(Color(type.color))
-                        .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
-                        .clipShape(.capsule)
-                        .onTapGesture {
-                            viewModel.toggleMapLocationType(type: type)
-                        }
-                }
-            }
-        }
-        .fixedSize(horizontal: true, vertical: false)
-        .padding(12)
-    }
+    // MARK: - Toolbar
     
-    private var closestLocationButton: some View {
-        Button("Find closest location") {
-            viewModel.selectClosestLocation()
-        }
-        .buttonStyle(.bordered)
-        .frame(maxHeight: .infinity, alignment: .top)
-        .padding(.top, 12)
-    }
-    
-    private var clusterList: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
-                ForEach(locations, id: \.location.id) { location in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(location.location.model.name)
-                            
-                            Text(location.location.type.name)
-                                .foregroundStyle(Color(location.location.type.color))
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Image(systemName: "chevron.right")
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        isPresented = false
-                        viewModel.selectLocation(location.location)
-                    }
-                    
-                    if location != locations.last {
-                        Divider()
-                    }
-                }
-            }
-            .padding(16)
-        }
-    }
-    
-    private var mapOverlay: some View {
-        VStack(spacing: 8) {
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
             Button(action: {
-                viewModel.focusOnUserLocation()
-            }, label: {
-                Image(systemName: "location")
-                    .resizable()
-                    .frame(width: 18, height: 18)
-                    .padding(12)
-                    .background(.white.opacity(0.8))
-                    .cornerRadius(6)
-            })
-            
-            Button(action: {
-                filter = true
+                viewModel.isFilterPresented = true
             }, label: {
                 Image(systemName: "slider.horizontal.3")
-                    .resizable()
-                    .frame(width: 18, height: 18)
-                    .padding(12)
-                    .background(.white.opacity(0.8))
-                    .cornerRadius(6)
             })
-            .popover(isPresented: $filter) {
-                filterView
+            .popover(isPresented: $viewModel.isFilterPresented) {
+                mapFilterView
                     .presentationSizing(.fitted)
                     .presentationCompactAdaptation(.popover)
             }
+            .disabled(viewModel.viewState == .loading)
         }
-        .padding(12)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+    }
+    
+    // MARK: - Alert
+    
+    private func getAlert(alert: MapViewModel.PresentedAlert) -> Alert {
+        switch alert.id {
+        case .connectionError:
+            Alerts.connectionErrorAlert(
+                onRetry: viewModel.loadData,
+                onCancel: { coordinator.navigate(.pop) }
+            )
+        case .generalError:
+            Alerts.generalErrorAlert(
+                onRetry: viewModel.loadData,
+                onCancel: { coordinator.navigate(.pop) }
+            )
+        case .locationError:
+            locationErrorAlert
+        }
     }
     
     private var locationErrorAlert: Alert {
         Alert(
-            title: Text("Location Not Available"),
-            message: Text("We couldn't access your current location. Please make sure location services are enabled in Settings."),
-            primaryButton: .default(Text("Open Settings")) {
+            title: Text(R.string.localizable.alert_location_error_title()),
+            message: Text(R.string.localizable.alert_location_error_message),
+            primaryButton: .default(Text(R.string.localizable.alert_location_error_primary)) {
                 if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(appSettings)
                 }
             },
-            secondaryButton: .cancel(Text("Cancel"))
+            secondaryButton: .cancel()
         )
     }
 }

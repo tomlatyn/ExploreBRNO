@@ -14,7 +14,7 @@ public final class MapViewModel: NSObject, ObservableObject {
     // MARK: - Properties
     
     private let mapRepository: MapRepository
-    private let mapType: MapType
+    let mapType: MapType
     private let locationManager = CLLocationManager()
     
     // MARK: - Published properties
@@ -25,7 +25,7 @@ public final class MapViewModel: NSObject, ObservableObject {
         }
     }
     @Published var mapLocations = [MapLocation]()
-    @Published var selectedMapLocationTypes: [MapLocation.LocationType] = MapLocation.LocationType.allCases
+    @Published var selectedMapLocationTypes: [MapLocationType] = MapLocationType.allCases
     
     @Published var userLocation: CLLocationCoordinate2D?
     @Published var region = Constants.defaultMapRegion
@@ -40,7 +40,9 @@ public final class MapViewModel: NSObject, ObservableObject {
     @Published var presentedAlert: PresentedAlert?
     @Published var bookmarkedLocationIds = [String]()
     @Published var bookmarkFilterToggle = false
-    
+    @Published var clusterLocations = [LocationAnnotation]()
+    @Published var isClusterListPresented = false
+    @Published var isFilterPresented = false
     
     // MARK: - Lifecycle
     
@@ -57,8 +59,7 @@ public final class MapViewModel: NSObject, ObservableObject {
         locationManager.startUpdatingLocation()
     }
     
-    // MARK: -
-
+    // MARK: - Fetching data
     
     @MainActor
     func loadData() {
@@ -92,6 +93,8 @@ public final class MapViewModel: NSObject, ObservableObject {
         return mapLocations
     }
     
+    // MARK: - Location selection
+    
     func selectLocation(_ location: MapLocation?) {
         DispatchQueue.main.async { [weak self] in
             guard let location = location else {
@@ -118,25 +121,6 @@ public final class MapViewModel: NSObject, ObservableObject {
         }))
     }
     
-    var mapLocationTypes: [MapLocation.LocationType] {
-        Array(Set(mapLocations.map { $0.type })).sorted(by: { $0.name < $1.name })
-    }
-    
-    func toggleMapLocationType(type: MapLocation.LocationType) {
-        if selectedMapLocationTypes.contains(type) {
-            selectedMapLocationTypes.removeAll(where: { $0 == type })
-        } else {
-            selectedMapLocationTypes.append(type)
-        }
-    }
-    
-    var filteredMapLocations: [MapLocation] {
-        mapLocations.filter { location in
-            selectedMapLocationTypes.contains(location.type) &&
-            (bookmarkFilterToggle ? isLocationBookmarked(location) : true)
-        }
-    }
-    
     func focusOnUserLocation() {
         guard let userLocation = userLocation else {
             presentedAlert = PresentedAlert(.locationError)
@@ -148,6 +132,40 @@ public final class MapViewModel: NSObject, ObservableObject {
         )
     }
     
+    // MARK: - Map filter
+    
+    var filteredMapLocations: [MapLocation] {
+        mapLocations.filter { location in
+            selectedMapLocationTypes.contains(location.type) &&
+            (bookmarkFilterToggle ? isLocationBookmarked(location) : true)
+        }
+    }
+    
+    var mapLocationTypes: [MapLocationType] {
+        Array(Set(mapLocations.map { $0.type })).sorted(by: { $0.name < $1.name })
+    }
+    
+    func toggleMapLocationType(type: MapLocationType) {
+        if selectedMapLocationTypes.contains(type) {
+            selectedMapLocationTypes.removeAll(where: { $0 == type })
+        } else {
+            selectedMapLocationTypes.append(type)
+        }
+    }
+    
+    // MARK: - Bookmarks
+    
+    func isLocationBookmarked(_ location: MapLocation) -> Bool {
+        return bookmarkedLocationIds.contains(location.id)
+    }
+    
+    func toggleBookmark(_ location: MapLocation) {
+        mapRepository.updateLocationBookmark(id: location.id, bookmarked: !isLocationBookmarked(location))
+        self.bookmarkedLocationIds = mapRepository.getBookmarkedLocations()
+    }
+    
+    // MARK: - Helper functions
+    
     private func onViewStateChange(_ viewState: BaseViewState) {
         switch viewState {
         case .generalError:
@@ -157,15 +175,6 @@ public final class MapViewModel: NSObject, ObservableObject {
         default:
             break
         }
-    }
-    
-    func isLocationBookmarked(_ location: MapLocation) -> Bool {
-        return bookmarkedLocationIds.contains(location.id)
-    }
-    
-    func toggleBookmark(_ location: MapLocation) {
-        mapRepository.updateLocationBookmark(id: location.id, bookmarked: !isLocationBookmarked(location))
-        self.bookmarkedLocationIds = mapRepository.getBookmarkedLocations()
     }
     
 }

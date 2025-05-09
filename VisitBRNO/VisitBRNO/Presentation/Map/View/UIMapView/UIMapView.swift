@@ -24,9 +24,7 @@ struct UIMapView: UIViewRepresentable {
         mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "LocationPin")
         mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "cluster")
         
-        // Set up map features
-        mapView.showsUserLocation = true
-        mapView.showsCompass = true
+        setupUserTrackingButtonAndCompass(mapView: mapView)
         
         // Set initial region
         mapView.setRegion(viewModel.region, animated: false)
@@ -122,6 +120,42 @@ struct UIMapView: UIViewRepresentable {
     
     func makeCoordinator() -> UIMapViewCoordinator {
         UIMapViewCoordinator(self)
+    }
+    
+    private func setupUserTrackingButtonAndCompass(mapView: MKMapView) {
+        // User tracking button
+        let trackingButton = MKUserTrackingButton(mapView: mapView)
+        trackingButton.layer.backgroundColor = UIColor(white: 1, alpha: 0.8).cgColor
+        trackingButton.layer.cornerRadius = 6
+        trackingButton.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(trackingButton)
+
+        // Custom compass button
+        let compassButton = MKCompassButton(mapView: mapView)
+        compassButton.compassVisibility = .visible
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(compassButton)
+        
+        // Scale view
+        let scale = MKScaleView(mapView: mapView)
+        scale.legendAlignment = .trailing
+        scale.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(scale)
+
+        // Position the buttons
+        NSLayoutConstraint.activate([
+            trackingButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 10),
+            trackingButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
+            
+            compassButton.topAnchor.constraint(equalTo: trackingButton.bottomAnchor, constant: 10),
+            compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
+            
+            scale.trailingAnchor.constraint(equalTo: compassButton.leadingAnchor, constant: -10),
+            scale.centerYAnchor.constraint(equalTo: compassButton.centerYAnchor)
+        ])
+
+        mapView.showsUserLocation = true
+        mapView.showsCompass = false
     }
     
 }

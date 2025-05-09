@@ -12,18 +12,18 @@ public struct Alerts {
  
     public static func connectionErrorAlert(onRetry: @escaping () -> Void, onCancel: (() -> Void)? = nil) -> Alert {
         Alert(
-            title: Text("error"),
-            message: Text("error"),
-            primaryButton: .default(Text("retry"), action: onRetry),
+            title: Text(R.string.localizable.alert_connection_error_title()),
+            message: Text(R.string.localizable.alert_connection_error_message),
+            primaryButton: .default(Text(R.string.localizable.try_again), action: onRetry),
             secondaryButton: .cancel(onCancel)
         )
     }
 
     public static func generalErrorAlert(onRetry: @escaping () -> Void, onCancel: (() -> Void)? = nil) -> Alert {
         Alert(
-            title: Text("error"),
-            message: Text("error"),
-            primaryButton: .default(Text("retry"), action: onRetry),
+            title: Text(R.string.localizable.alert_general_error_title),
+            message: Text(R.string.localizable.alert_general_error_message),
+            primaryButton: .default(Text(R.string.localizable.try_again), action: onRetry),
             secondaryButton: .cancel(onCancel)
         )
     }

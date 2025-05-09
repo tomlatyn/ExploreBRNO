@@ -1,0 +1,66 @@
+/* 
+  Localizable.strings
+  VisitBRNO
+
+  Created by Tomáš Latýn on 09.05.2025.
+  
+*/
+
+// MARK: - General
+
+"try_again" = "Try Again";
+"cancel" = "Cancel";
+
+// MARK: - Alerts
+
+"alert_connection_error_title" = "Connection Error";
+"alert_connection_error_message" = "We couldn’t connect to the server. Please check your internet connection and try again.";
+
+"alert_general_error_title" = "Something Went Wrong";
+"alert_general_error_message" = "An unexpected error occurred. Please try again later.";
+
+"alert_general_error_title" = "Something Went Wrong";
+"alert_general_error_message" = "An unexpected error occurred. Please try again later.";
+
+"alert_location_error_title" = "Location Not Available";
+"alert_location_error_message" = "We couldn't access your current location. Please make sure location services are enabled in Settings.";
+"alert_location_error_primary" = "Open Settings";
+
+// MARK: - Location types
+
+"location_type_event" = "Event";
+"location_type_event_plural" = "Events";
+"location_type_cultural_place" = "Cultural Place";
+"location_type_cultural_place_plural" = "Cultural Places";
+"location_type_viewpoint" = "Viewpoint";
+"location_type_viewpoint_plural" = "Viewpoints";
+
+// MARK: - Map
+
+"map_navigate_to_location" = "Navigate To Location";
+"map_find_nearest_location" = "Find Nearest Location";
+"map_filter_bookmark" = "Only bookmarked";
+"map_detail_date" = "Date";
+"map_detail_description" = "Description";
+"map_detail_category" = "Category";
+"map_detail_website" = "Website";
+"map_detail_tickets_info" = "Tickets Info";
+"map_detail_tickets_website" = "Tickets Website";
+"map_detail_email_organizer" = "Organizer Email";
+"map_detail_altitude" = "Altitude";
+"map_detail_meters" = "meters above sea level";
+"map_detail_open_hours" = "Open Hours";
+"map_detail_note" = "Note";
+"map_detail_phone" = "Phone";
+"map_detail_email" = "Email";
+
+"map_title_all" = "All Locations";
+"map_title_events" = "Events";
+"map_title_cultural_places" = "Cultural Places";
+"map_title_viewpoints" = "Viewpoints";
+
+"map_loading_all" = "Loading All Locations";
+"map_loading_events" = "Loading Event Locations";
+"map_loading_cultural_places" = "Loading Cultural Place Locations";
+"map_loading_viewpoints" = "Loading Viewpoint Locations";
+

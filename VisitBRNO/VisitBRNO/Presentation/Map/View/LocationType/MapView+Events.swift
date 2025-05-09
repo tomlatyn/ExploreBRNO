@@ -22,31 +22,59 @@ extension MapView {
                 let dateTo = event.dateTo,
                 let dateValue = getFormattedDateValue(dateFrom: dateFrom, dateTo: dateTo)
             {
-                infoRowView("Date", dateValue, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_date(),
+                    dateValue,
+                    type: .text
+                )
             }
             
             if let description = event.text {
-                infoRowView("Description", description, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_description(),
+                    description,
+                    type: .text
+                )
             }
             
             if let category = event.category {
-                infoRowView("Category", category, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_category(),
+                    category,
+                    type: .text
+                )
             }
             
             if let url = event.url {
-                infoRowView("Website", url, type: .link)
+                infoRowView(
+                    R.string.localizable.map_detail_website(),
+                    url,
+                    type: .link
+                )
             }
             
             if let tickets = event.tickets {
-                infoRowView("Tickets info", tickets, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_tickets_info(),
+                    tickets,
+                    type: .text
+                )
             }
             
             if let tickersUrl = event.ticketsUrl {
-                infoRowView("Tickets website", tickersUrl, type: .link)
+                infoRowView(
+                    R.string.localizable.map_detail_tickets_website(),
+                    tickersUrl,
+                    type: .link
+                )
             }
             
             if let email = event.organizerEmail {
-                infoRowView("Organizer email", email, type: .text)
+                infoRowView(
+                    R.string.localizable.map_detail_email_organizer(),
+                    email,
+                    type: .email
+                )
             }
         }
     }

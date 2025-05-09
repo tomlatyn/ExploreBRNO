@@ -35,7 +35,7 @@ enum MapLocation {
         }
     }
     
-    var type: LocationType {
+    var type: MapLocationType {
         switch self {
         case .viewpoint:
                 .viewpoint
@@ -46,53 +46,4 @@ enum MapLocation {
         }
     }
     
-    enum LocationType: CaseIterable {
-        case event
-        case culturalPlace
-        case viewpoint
-        
-        var name: String {
-            switch self {
-            case .viewpoint:
-                "Viewpoint"
-            case .event:
-                "Event"
-            case .culturalPlace:
-                "Cultural Place"
-            }
-        }
-        
-        var collectionName: String {
-            switch self {
-            case .viewpoint:
-                "Viewpoints"
-            case .event:
-                "Events"
-            case .culturalPlace:
-                "Cultural Places"
-            }
-        }
-        
-        var color: UIColor {
-            switch self {
-            case .viewpoint:
-                    .red
-            case .event:
-                    .orange
-            case .culturalPlace:
-                    .blue
-            }
-        }
-        
-        var icon: UIImage? {
-            switch self {
-            case .viewpoint:
-                UIImage(systemName: "binoculars")
-            case .event:
-                UIImage(systemName: "calendar.badge.checkmark")
-            case .culturalPlace:
-                UIImage(systemName: "theatermasks")
-            }
-        }
-    }
 }
