@@ -14,6 +14,12 @@ extension DashboardView {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
+                    Image(uiImage: R.image.logo_transparent()!)
+                        .resizable()
+                        .scaledToFit()
+                    
+                    Divider()
+                    
                     rowView(title: "Made By", value: "Tomáš Latýn", url: URL(string: "https://tomaslatyn.xyz/"))
                     
                     Divider()
