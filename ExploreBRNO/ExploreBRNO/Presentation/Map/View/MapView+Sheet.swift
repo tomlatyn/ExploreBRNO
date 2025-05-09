@@ -39,7 +39,7 @@ extension MapView {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
-                        viewModel.selectedLocation = nil
+                        viewModel.selectLocation(nil)
                     }, label: {
                         Image(systemName: "xmark.circle.fill")
                     })

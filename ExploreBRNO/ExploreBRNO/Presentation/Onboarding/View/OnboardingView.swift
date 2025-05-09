@@ -48,6 +48,7 @@ public struct OnboardingView: View {
                 .font(.body)
             
             ButtonLarge(text: R.string.localizable.onboarding_button()) {
+                viewModel.setOnboardingAsSeen()
                 coordinator.navigate(.dismiss)
             }
         }

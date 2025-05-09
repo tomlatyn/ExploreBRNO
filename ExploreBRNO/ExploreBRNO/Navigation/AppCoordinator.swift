@@ -13,11 +13,17 @@ protocol AppCoordinator: Coordinator {
     
 }
 
+// MARK: - Class
+
 final class AppCoordinatorImpl: CoordinatorImpl, AppCoordinator {
+    
+    // MARK: - Properties
     
     private let dashboardFactory: DashboardFactory
     private let onboardingFactory: OnboardingFactory
     private let onboardingRepository: OnboardingRepository
+    
+    // MARK: - Lifecycle
     
     init(
         navigationController: UINavigationController,
@@ -30,6 +36,8 @@ final class AppCoordinatorImpl: CoordinatorImpl, AppCoordinator {
         self.onboardingRepository = onboardingRepository
         super.init(navigationController: navigationController)
     }
+    
+    // MARK: - Implementation
     
     override func start() {
         startWithDashboard()

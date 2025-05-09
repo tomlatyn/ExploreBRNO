@@ -10,20 +10,16 @@ import Foundation
 public typealias StatusCode = Int
 
 public enum ConnectionError: Error {
-    case timeout(file: String = #file, line: Int = #line, _ message: String = "")
+    case timeout(_ message: String = "")
 }
 
 public enum GeneralError: Error {
-    case notFound(file: String = #file, line: Int = #line, _ mesage: String = "")
-    case unknown(file: String = #file, line: Int = #line, _ message: String = "")
+    case notFound(_ message: String = "")
+    case unknown(_ message: String = "")
 }
 
 public enum MappingError: Error {
-    case decoding(file: String = #file, line: Int = #line, _ message: String)
-    case encoding(file: String = #file, line: Int = #line, _ message: String)
-    case unexpectedNil(file: String = #file, line: Int = #line, _ message: String)
-}
-
-public enum RequestError: Error {
-    case response(code: StatusCode, file: String = #file, line: Int = #line, _ message: String = "")
+    case decoding(_ message: String)
+    case encoding(_ message: String)
+    case unexpectedNil(_ message: String)
 }

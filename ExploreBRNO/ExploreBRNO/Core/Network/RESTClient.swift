@@ -9,7 +9,6 @@ import Foundation
 import FTAPIKit
 import OSLog
 
-
 public protocol RESTClient: AnyObject, Sendable {
     func call<T>(
         perform: @escaping () async throws -> T,
@@ -54,7 +53,7 @@ public final class RESTClientImpl: RESTClient {
                 self?.logger.error("\(error)")
                 switch error {
                 case let .connection(error):
-                    throw ConnectionError.timeout(String(describing: error))
+                    return try await retry(ConnectionError.timeout(String(describing: error)))
                 case .decoding:
                     throw MappingError.decoding(String(describing: error))
                 case .encoding:

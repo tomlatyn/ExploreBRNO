@@ -18,14 +18,11 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
         super.init()
     }
     
-    // Handle annotation view creation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // Don't customize user location annotation
         if annotation is MKUserLocation {
             return nil
         }
         
-        // Handle clustering
         if let cluster = annotation as? MKClusterAnnotation {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "cluster") as? MKMarkerAnnotationView
                 ?? MKMarkerAnnotationView(annotation: cluster, reuseIdentifier: "cluster")
@@ -35,19 +32,16 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             return annotationView
         }
         
-        // Handle our custom annotations
         if let locationAnnotation = annotation as? LocationAnnotation {
             let identifier = "LocationPin"
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
                 ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
-            // Configure the view
             annotationView.annotation = annotation
             annotationView.canShowCallout = false
             
             annotationView.glyphImage = locationAnnotation.icon
             
-            // Check if this is the selected annotation
             if let selectedLocation = parent.viewModel.selectedLocation,
                locationAnnotation.location.id == selectedLocation.id {
                 annotationView.markerTintColor = locationAnnotation.color.withAlphaComponent(0.8)
@@ -55,7 +49,6 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
                 annotationView.markerTintColor = locationAnnotation.color
             }
             
-            // Enable clustering
             annotationView.clusteringIdentifier = "locations"
             
             return annotationView
@@ -64,7 +57,6 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
         return nil
     }
     
-    // Handle annotation selection
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let cluster = view.annotation as? MKClusterAnnotation {
             let identicalAnnotations = cluster.memberAnnotations.compactMap { $0 as? LocationAnnotation }
@@ -88,7 +80,6 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             
             mapView.deselectAnnotation(cluster, animated: false)
             
-            // Zoom in when tapping a cluster
             let region = MKCoordinateRegion(
                 center: cluster.coordinate,
                 span: MKCoordinateSpan(
@@ -98,12 +89,10 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
             )
             mapView.setRegion(region, animated: true)
         } else if let locationAnnotation = view.annotation as? LocationAnnotation {
-            // Update selected location in view model on main thread
             DispatchQueue.main.async { [weak self] in
                 self?.parent.viewModel.selectLocation(locationAnnotation.location)
             }
             
-            // Update the annotation appearance
             if let markerView = view as? MKMarkerAnnotationView {
                 markerView.markerTintColor = locationAnnotation.color.withAlphaComponent(0.8)
             }
@@ -120,33 +109,21 @@ class UIMapViewCoordinator: NSObject, MKMapViewDelegate {
         }
     }
     
-    // Handle annotation deselection
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if let locationAnnotation = view.annotation as? LocationAnnotation,
            let markerView = view as? MKMarkerAnnotationView {
             
-            // Reset the annotation appearance
             markerView.markerTintColor = locationAnnotation.color
-            // Only clear if the deselected annotation is the selected one
             if let selectedLocation = parent.viewModel.selectedLocation,
                locationAnnotation.location.id == selectedLocation.id,
                mapView.selectedAnnotations.isEmpty {
                 DispatchQueue.main.async { [weak self] in
-                    self?.parent.viewModel.selectedLocation = nil
+                    self?.parent.viewModel.selectLocation(nil)
                 }
             }
         }
     }
     
-    // Handle region changes
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        // Use async to avoid UI blocking and weak self to avoid potential retain cycle
-        DispatchQueue.main.async { [weak self] in
-            self?.parent.viewModel.region = mapView.region
-        }
-    }
-    
-    // Implement prepareForDisplay to optimize annotation view recycling
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         views.forEach { $0.alpha = 0 }
         UIView.animate(withDuration: 0.3) {

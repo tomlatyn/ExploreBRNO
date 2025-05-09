@@ -196,6 +196,8 @@
 		E25D5B7F2DCD760C00EC0BEB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E2D5406B2DC65AC0002D47EB /* LaunchScreen.storyboard */,
+				E2D540682DC65AC0002D47EB /* Assets.xcassets */,
 				E25D5B802DCD761D00EC0BEB /* Localizable.strings */,
 				E20518052DCD8B3400D90A73 /* Images.xcassets */,
 				E205180B2DCD8E9600D90A73 /* Colors.xcassets */,
@@ -229,9 +231,7 @@
 				E2D540842DC65C11002D47EB /* DI */,
 				E2D540782DC65B00002D47EB /* Core */,
 				E2D540672DC65AC0002D47EB /* AppDelegate.swift */,
-				E2D540682DC65AC0002D47EB /* Assets.xcassets */,
 				E2D540692DC65AC0002D47EB /* Info.plist */,
-				E2D5406B2DC65AC0002D47EB /* LaunchScreen.storyboard */,
 			);
 			path = ExploreBRNO;
 			sourceTree = "<group>";
@@ -295,13 +295,13 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		E2D540952DC660EA002D47EB /* Servers */ = {
+		E2D540952DC660EA002D47EB /* Server */ = {
 			isa = PBXGroup;
 			children = (
 				E2D540962DC6614A002D47EB /* ServerGis.swift */,
 				E2D540982DC66188002D47EB /* ServerArcgis.swift */,
 			);
-			path = Servers;
+			path = Server;
 			sourceTree = "<group>";
 		};
 		E2D5409A2DC66240002D47EB /* Presentation */ = {
@@ -359,7 +359,7 @@
 			children = (
 				E2D5411D2DCACB52002D47EB /* UserDefaults */,
 				E2D540942DC660E4002D47EB /* Repository */,
-				E2D540952DC660EA002D47EB /* Servers */,
+				E2D540952DC660EA002D47EB /* Server */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -741,7 +741,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Resources/LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -772,7 +772,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Resources/LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

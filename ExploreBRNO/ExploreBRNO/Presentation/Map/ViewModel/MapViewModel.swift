@@ -28,8 +28,7 @@ public final class MapViewModel: NSObject, ObservableObject {
     @Published var selectedMapLocationTypes: [MapLocationType] = MapLocationType.allCases
     
     @Published var userLocation: CLLocationCoordinate2D?
-    @Published var region = Constants.defaultMapRegion
-    @Published var selectedLocation: SelectedLocation? {
+    @Published private(set) var selectedLocation: SelectedLocation? {
         didSet {
             if selectedLocation == nil {
                 presentationDetent = .medium
@@ -119,17 +118,6 @@ public final class MapViewModel: NSObject, ObservableObject {
             let loc2 = CLLocation(latitude: $1.model.coordinates.latitude, longitude: $1.model.coordinates.longitude)
             return loc1.distance(from: userLocationCl) < loc2.distance(from: userLocationCl)
         }))
-    }
-    
-    func focusOnUserLocation() {
-        guard let userLocation = userLocation else {
-            presentedAlert = PresentedAlert(.locationError)
-            return
-        }
-        region = MKCoordinateRegion(
-            center: userLocation,
-            span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        )
     }
     
     // MARK: - Map filter

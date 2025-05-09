@@ -81,6 +81,7 @@ public struct MapView: View {
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button(action: {
+                viewModel.selectLocation(nil)
                 viewModel.isFilterPresented = true
             }, label: {
                 Image(systemName: "slider.horizontal.3")
