@@ -29,8 +29,8 @@ public struct URLImageView: View {
                 .placeholder {
                     Rectangle()
                         .fill(.primary.opacity(0.25))
-                        .frame(maxWidth: .infinity, maxHeight: 300)
-                        .cornerRadius(8)
+                        .frame(maxWidth: .infinity, maxHeight: 250)
+                        .cornerRadius(CornerRadius.pt8)
                 }
                 .retry(maxCount: 3, interval: .seconds(1))
                 .onFailure { e in
@@ -47,13 +47,13 @@ public struct URLImageView: View {
                 .fade(duration: 0.25)
                 .resizable()
                 .aspectRatio(contentMode: imageScaling)
-                .cornerRadius(8)
+                .cornerRadius(CornerRadius.pt8)
 
             if isLoading {
                 ProgressView()
                     .scaleEffect(1.5)
             }
         }
-//        .animation(nil, value: true)
+        .animation(.easeIn(duration: 0.15), value: isLoading)
     }
 }

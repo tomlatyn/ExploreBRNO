@@ -16,11 +16,11 @@ struct ButtonLarge: View {
             Text(text)
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(.white)
-                .padding(.vertical, 16)
-                .padding(.horizontal, 24)
+                .padding(.vertical, Padding.pt16)
+                .padding(.horizontal, Padding.pt24)
                 .frame(maxWidth: .infinity)
                 .background(Color(R.color.primary()!))
         }
-        .cornerRadius(12)
+        .cornerRadius(CornerRadius.pt12)
     }
 }

@@ -13,27 +13,27 @@ extension DashboardView {
     var infoModalView: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: Padding.pt12) {
                     Image(uiImage: R.image.logo_transparent()!)
                         .resizable()
                         .scaledToFit()
                     
                     Divider()
                     
-                    rowView(title: "Made By", value: "Tomáš Latýn", url: URL(string: "https://tomaslatyn.xyz/"))
+                    rowView(title: R.string.localizable.about_made_by(), value: Constants.authorName, url: Constants.authorWebsiteURL)
                     
                     Divider()
                     
-                    rowView(title: "Data Source", value: "data.brno.cz", url: URL(string: "https://data.brno.cz/"))
+                    rowView(title: R.string.localizable.about_data_source(), value: Constants.dataSourceURLString, url: Constants.dataSourceURL)
                     
                     Divider()
                     
                     if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-                        rowView(title: "App Version", value: appVersion)
+                        rowView(title: R.string.localizable.about_app_version(), value: appVersion)
                     }
                     
                 }
-                .padding(16)
+                .padding(Padding.pt16)
             }
             .navigationTitle(R.string.localizable.about_title())
             .navigationBarTitleDisplayMode(.inline)
@@ -52,7 +52,7 @@ extension DashboardView {
     }
     
     private func rowView(title: String, value: String, url: URL? = nil) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: Padding.pt4) {
             Text(title)
                 .font(.caption)
                 .foregroundStyle(.secondary)

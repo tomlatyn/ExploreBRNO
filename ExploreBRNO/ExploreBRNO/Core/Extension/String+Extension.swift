@@ -1,8 +1,8 @@
 //
-//  Extensions.swift
-//  VisitBRNO
+//  String+Extension.swift
+//  ExploreBRNO
 //
-//  Created by Tomáš Latýn on 05.05.2025.
+//  Created by Tomáš Latýn on 09.05.2025.
 //
 
 import Foundation

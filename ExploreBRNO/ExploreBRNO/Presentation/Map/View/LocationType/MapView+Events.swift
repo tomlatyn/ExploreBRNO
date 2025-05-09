@@ -12,7 +12,7 @@ import MapKit
 extension MapView {
     
     func eventDetailView(_ event: EventModel) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: Padding.pt12) {
             let urls = event.images.compactMap { URL(string: $0) }
             if !urls.isEmpty {
                 detailImagesView(urls)

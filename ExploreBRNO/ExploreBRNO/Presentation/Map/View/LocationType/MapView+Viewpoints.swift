@@ -12,7 +12,7 @@ import MapKit
 extension MapView {
     
     func viewpointDetailView(_ viewpoint: ViewpointModel) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: Padding.pt12) {
             infoRowView(
                 R.string.localizable.map_detail_altitude(),
                 "\(NSString(format: "%.01f", viewpoint.altitude)) \(R.string.localizable.map_detail_meters())",

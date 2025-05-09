@@ -51,7 +51,7 @@ public struct DashboardView: View {
     @ViewBuilder
     private var layoutMain: some View {
         ScrollView {
-            VStack(spacing: 12) {
+            VStack(spacing: Padding.pt12) {
                 ForEach(MapType.allCases, id: \.self) { type in
                     itemRow(type: type)
                     
@@ -60,12 +60,12 @@ public struct DashboardView: View {
                     }
                 }
             }
-            .padding(16)
+            .padding(Padding.pt16)
         }
     }
     
     private func itemRow(type: MapType) -> some View {
-        HStack(spacing: 12) {
+        HStack(spacing: Padding.pt12) {
             type.icon
                 .renderingMode(.template)
                 .resizable()
@@ -83,7 +83,7 @@ public struct DashboardView: View {
                 .frame(height: 16)
                 .foregroundStyle(Color(.primary))
         }
-        .padding(16)
+        .padding(Padding.pt16)
         .contentShape(Rectangle())
         .onTapGesture {
             coordinator.navigate(.map(type))

@@ -14,7 +14,7 @@ extension MapView {
     func selectedLocationView(location: MapViewModel.SelectedLocation) -> some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: Padding.pt16) {
                     locationNameView(location.mapLocation.model.name)
                     
                     navigateToLocationButton(location.mapLocation)
@@ -28,8 +28,8 @@ extension MapView {
                         culturalPlaceDetailView(place)
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 24)
+                .padding(.horizontal, Padding.pt16)
+                .padding(.bottom, Padding.pt24)
             }
             .presentationDetents([.height(100), .medium, .large], selection: $viewModel.presentationDetent)
             .presentationDragIndicator(.visible)
@@ -65,7 +65,7 @@ extension MapView {
         Button(action: {
             openLocationInMaps(location: location)
         }, label: {
-            HStack(spacing: 8) {
+            HStack(spacing: Padding.pt8) {
                 Image(systemName: "location.north.fill")
                     .resizable()
                     .scaledToFit()
@@ -80,7 +80,7 @@ extension MapView {
     // MARK: - Reusable views
     
     func infoRowView(_ title: String, _ value: String, type: InfoRowType) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: Padding.pt4) {
             Text(title)
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -133,15 +133,15 @@ extension MapView {
             URLImageView(url: url)
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
+                HStack(spacing: Padding.pt12) {
                     ForEach(urls, id: \.self) { url in
                         URLImageView(url: url)
                             .frame(width: UIScreen.main.bounds.size.width * 0.83)
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, Padding.pt16)
             }
-            .padding(.horizontal, -16)
+            .padding(.horizontal, -Padding.pt16)
         }
     }
     

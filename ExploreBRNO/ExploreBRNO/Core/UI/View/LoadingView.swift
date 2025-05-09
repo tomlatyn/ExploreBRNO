@@ -12,7 +12,7 @@ struct LoadingView: View {
     var text: String?
     
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: Padding.pt24) {
             ProgressView()
                 .scaleEffect(1.5)
             
@@ -22,11 +22,11 @@ struct LoadingView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding(32)
+        .padding(Padding.pt32)
         .background(
             .ultraThinMaterial
         )
-        .cornerRadius(16)
+        .cornerRadius(CornerRadius.pt16)
             
     }
 }

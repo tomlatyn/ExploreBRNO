@@ -18,4 +18,9 @@ struct Constants {
         pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
         options: .caseInsensitive
     )
+    
+    static let authorName = "Tomáš Latýn"
+    static let authorWebsiteURL = URL(string: "https://tomaslatyn.xyz/")!
+    static let dataSourceURLString = "data.brno.cz"
+    static let dataSourceURL = URL(string: "https://data.brno.cz/")!
 }

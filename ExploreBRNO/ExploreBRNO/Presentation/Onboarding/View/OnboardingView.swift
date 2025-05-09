@@ -38,7 +38,7 @@ public struct OnboardingView: View {
     
     @ViewBuilder
     private var layoutMain: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: Padding.pt32) {
             Text(R.string.localizable.onboarding_title())
                 .font(.largeTitle.weight(.semibold))
             
@@ -52,7 +52,7 @@ public struct OnboardingView: View {
             }
         }
         .multilineTextAlignment(.center)
-        .padding(16)
+        .padding(Padding.pt16)
         .frame(maxWidth: 332)
     }
     
@@ -62,6 +62,6 @@ public struct OnboardingView: View {
             .scaledToFill()
             .frame(width: 300, height: 300)
             .clipped()
-            .cornerRadius(16)
+            .cornerRadius(CornerRadius.pt16)
     }
 }

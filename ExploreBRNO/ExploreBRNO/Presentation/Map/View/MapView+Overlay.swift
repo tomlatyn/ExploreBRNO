@@ -17,16 +17,16 @@ extension MapView {
         Button(R.string.localizable.map_find_nearest_location()) {
             viewModel.selectClosestLocation()
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
+        .padding(.horizontal, Padding.pt12)
+        .padding(.vertical, Padding.pt6)
         .background(colorScheme == .dark ? .black.opacity(0.8) : .white.opacity(0.8))
-        .cornerRadius(6)
+        .cornerRadius(CornerRadius.pt6)
         .frame(maxHeight: .infinity, alignment: .top)
-        .padding(.top, 12)
+        .padding(.top, Padding.pt12)
     }
     
     var mapFilterView: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: Padding.pt12) {
             Toggle(
                 R.string.localizable.map_filter_bookmark(),
                 isOn: $viewModel.bookmarkFilterToggle
@@ -35,11 +35,11 @@ extension MapView {
             
             Divider()
             
-            VStack(spacing: 12) {
+            VStack(spacing: Padding.pt12) {
                 ForEach(viewModel.mapLocationTypes, id: \.self) { type in
                     Text(type.collectionName)
                         .foregroundStyle(.white)
-                        .padding(12)
+                        .padding(Padding.pt12)
                         .frame(maxWidth: .infinity)
                         .background(Color(type.color))
                         .opacity(viewModel.selectedMapLocationTypes.contains(type) ? 1 : 0.35)
@@ -51,7 +51,7 @@ extension MapView {
             }
         }
         .fixedSize(horizontal: true, vertical: false)
-        .padding(12)
+        .padding(Padding.pt12)
     }
     
     // MARK: - Cluster list
@@ -68,10 +68,10 @@ extension MapView {
     
     private var clusterList: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: Padding.pt12) {
                 ForEach(viewModel.clusterLocations, id: \.location.id) { location in
                     HStack {
-                        VStack(alignment: .leading, spacing: 2) {
+                        VStack(alignment: .leading, spacing: Padding.pt2) {
                             Text(location.location.model.name)
                             
                             Text(location.location.type.name)
@@ -91,7 +91,7 @@ extension MapView {
                     }
                 }
             }
-            .padding(16)
+            .padding(Padding.pt16)
         }
     }
     

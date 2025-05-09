@@ -45,6 +45,9 @@
 // MARK: - Dashboard
 
 "about_title" = "About App";
+"about_made_by" = "Made By";
+"about_data_source" = "Data Source";
+"about_app_version" = "App Version";
 
 // MARK: - Map
 
